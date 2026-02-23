@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthCare with Annemarie | Family Financial Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --teal: #2d5a5a; --sand: #f4f1ea; --dark: #1a1c1e; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        /* 1. Inclusive Family Background */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), 
+                        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        
+        .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        .nav-link { position: relative; transition: color 0.3s; font-weight: 800; }
+        .nav-link::after { 
+            content: ''; position: absolute; width: 0; height: 3px; 
+            bottom: -4px; left: 0; background-color: var(--teal); 
+            transition: width 0.3s; 
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Professional Header Font for Name */
+        .prof-name { 
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="img/logo.jpg" alt="WealthCare Logo" class="h-12 w-12 rounded-full object-cover border-2 border-teal-900/10">
+                <span class="font-extrabold tracking-tighter text-2xl uppercase italic text-teal-900">Wealthcare<span class="font-light not-italic text-gray-500">WithAnnemarie</span></span>
+            </a>
+            
+            <div class="hidden lg:flex gap-10 text-sm uppercase tracking-widest text-gray-700">
+                <a href="#about" class="nav-link hover:text-teal-900">About</a>
+                <a href="#education" class="nav-link hover:text-teal-900">The E-Book</a>
+                <a href="#portal" class="nav-link hover:text-teal-900">Education Hub</a>
+                <a href="#contact" class="nav-link hover:text-teal-900">Contact</a>
+            </div>
+            
+            <a href="https://calendly.com/amariem/one-on-one" class="bg-teal-900 text-white px-8 py-3 rounded-full text-sm font-extrabold shadow-xl hover:bg-teal-800 transition transform hover:scale-105 uppercase tracking-widest">Book a Call</a>
+        </div>
+    </nav>
+
+    <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6 pt-20">
+        <div class="max-w-4xl text-white">
+            <span class="text-teal-300 font-extrabold tracking-[0.4em] uppercase text-sm mb-6 block">Legacy • Protection • Growth</span>
+            <h1 class="text-6xl md:text-8xl mb-8 leading-tight font-bold">Financial Literacy is the <br><span class="italic text-teal-200">New Currency</span></h1>
+            <p class="text-xl md:text-2xl mb-12 font-light opacity-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+                Building generational bridges for families of every background.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#education" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:bg-gray-100 transition">Get My Free Guide</a>
+                <a href="#portal" class="bg-teal-900/60 backdrop-blur-md border border-white/30 text-white px-12 py-5 rounded-2xl font-extrabold text-lg hover:bg-white/10 transition">Enter Portal</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-32 px-6 bg-white">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            
+            <div class="relative">
+                <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-teal-800/10 rounded-[3rem] -z-0"></div>
+                <img src="img/profile.jpeg" class="rounded-[3rem] shadow-2xl relative z-10 w-full object-cover" alt="Annemarie Profile">
+                
+                <div class="mt-8 text-center md:text-left">
+                    <h2 class="prof-name text-4xl font-bold text-teal-900">Annemarie</h2>
+                    <p class="text-gray-400 font-bold tracking-[0.4em] text-lg mt-1">LFP</p>
+                </div>
+            </div>
+
+            <div class="pt-4">
+                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-6">The Heart Behind the Vision</span>
+                <h3 class="text-4xl md:text-5xl mb-8 leading-tight font-bold text-gray-900">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h3>
+                
+                <p class="text-gray-600 text-xl leading-relaxed mb-8">
+                    I believe that true wealth begins with understanding. My mission is to strip away the complexity of finance and provide families with the clarity they deserve to own their future.
+                </p>
+                
+                <p class="text-gray-600 text-lg leading-relaxed mb-12 font-light italic border-l-4 border-teal-100 pl-6">
+                    "With a background rooted in nursing, I have spent my career caring for people. I bring that same 'patient-first' heart to your finances, taking the time to explain the 'why' behind every strategy."
+                </p>
+
+                <div class="p-10 bg-[#f4f1ea] rounded-[2rem] border-l-8 border-teal-900 shadow-sm">
+                    <p class="text-teal-900 text-2xl font-serif italic leading-snug">
+                        "Financial literacy is not just about numbers; it's about the freedom to choose your family's future and the confidence to protect it for generations."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-24 px-6 bg-teal-900 text-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl md:text-5xl mb-6 font-bold">The Family <span class="text-teal-200 italic">Wealth Roadmap</span></h2>
+                <p class="text-teal-50 text-lg font-light mb-8 leading-relaxed">Unlock the strategies used to build and protect wealth. Our free eBook is designed for families who want a clear path to retirement without the stress.</p>
+                <a href="#contact" class="bg-white text-teal-900 px-8 py-4 rounded-xl font-extrabold hover:bg-teal-50 transition shadow-xl inline-block uppercase tracking-wider">Request My Copy</a>
+            </div>
+            
+            <div class="relative flex justify-center">
+                <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=800" class="rounded-[2.5rem] shadow-2xl rotate-2 relative z-10 border-8 border-white/10" alt="Financial Roadmap E-book for families">
+                <div class="absolute -inset-4 bg-teal-500/20 blur-2xl rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 bg-[#f4f1ea]">
+        <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-10 md:p-16 shadow-2xl border border-gray-100">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl mb-4 text-teal-900 font-bold leading-tight">Connect with Annemarie</h2>
+                <p class="text-gray-500 font-light text-lg">Start your journey toward financial empowerment today.</p>
+            </div>
+            <form id="hubForm" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" id="name" placeholder="Full Name" required class="w-full px-6 py-4 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-teal-800 transition">
+                    <input type="email" id="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-teal-800 transition">
+                </div>
+                <input type="tel" id="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-teal-800 transition">
+                <button type="submit" class="w-full bg-teal-900 text-white font-extrabold py-5 rounded-2xl hover:bg-teal-700 transition shadow-xl text-lg uppercase tracking-widest">Get My Educational Kit</button>
+                <p id="responseMsg" class="text-center text-teal-800 font-bold hidden mt-4 italic">Success! Your kit is on its way.</p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-white py-12 px-6 text-center border-t border-gray-100">
+        <img src="img/logo.jpg" alt="Wealthcare" class="h-14 w-14 rounded-full object-cover mx-auto mb-6">
+        <p class="text-gray-400 text-[10px] tracking-[0.3em] uppercase">© 2026 Wealthcare WithAnnemarie</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('hubForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('responseMsg').classList.remove('hidden');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
