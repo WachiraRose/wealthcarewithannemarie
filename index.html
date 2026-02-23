@@ -27,9 +27,10 @@
             .mobile-cta { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 40; width: 90%; }
         }
 
-        /* Success Notification Animation */
-        #success-banner { transition: all 0.5s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
-        #success-banner.show { max-height: 200px; opacity: 1; margin-bottom: 2rem; }
+        #success-banner { transition: all 0.4s ease-in-out; display: none; opacity: 0; transform: translateY(-10px); }
+        #success-banner.show { display: block; opacity: 1; transform: translateY(0); }
+        
+        .hidden { display: none !important; }
     </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -48,7 +49,7 @@
             <div class="hidden lg:flex gap-8 text-sm uppercase tracking-widest text-gray-700 font-bold">
                 <a href="#about" class="hover:text-teal-900 transition">About</a>
                 <a href="#blog" class="hover:text-teal-900 transition">Insights</a>
-                <a href="#footer-contact" class="hover:text-teal-900 transition">Contact</a>
+                <a href="#contact" class="hover:text-teal-900 transition">Contact</a>
                 <a href="https://wachirarose.github.io/test/" class="text-teal-900 border-b-2 border-teal-900">Member Portal</a>
             </div>
 
@@ -56,87 +57,188 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </div>
+
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-b border-gray-100 flex flex-col p-6 gap-4 lg:hidden shadow-xl">
+            <a href="#about" class="mobile-link text-lg font-bold text-gray-800">About</a>
+            <a href="#blog" class="mobile-link text-lg font-bold text-gray-800">Insights</a>
+            <a href="#footer-contact" class="mobile-link text-lg font-bold text-gray-800">Contact</a>
+            <hr>
+            <a href="https://wachirarose.github.io/test/" class="text-teal-900 font-bold">Member Login</a>
+        </div>
     </nav>
 
     <header class="hero-bg min-h-screen flex items-center justify-center text-center px-4 md:px-6 pt-20">
         <div class="max-w-4xl text-white">
             <span class="text-teal-300 font-extrabold tracking-[0.3em] uppercase text-xs md:text-sm mb-6 block">Legacy • Protection • Growth</span>
             <h1 class="text-4xl md:text-8xl mb-8 leading-tight font-bold">Financial Literacy is the <br><span class="italic text-teal-200">New Currency</span></h1>
+            <p class="text-lg md:text-2xl mb-12 font-light max-w-3xl mx-auto leading-relaxed">Educating families to build generational bridges across all backgrounds.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:bg-gray-100 transition">Get Started</a>
-                <a href="https://calendly.com/amariem/one-on-one" class="bg-teal-900/60 backdrop-blur-md border border-white/30 text-white px-12 py-5 rounded-2xl font-extrabold text-lg hover:bg-white/10 transition">Consultation</a>
+                <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:bg-gray-100 transition">Learn More</a>
+                <a href="https://calendly.com/amariem/one-on-one" class="bg-teal-900/60 backdrop-blur-md border border-white/30 text-white px-12 py-5 rounded-2xl font-extrabold text-lg hover:bg-white/10 transition">Book a Consultation</a>
             </div>
         </div>
     </header>
 
-    <section id="contact" class="py-20 bg-[#f4f1ea] px-4 md:px-6">
-        <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100">
-            
-            <div id="success-banner" class="bg-teal-50 border border-teal-200 rounded-2xl p-6 text-center">
-                <div class="flex items-center justify-center gap-3 text-teal-900 mb-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                    <span class="font-bold text-xl">Roadmap Sent!</span>
+    <section id="about" class="py-20 md:py-32 px-4 md:px-6 bg-white">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="relative">
+                <img src="img/profile.jpeg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover" alt="Annemarie">
+                <div class="mt-8 text-center md:text-left">
+                    <h2 class="prof-name text-4xl font-bold text-teal-900">Annemarie</h2>
+                    <p class="text-gray-400 font-bold tracking-[0.4em] text-lg mt-1 uppercase">LFP</p>
                 </div>
-                <p class="text-teal-700 font-medium italic">Resetting form... Redirecting to portal.</p>
             </div>
-
-            <div id="form-header" class="text-center">
-                <h2 class="text-3xl md:text-4xl mb-4 text-teal-900 font-bold">Secure Your Roadmap</h2>
-                <p class="text-gray-500 mb-10 font-light">Join the community of families taking control of their financial legacy.</p>
-            </div>
-            
-            <form id="managedForm" class="space-y-4">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" name="first_name" placeholder="First Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
-                    <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
+            <div>
+                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-6">The Heart Behind the Vision</span>
+                <h3 class="text-3xl md:text-5xl mb-8 leading-tight font-bold text-gray-900">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h3>
+                <p class="text-gray-600 text-lg md:text-xl leading-relaxed mb-8">
+                    I believe true wealth begins with understanding. Coming from a caregiving background, I bring a human-first heart to your finances.
+                </p>
+                <div class="p-6 md:p-10 bg-[#f4f1ea] rounded-[1.5rem] md:rounded-[2rem] border-l-8 border-teal-900 shadow-sm italic text-teal-900 text-xl md:text-2xl font-serif">
+                    "Financial literacy is not just about numbers; it's about the freedom to choose your family's future."
                 </div>
-                <input type="email" name="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
-                <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
-                <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-extrabold py-5 rounded-xl hover:bg-teal-700 transition shadow-xl text-lg uppercase tracking-widest">Submit</button>
-            </form>
+            </div>
         </div>
     </section>
 
+    <section id="blog" class="py-20 bg-[#f9f8f4] px-4 md:px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-2">Education Hub</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-teal-900">Latest Insights</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <article class="bg-white p-8 rounded-[2rem] shadow-lg flex flex-col justify-between hover:shadow-2xl transition duration-300 border border-gray-50">
+                    <div>
+                        <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-3 py-1 rounded-full w-fit mb-4">Legacy</div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-4 leading-tight">Legacy Planning: Building a Financial Bridge for Generations</h3>
+                        <p class="text-gray-600 mb-6 text-sm md:text-base">Legacy planning is more than just passing down assets; it’s about ensuring your hard work protects your family long after you're gone.</p>
+                    </div>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/legacy-planning-building-financial.html" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2 group">Read Article <span class="group-hover:translate-x-1 transition-transform">→</span></a>
+                </article>
+
+                <article class="bg-white p-8 rounded-[2rem] shadow-lg flex flex-col justify-between hover:shadow-2xl transition duration-300 border border-gray-50">
+                    <div>
+                        <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-3 py-1 rounded-full w-fit mb-4">Fundamentals</div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-4 leading-tight">Financial Literacy: The Foundation of True Wealth and Freedom</h3>
+                        <p class="text-gray-600 mb-6 text-sm md:text-base">Understand the essential skills of money management, budgeting, and investing that form the bedrock of your family's security.</p>
+                    </div>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/financial-literacy-foundation-of-true.html" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2 group">Read Article <span class="group-hover:translate-x-1 transition-transform">→</span></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-[#f4f1ea] px-4 md:px-6 pb-32 md:pb-20">
+        <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 relative min-h-[400px] flex flex-col justify-center">
+            
+            <div id="success-banner" class="bg-teal-50 border border-teal-200 rounded-2xl p-10 text-center">
+                <div class="flex items-center justify-center gap-3 text-teal-900 mb-4">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="font-bold text-2xl">Roadmap Sent!</span>
+                </div>
+                <p class="text-teal-700 font-medium text-lg italic">Form reset successful. Redirecting to your portal...</p>
+            </div>
+
+            <div id="form-content">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl mb-4 text-teal-900 font-bold">Secure Your Roadmap</h2>
+                    <p class="text-gray-500 font-light">Join the community of families taking control of their financial legacy.</p>
+                </div>
+                
+                <form id="managedForm" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" name="first_name" placeholder="First Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
+                        <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
+                    </div>
+                    <input type="email" name="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
+                    <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
+                    <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-extrabold py-5 rounded-xl hover:bg-teal-700 transition shadow-xl text-lg uppercase tracking-widest">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer-contact" class="bg-white border-t border-gray-100 pt-16 pb-8 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+                <img src="img/logo.jpg" alt="Logo" class="h-16 w-16 rounded-full mb-6">
+                <h3 class="font-bold text-teal-900 text-xl mb-2">Wealthcare With Annemarie</h3>
+                <p class="text-gray-500 text-sm mb-4">St. Louis, Missouri</p>
+                <p class="text-gray-400 text-[11px] font-medium tracking-wide">Published: February 2026</p>
+            </div>
+            <div>
+                <h4 class="font-extrabold uppercase text-xs tracking-[0.2em] text-gray-400 mb-6">Site Links</h4>
+                <ul class="space-y-4 text-gray-600 font-semibold text-sm">
+                    <li><a href="#about" class="hover:text-teal-900 transition">About</a></li>
+                    <li><a href="#blog" class="hover:text-teal-900 transition">Financial Insights</a></li>
+                    <li><a href="https://wachirarose.github.io/test/" class="hover:text-teal-900 transition font-bold">Member Portal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-extrabold uppercase text-xs tracking-[0.2em] text-gray-400 mb-6">Connect</h4>
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="Instagram"></a>
+                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="LinkedIn"></a>
+                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="Facebook"></a>
+                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="TikTok"></a>
+                </div>
+                <a href="https://calendly.com/amariem/one-on-one" target="_blank" class="inline-block bg-teal-900 text-white px-8 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-teal-700 transition shadow-lg">Book a Call</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-gray-50 pt-8 text-center text-gray-400 text-[10px] tracking-[0.3em] uppercase italic">
+            © 2026 Wealthcare WithAnnemarie • Licensed Financial Professional
+        </div>
+    </footer>
+
     <script>
+        // Menu Scripts
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('show-menu'));
+        document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('show-menu')));
+
+        // Submission Logic
         document.getElementById('managedForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const form = e.target;
             const submitBtn = document.getElementById('submitBtn');
             const banner = document.getElementById('success-banner');
-            const header = document.getElementById('form-header');
+            const content = document.getElementById('form-content');
 
-            // 1. Loading State
             submitBtn.disabled = true;
-            submitBtn.innerText = "Syncing Data...";
+            submitBtn.innerText = "Syncing...";
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // Submit to Google Script
                 await fetch('YOUR_APPS_SCRIPT_URL', { 
                     method: 'POST', 
                     mode: 'no-cors', 
                     body: JSON.stringify(data) 
                 });
 
-                // 2. Clear Form (The "Reset" happens here)
                 form.reset(); 
-
-                // 3. Show Success Banner & Hide Header
-                header.classList.add('hidden');
+                content.classList.add('hidden');
                 banner.classList.add('show');
 
-                // 4. Redirect after 2 seconds
                 setTimeout(() => {
                     window.location.href = "https://wachirarose.github.io/test/";
-                }, 2000);
+                }, 2200);
 
             } catch (err) {
-                form.reset();
-                window.location.href = "https://wachirarose.github.io/test/";
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit";
+                alert("Submission failed. Please check your connection.");
             }
         });
+
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        };
     </script>
 </body>
 </html>
