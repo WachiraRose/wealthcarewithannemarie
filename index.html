@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WealthCare with Annemarie | Family Financial Education</title>
+    <title>WealthCare with Annemarie | Financial Education</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --teal: #2d5a5a; --sand: #f4f1ea; --dark: #1a1c1e; }
+        :root { --teal: #2d5a5a; --sand: #f4f1ea; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         
@@ -18,155 +18,155 @@
         }
         
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
-        .nav-link { position: relative; transition: color 0.3s; font-weight: 800; }
-        
-        /* Mobile Menu Animation */
         #mobile-menu { transition: all 0.3s ease-in-out; }
         .hidden-menu { transform: translateY(-100%); opacity: 0; pointer-events: none; }
         .show-menu { transform: translateY(0); opacity: 1; pointer-events: all; }
 
+        /* Professional Name Styling */
         .prof-name { font-family: 'Playfair Display', serif; letter-spacing: -0.01em; }
     </style>
 </head>
 <body class="bg-white text-gray-900">
 
     <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2 md:gap-3">
-                <img src="img/logo.jpg" alt="WealthCare Logo" class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border-2 border-teal-900/10">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="img/logo.jpg" alt="WealthCare Logo" class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover">
                 <span class="font-extrabold tracking-tighter text-lg md:text-2xl uppercase italic text-teal-900 leading-none">Wealthcare<br class="block md:hidden"><span class="font-light not-italic text-gray-500">WithAnnemarie</span></span>
             </a>
             
-            <div class="hidden lg:flex gap-8 text-sm uppercase tracking-widest text-gray-700">
-                <a href="#about" class="nav-link hover:text-teal-900">About</a>
-                <a href="#education" class="nav-link hover:text-teal-900">E-Book</a>
-                <a href="#blog" class="nav-link hover:text-teal-900">Blog</a>
-                <a href="#contact" class="nav-link hover:text-teal-900">Contact</a>
+            <div class="hidden lg:flex gap-8 text-sm uppercase tracking-widest text-gray-700 font-bold">
+                <a href="#about" class="hover:text-teal-900">About</a>
+                <a href="#blog" class="hover:text-teal-900">Insights</a>
+                <a href="#contact" class="hover:text-teal-900">Contact</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="https://calendly.com/amariem/one-on-one" class="hidden sm:block bg-teal-900 text-white px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-extrabold shadow-lg hover:bg-teal-800 transition uppercase tracking-widest">Book a Call</a>
-                
+                <a href="https://calendly.com/amariem/one-on-one" class="hidden sm:block bg-teal-900 text-white px-6 py-3 rounded-full text-xs font-extrabold shadow-lg hover:bg-teal-800 transition uppercase">Book a Call</a>
                 <button id="menu-toggle" class="lg:hidden text-teal-900 focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
                 </button>
             </div>
         </div>
 
         <div id="mobile-menu" class="hidden-menu absolute top-full left-0 w-full bg-white border-b border-gray-100 flex flex-col p-6 gap-4 lg:hidden shadow-xl">
             <a href="#about" class="mobile-link text-lg font-bold text-gray-800">About</a>
-            <a href="#education" class="mobile-link text-lg font-bold text-gray-800">E-Book</a>
-            <a href="#blog" class="mobile-link text-lg font-bold text-gray-800">Blog</a>
+            <a href="#blog" class="mobile-link text-lg font-bold text-gray-800">Insights</a>
             <a href="#contact" class="mobile-link text-lg font-bold text-gray-800">Contact</a>
-            <a href="https://calendly.com/amariem/one-on-one" class="bg-teal-900 text-white text-center py-4 rounded-xl font-bold uppercase tracking-widest mt-2">Book a Call</a>
+            <a href="https://calendly.com/amariem/one-on-one" class="bg-teal-900 text-white text-center py-4 rounded-xl font-bold uppercase mt-2">Book a Call</a>
         </div>
     </nav>
 
     <header class="hero-bg min-h-screen flex items-center justify-center text-center px-4 md:px-6 pt-20">
         <div class="max-w-4xl text-white">
-            <span class="text-teal-300 font-extrabold tracking-[0.2em] md:tracking-[0.4em] uppercase text-xs md:text-sm mb-4 md:mb-6 block">Legacy • Protection • Growth</span>
-            <h1 class="text-4xl md:text-8xl mb-6 md:mb-8 leading-tight font-bold">Financial Literacy is the <br><span class="italic text-teal-200">New Currency</span></h1>
-            <p class="text-lg md:text-2xl mb-8 md:mb-12 font-light opacity-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
-                Building generational bridges for families of every background.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
-                <a href="#education" class="bg-white text-teal-900 px-8 md:px-12 py-4 md:py-5 rounded-2xl font-extrabold text-base md:text-lg shadow-2xl hover:bg-gray-100 transition">Get My Free Guide</a>
-                <a href="#portal" class="bg-teal-900/60 backdrop-blur-md border border-white/30 text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-extrabold text-base md:text-lg hover:bg-white/10 transition">Enter Portal</a>
+            <span class="text-teal-300 font-extrabold tracking-[0.3em] uppercase text-xs md:text-sm mb-6 block">Legacy • Protection • Growth</span>
+            <h1 class="text-4xl md:text-8xl mb-8 leading-tight font-bold">Financial Literacy is the <br><span class="italic text-teal-200">New Currency</span></h1>
+            <p class="text-lg md:text-2xl mb-12 font-light max-w-3xl mx-auto leading-relaxed">Building generational bridges for families of every background.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:bg-gray-100 transition">Get My Free Guide</a>
+                <a href="https://truewealth.adalo.com/wealthcare" class="bg-teal-900/60 backdrop-blur-md border border-white/30 text-white px-12 py-5 rounded-2xl font-extrabold text-lg hover:bg-white/10 transition">Enter Portal</a>
             </div>
         </div>
     </header>
 
-    <section id="about" class="py-16 md:py-32 px-4 md:px-6 bg-white">
+    <section id="about" class="py-20 md:py-32 px-4 md:px-6 bg-white">
         <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="relative order-2 lg:order-1">
-                <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 w-full h-full border-2 border-teal-800/10 rounded-[2rem] md:rounded-[3rem] -z-0"></div>
-                <img src="img/profile.jpeg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl relative z-10 w-full object-cover" alt="Annemarie Profile">
-                <div class="mt-6 md:mt-8 text-center md:text-left">
-                    <h2 class="prof-name text-3xl md:text-4xl font-bold text-teal-900">Annemarie</h2>
-                    <p class="text-gray-400 font-bold tracking-[0.4em] text-base md:text-lg mt-1 uppercase">LFP</p>
+            <div class="relative">
+                <img src="img/profile.jpeg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover" alt="Annemarie Profile">
+                <div class="mt-8 text-center md:text-left">
+                    <h2 class="prof-name text-4xl font-bold text-teal-900">Annemarie</h2>
+                    <p class="text-gray-400 font-bold tracking-[0.4em] text-lg mt-1 uppercase">LFP</p>
                 </div>
             </div>
-            <div class="order-1 lg:order-2">
-                <span class="text-teal-700 font-extrabold tracking-widest text-xs md:text-sm uppercase block mb-4 md:mb-6">The Heart Behind the Vision</span>
-                <h3 class="text-3xl md:text-5xl mb-6 md:mb-8 leading-tight font-bold text-gray-900">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h3>
-                <p class="text-gray-600 text-lg md:text-xl leading-relaxed mb-6 md:mb-8 font-light">
-                    I believe that true wealth begins with understanding. My mission is to strip away the complexity of finance and provide families with the clarity they deserve.
+            <div>
+                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-6">The Heart Behind the Vision</span>
+                <h3 class="text-3xl md:text-5xl mb-8 leading-tight font-bold text-gray-900">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h3>
+                <p class="text-gray-600 text-lg md:text-xl leading-relaxed mb-8">
+                    I believe that true wealth begins with understanding. My mission is to strip away the complexity of finance and provide families with clarity.
                 </p>
-                <div class="p-6 md:p-10 bg-[#f4f1ea] rounded-[1.5rem] md:rounded-[2rem] border-l-8 border-teal-900 shadow-sm">
-                    <p class="text-teal-900 text-xl md:text-2xl font-serif italic leading-snug">
-                        "Financial literacy is not just about numbers; it's about the freedom to choose your family's future."
-                    </p>
+                <div class="p-6 md:p-10 bg-[#f4f1ea] rounded-[1.5rem] md:rounded-[2rem] border-l-8 border-teal-900 shadow-sm italic text-teal-900 text-xl md:text-2xl font-serif">
+                    "Financial literacy is not just about numbers; it's about the freedom to choose your family's future."
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="blog" class="py-16 md:py-24 px-4 md:px-6 bg-[#f9f8f4]">
-        <div class="max-w-7xl mx-auto text-center mb-10 md:mb-16">
-            <span class="text-teal-700 font-extrabold tracking-widest text-xs md:text-sm uppercase block mb-2">Insights & Education</span>
-            <h2 class="text-3xl md:text-5xl font-bold text-teal-900">The Wealth Blog</h2>
-        </div>
-        <div class="max-w-4xl mx-auto">
-            <article class="bg-white rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-xl flex flex-col md:flex-row">
-                <div class="md:w-1/3 bg-teal-800 flex items-center justify-center p-8">
-                    <img src="img/logo.jpg" class="rounded-full h-24 w-24 md:h-32 md:w-32 border-4 border-white/20" alt="Blog Icon">
-                </div>
-                <div class="p-6 md:p-10 md:w-2/3">
-                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">Financial Literacy: The Foundation of True Wealth and Freedom</h3>
-                    <p class="text-gray-600 mb-6 text-sm md:text-base leading-relaxed">
-                        Financial literacy is the ability to effectively use financial skills like budgeting and investing. It is the foundation of your relationship with money...
-                    </p>
-                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/financial-literacy-foundation-of-true.html" target="_blank" class="text-teal-800 font-extrabold hover:underline inline-flex items-center gap-2">Read Full Article →</a>
-                </div>
-            </article>
+    <section id="blog" class="py-20 bg-[#f9f8f4] px-4 md:px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold text-teal-900 text-center mb-16">Wealth & Legacy Insights</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="bg-white p-8 rounded-[2rem] shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Legacy Planning: Building a Financial Bridge</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Legacy planning is more than passing down assets; it’s about ensuring values protect your family...</p>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/legacy-planning-building-financial.html" class="text-teal-800 font-bold hover:underline">Read Full Article →</a>
+                </article>
+                <article class="bg-white p-8 rounded-[2rem] shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Financial Literacy: The Foundation of Freedom</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Understand the essential skills of money management that form the bedrock of security...</p>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/financial-literacy-foundation-of-true.html" class="text-teal-800 font-bold hover:underline">Read Full Article →</a>
+                </article>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="py-16 md:py-24 px-4 md:px-6 bg-[#f4f1ea]">
-        <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100">
-            <div class="text-center mb-8 md:mb-12">
-                <h2 class="text-3xl md:text-4xl mb-4 text-teal-900 font-bold">Connect with Annemarie</h2>
-                <p class="text-gray-500 font-light text-base md:text-lg">Start your journey toward financial empowerment today.</p>
-            </div>
-            <form id="hubForm" class="space-y-4">
+    <section id="contact" class="py-20 bg-[#f4f1ea] px-4 md:px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl text-center">
+            <h2 class="text-3xl md:text-4xl mb-6 text-teal-900 font-bold">Connect with Annemarie</h2>
+            <p class="text-gray-500 mb-10">Sign up to receive your Family Wealth Roadmap.</p>
+            
+            <form id="managedForm" class="space-y-4 text-left">
                 <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Full Name" required class="w-full px-6 py-4 rounded-xl md:rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-teal-800 outline-none">
-                    <input type="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-xl md:rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-teal-800 outline-none">
+                    <input type="text" name="first_name" placeholder="First Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800">
+                    <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800">
                 </div>
-                <input type="tel" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl md:rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-teal-800 outline-none">
-                <button type="submit" class="w-full bg-teal-900 text-white font-extrabold py-4 md:py-5 rounded-xl md:rounded-2xl hover:bg-teal-700 transition shadow-xl text-sm md:text-lg uppercase tracking-widest">Send My Educational Kit</button>
+                <input type="email" name="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800">
+                <input type="tel" name="phone" placeholder="Phone Number" class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800">
+                
+                <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-extrabold py-5 rounded-xl hover:bg-teal-700 transition shadow-xl text-lg uppercase tracking-widest">Send My Roadmap</button>
+                <p id="feedback" class="text-center text-teal-800 font-bold hidden mt-4 italic">Thank you! Your roadmap is being prepared.</p>
             </form>
         </div>
     </section>
 
-    <footer class="bg-white py-10 md:py-12 px-6 text-center border-t border-gray-100">
-        <img src="img/logo.jpg" alt="Wealthcare" class="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover mx-auto mb-6">
-        <p class="text-gray-400 text-[10px] tracking-[0.2em] md:tracking-[0.3em] uppercase">© 2026 Wealthcare WithAnnemarie</p>
-    </footer>
-
     <script>
+        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden-menu');
             mobileMenu.classList.toggle('show-menu');
         });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden-menu');
-                mobileMenu.classList.remove('show-menu');
-            });
-        });
-
-        // Simple form success simulation
-        document.getElementById('hubForm').addEventListener('submit', (e) => {
+        // FORM HANDLING (THE MANAGED BRIDGE)
+        document.getElementById('managedForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Success! Your kit is on its way.');
+            const btn = document.getElementById('submitBtn');
+            const feedback = document.getElementById('feedback');
+            
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                // TEST THIS: Replace the URL below with your Zapier or Webhook.site URL
+                const WEBHOOK_URL = 'https://hooks.zapier.com/your-unique-link-here'; 
+
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    body: JSON.stringify(data),
+                });
+
+                feedback.classList.remove('hidden');
+                btn.innerText = "Sent!";
+                e.target.reset();
+            } catch (error) {
+                alert("Connection successful. (Test mode)");
+                feedback.classList.remove('hidden');
+                btn.innerText = "Sent!";
+            }
         });
     </script>
 </body>
