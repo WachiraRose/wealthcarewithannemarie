@@ -34,7 +34,7 @@
 <body class="bg-white text-gray-900">
 
     <div class="mobile-cta block md:hidden">
-        <a href="https://calendly.com/amariem/one-on-one" class="bg-[#b34747] text-white text-center py-4 rounded-2xl font-bold uppercase tracking-widest shadow-2xl block border border-white/20">Book a Call</a>
+        <a href="https://calendly.com/amariem/one-on-one" class="bg-[#8b0000] text-white text-center py-4 rounded-2xl font-bold uppercase tracking-widest shadow-2xl block border border-white/20">Book a Call</a>
     </div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100 shadow-md">
@@ -48,7 +48,7 @@
             <a href="#about" class="hover:text-teal-900 transition">About</a>
             <a href="#blog" class="hover:text-teal-900 transition">Insights</a>
             <a href="#footer-contact" class="hover:text-teal-900 transition border-b-2 border-transparent hover:border-teal-900">Contact</a>
-            <a href="https://truewealth.adalo.com/wealthcare" class="text-teal-900 border-b-2 border-teal-900">Student Portal</a>
+            <a href="https://wachirarose.github.io/test/" class="text-teal-900 border-b-2 border-teal-900">Portal</a>
         </div>
 
         <button id="menu-toggle" class="lg:hidden text-teal-900">
@@ -221,43 +221,33 @@
             link.addEventListener('click', () => mobileMenu.classList.remove('show-menu'));
         });
 
-        // Form Handling + Managed Redirect
+        // Form Logic
         document.getElementById('managedForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn');
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
             const feedback = document.getElementById('feedback');
-            
-            btn.disabled = true;
-            btn.innerText = "Syncing Data...";
 
-            const formData = new FormData(e.target);
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Processing...";
+
+            const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // REPLACE THIS with your actual Zapier/Make Webhook URL to capture leads
-                const WEBHOOK_URL = 'https://hooks.zapier.com/your-unique-link'; 
-
-                await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', 
-                    body: JSON.stringify(data),
-                });
-
+                // Point this to your Google Script URL
+                await fetch('YOUR_APPS_SCRIPT_URL', { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+                
                 feedback.classList.remove('hidden');
-                btn.innerText = "Opening Portal...";
-
-                // Redirect to blog after 2.5 seconds
+                form.reset(); // RESETS FORM
+                
                 setTimeout(() => {
-                    window.location.href = "https://wachirarose.github.io/test/";
-                }, 2500);
-
-            } catch (error) {
-                // Fallback for demo testing
-                console.log("Lead captured. Redirecting...");
-                feedback.classList.remove('hidden');
-                setTimeout(() => {
-                    window.location.href = "https://wachirarose.github.io/test/";
+                    window.location.href = "https://truewealth.adalo.com/wealthcare";
                 }, 2000);
+            } catch (err) {
+                form.reset();
+                feedback.classList.remove('hidden');
+                setTimeout(() => { window.location.href = "https://truewealth.adalo.com/wealthcare"; }, 1000);
             }
         });
     </script>
