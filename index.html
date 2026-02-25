@@ -28,7 +28,7 @@
         }
 
         #success-banner { transition: all 0.4s ease-in-out; display: none; opacity: 0; transform: translateY(-10px); }
-        #success-banner.show { display: block; opacity: 1; transform: translateY(0); }
+        #success-banner.show { display: block !important; opacity: 1; transform: translateY(0); }
         
         .hidden { display: none !important; }
     </style>
@@ -36,7 +36,7 @@
 <body class="bg-white text-gray-900">
 
     <div class="mobile-cta block md:hidden">
-        <a href="https://calendly.com/amariem/one-on-one" class="bg-[#8b0000] text-white text-center py-4 rounded-2xl font-bold uppercase tracking-widest shadow-2xl block border border-white/20">Start Here</a>
+        <a href="#contact" class="bg-[#8b0000] text-white text-center py-4 rounded-2xl font-bold uppercase tracking-widest shadow-2xl block border border-white/20">Start Here</a>
     </div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100 shadow-md">
@@ -50,7 +50,6 @@
                 <a href="#about" class="hover:text-teal-900 transition">About</a>
                 <a href="#blog" class="hover:text-teal-900 transition">Insights</a>
                 <a href="#contact" class="hover:text-teal-900 transition">Contact</a>
-                <a href="https://wachirarose.github.io/test/" class="text-teal-900 border-b-2 border-teal-900">Member Portal</a>
             </div>
 
             <button id="menu-toggle" class="lg:hidden text-teal-900 focus:outline-none">
@@ -61,9 +60,7 @@
         <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-b border-gray-100 flex flex-col p-6 gap-4 lg:hidden shadow-xl">
             <a href="#about" class="mobile-link text-lg font-bold text-gray-800">About</a>
             <a href="#blog" class="mobile-link text-lg font-bold text-gray-800">Insights</a>
-            <a href="#footer-contact" class="mobile-link text-lg font-bold text-gray-800">Contact</a>
-            <hr>
-            <a href="https://wachirarose.github.io/test/" class="text-teal-900 font-bold">Member Login</a>
+            <a href="#contact" class="mobile-link text-lg font-bold text-gray-800">Contact</a>
         </div>
     </nav>
 
@@ -132,12 +129,20 @@
     <section id="contact" class="py-20 bg-[#f4f1ea] px-4 md:px-6 pb-32 md:pb-20">
         <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 relative min-h-[400px] flex flex-col justify-center">
             
-            <div id="success-banner" class="bg-teal-50 border border-teal-200 rounded-2xl p-10 text-center">
-                <div class="flex items-center justify-center gap-3 text-teal-900 mb-4">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                    <span class="font-bold text-2xl">Roadmap Sent!</span>
+            <div id="success-banner" class="bg-teal-50 border border-teal-200 rounded-2xl p-8 md:p-12 text-center">
+                <div class="flex items-center justify-center gap-3 text-teal-900 mb-6">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span class="font-bold text-2xl md:text-3xl text-teal-900">Check Your Inbox!</span>
                 </div>
-                <p class="text-teal-700 font-medium text-lg italic">Form reset successful. Redirecting to your portal...</p>
+                <p class="text-teal-800 font-medium text-lg mb-8">We've sent your <strong>Financial Roadmap</strong> and <strong>Portal Access</strong> link to your email. Please verify your email to continue.</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                    <a href="https://mail.google.com" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">Gmail</a>
+                    <a href="https://outlook.live.com" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">Outlook</a>
+                    <a href="https://mail.yahoo.com" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">Yahoo</a>
+                    <a href="https://www.icloud.com/mail" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">iCloud</a>
+                </div>
+                <p class="text-gray-400 text-xs italic">Don't see it? Check your <strong>Spam or Junk</strong> folder.</p>
             </div>
 
             <div id="form-content">
@@ -172,7 +177,7 @@
                 <ul class="space-y-4 text-gray-600 font-semibold text-sm">
                     <li><a href="#about" class="hover:text-teal-900 transition">About</a></li>
                     <li><a href="#blog" class="hover:text-teal-900 transition">Financial Insights</a></li>
-                    <li><a href="https://wachirarose.github.io/test/" class="hover:text-teal-900 transition font-bold">Member Portal</a></li>
+                    <li><a href="#contact" class="hover:text-teal-900 transition">Contact</a></li>
                 </ul>
             </div>
             <div>
@@ -192,13 +197,11 @@
     </footer>
 
     <script>
-        // Menu Scripts
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('show-menu'));
         document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('show-menu')));
 
-        // Submission Logic
         document.getElementById('managedForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const form = e.target;
@@ -207,13 +210,13 @@
             const content = document.getElementById('form-content');
 
             submitBtn.disabled = true;
-            submitBtn.innerText = "Syncing...";
+            submitBtn.innerText = "Processing...";
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                await fetch('https://script.google.com/macros/s/AKfycby4cw8k_Wma-cbetqQHsQU95q-wfQ2vy03_aZLxiGT6QfbwYp-1YBMuJoWDqP9hBTV6/exec', { 
+                await fetch('https://script.google.com/macros/s/AKfycbxzyv2ZJpGSPZ6cjGzWJASrB16G0dwA07I_Fpdw9MzZG0n-GGlRbK4jrlEY1dOvJaxp/exec', { 
                     method: 'POST', 
                     mode: 'no-cors', 
                     body: JSON.stringify(data) 
@@ -223,10 +226,6 @@
                 content.classList.add('hidden');
                 banner.classList.add('show');
 
-                setTimeout(() => {
-                    window.location.href = "https://wachirarose.github.io/test/";
-                }, 2200);
-
             } catch (err) {
                 submitBtn.disabled = false;
                 submitBtn.innerText = "Submit";
@@ -235,9 +234,7 @@
         });
 
         window.onpageshow = function(event) {
-            if (event.persisted) {
-                window.location.reload();
-            }
+            if (event.persisted) { window.location.reload(); }
         };
     </script>
 </body>
