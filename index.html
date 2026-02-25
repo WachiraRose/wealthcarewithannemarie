@@ -12,6 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WealthCare with Annemarie | Family Financial Education</title>
+    
+    <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -26,14 +29,10 @@
             background-size: cover; background-position: center; background-attachment: fixed;
         }
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
-        
-        /* Optimized Action Bar */
         .action-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 50; width: 85%; display: flex; gap: 8px; }
         .btn-sm-mobile { padding: 10px; font-size: 0.85rem; border-radius: 12px; }
-
         #mobile-menu { transition: all 0.3s ease-in-out; transform: translateY(-110%); opacity: 0; pointer-events: none; }
         #mobile-menu.show-menu { transform: translateY(0); opacity: 1; pointer-events: all; }
-
         #success-banner { transition: all 0.4s ease-in-out; display: none; opacity: 0; transform: translateY(-10px); }
         #success-banner.show { display: block !important; opacity: 1; transform: translateY(0); }
         .hidden { display: none !important; }
@@ -42,10 +41,10 @@
 <body class="bg-white text-gray-900">
 
     <div class="action-bar md:hidden">
-        <a href="javascript:void(0)" onclick="handleCall('Mobile Bar')" class="flex-1 bg-teal-900 text-white text-center btn-sm-mobile font-bold flex items-center justify-center gap-2 shadow-2xl border border-white/20">
+        <a href="javascript:void(0)" onclick="handleCall('Mobile Bar')" class="flex-1 bg-teal-900 text-white text-center btn-sm-mobile font-bold flex items-center justify-center gap-2 shadow-2xl">
             <i class="fas fa-phone-alt text-xs"></i> Call
         </a>
-        <a href="javascript:void(0)" onclick="handleWhatsApp('Mobile Bar')" class="flex-1 bg-[#25D366] text-white text-center btn-sm-mobile font-bold flex items-center justify-center gap-2 shadow-2xl border border-white/20">
+        <a href="javascript:void(0)" onclick="handleWhatsApp('Mobile Bar')" class="flex-1 bg-[#25D366] text-white text-center btn-sm-mobile font-bold flex items-center justify-center gap-2 shadow-2xl">
             <i class="fab fa-whatsapp text-sm"></i> Chat
         </a>
     </div>
@@ -56,7 +55,6 @@
                 <img src="img/logo.jpg" alt="Logo" class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover">
                 <span class="font-extrabold tracking-tighter text-sm md:text-xl uppercase italic text-teal-900 leading-none">Wealthcare<br class="block md:hidden"><span class="font-light not-italic text-gray-500">WithAnnemarie</span></span>
             </a>
-            
             <div class="hidden lg:flex items-center gap-8 text-[10px] uppercase tracking-widest text-gray-700 font-bold">
                 <a href="#about" class="hover:text-teal-900 transition">About</a>
                 <a href="#blog" class="hover:text-teal-900 transition">Insights</a>
@@ -64,12 +62,10 @@
                     <i class="fab fa-whatsapp"></i> Chat with Annemarie
                 </a>
             </div>
-
             <button id="menu-toggle" class="lg:hidden text-teal-900">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
         </div>
-
         <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-b border-gray-100 flex flex-col p-6 gap-4 lg:hidden shadow-xl">
             <a href="#about" class="mobile-link text-lg font-bold text-gray-800">About</a>
             <a href="#blog" class="mobile-link text-lg font-bold text-gray-800">Insights</a>
@@ -101,10 +97,8 @@
             <div>
                 <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-6">The Heart Behind the Vision</span>
                 <h3 class="text-3xl md:text-5xl mb-8 leading-tight font-bold text-gray-900">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h3>
-                <p class="text-gray-600 text-lg md:text-xl leading-relaxed mb-8">
-                    I believe true wealth begins with understanding. Coming from a caregiving background, I bring a human-first heart to your finances.
-                </p>
-                <div class="p-6 md:p-10 bg-[#f4f1ea] rounded-[1.5rem] md:rounded-[2rem] border-l-8 border-teal-900 shadow-sm italic text-teal-900 text-xl md:text-2xl font-serif">
+                <p class="text-gray-600 text-lg md:text-xl leading-relaxed mb-8">I believe true wealth begins with understanding. Coming from a caregiving background, I bring a human-first heart to your finances.</p>
+                <div class="p-6 md:p-10 bg-[#f4f1ea] rounded-[1.5rem] border-l-8 border-teal-900 shadow-sm italic text-teal-900 text-xl md:text-2xl font-serif">
                     "Financial literacy is not just about numbers; it's about the freedom to choose your family's future."
                 </div>
             </div>
@@ -112,81 +106,71 @@
     </section>
 
     <section id="blog" class="py-20 bg-[#f9f8f4] px-4 md:px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-16">
                 <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-2">Education Hub</span>
                 <h2 class="text-3xl md:text-5xl font-bold text-teal-900">Latest Insights</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
-                <article class="bg-white p-8 rounded-[2rem] shadow-lg flex flex-col justify-between hover:shadow-2xl transition duration-300 border border-gray-50">
+                <article class="bg-white p-8 rounded-[2rem] shadow-lg flex flex-col justify-between hover:shadow-2xl transition text-left">
                     <div>
                         <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-3 py-1 rounded-full w-fit mb-4">Legacy</div>
-                        <h3 class="text-xl md:text-2xl font-bold mb-4 leading-tight">Legacy Planning: Building a Financial Bridge for Generations</h3>
-                        <p class="text-gray-600 mb-6 text-sm md:text-base">Ensure your hard work protects your family long after you're gone.</p>
+                        <h3 class="text-xl md:text-2xl font-bold mb-4">Legacy Planning: Building a Financial Bridge</h3>
+                        <p class="text-gray-600 mb-6 text-sm">Ensure your hard work protects your family long after you're gone.</p>
                     </div>
-                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/legacy-planning-building-financial.html" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2 group">Read Article <span class="group-hover:translate-x-1 transition-transform">→</span></a>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/legacy-planning-building-financial.html" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2">Read Article →</a>
                 </article>
-
-                <article class="bg-white p-8 rounded-[2rem] shadow-lg flex flex-col justify-between hover:shadow-2xl transition duration-300 border border-gray-50">
+                <article class="bg-white p-8 rounded-[2rem] shadow-lg flex flex-col justify-between hover:shadow-2xl transition text-left">
                     <div>
                         <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-3 py-1 rounded-full w-fit mb-4">Fundamentals</div>
-                        <h3 class="text-xl md:text-2xl font-bold mb-4 leading-tight">Financial Literacy: The Foundation of True Wealth</h3>
-                        <p class="text-gray-600 mb-6 text-sm md:text-base">Understand the essential skills of money management and budgeting.</p>
+                        <h3 class="text-xl md:text-2xl font-bold mb-4">Financial Literacy: The Foundation</h3>
+                        <p class="text-gray-600 mb-6 text-sm">Understand the essential skills of money management and budgeting.</p>
                     </div>
-                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/financial-literacy-foundation-of-true.html" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2 group">Read Article <span class="group-hover:translate-x-1 transition-transform">→</span></a>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/financial-literacy-foundation-of-true.html" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2">Read Article →</a>
                 </article>
             </div>
         </div>
     </section>
 
     <section id="contact" class="py-20 bg-[#f4f1ea] px-4 md:px-6 pb-40 md:pb-20">
-        <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 relative min-h-[400px] flex flex-col justify-center">
+        <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl relative min-h-[400px] flex flex-col justify-center">
             
             <div id="success-banner" class="bg-teal-50 border border-teal-200 rounded-2xl p-8 md:p-12 text-center">
                 <div class="flex items-center justify-center gap-3 text-teal-900 mb-6">
                     <i class="fas fa-envelope-open-text text-4xl text-teal-600"></i>
-                    <span class="font-bold text-2xl md:text-3xl text-teal-900">Check Your Inbox!</span>
+                    <span class="font-bold text-2xl md:text-3xl">Check Your Inbox!</span>
                 </div>
-                
+                <p class="text-teal-800 font-medium text-lg mb-8">Roadmap sent. To log in on your phone, **copy the link below**:</p>
+
+                <div class="max-w-md mx-auto mb-10">
+                    <div class="flex items-center gap-2 bg-white border border-teal-200 p-2 rounded-2xl shadow-inner">
+                        <input type="text" id="portalLink" value="https://wealthcare-portal.com/login" readonly class="bg-transparent border-none text-teal-900 font-semibold text-sm px-3 w-full outline-none focus:ring-0">
+                        <button id="copyBtn" class="bg-teal-900 text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-teal-700 transition-all">Copy Link</button>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    <a href="https://mail.google.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+                    <a href="https://mail.google.com" target="_blank" class="bg-white border p-4 rounded-xl flex flex-col items-center gap-2">
                         <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="h-8 w-8" alt="Gmail">
                         <span class="text-xs font-bold text-gray-600">Gmail</span>
                     </a>
-                    <a href="https://outlook.live.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+                    <a href="https://outlook.live.com" target="_blank" class="bg-white border p-4 rounded-xl flex flex-col items-center gap-2">
                         <img src="https://cdn-icons-png.flaticon.com/512/732/732225.png" class="h-8 w-8" alt="Outlook">
                         <span class="text-xs font-bold text-gray-600">Outlook</span>
                     </a>
-                    <a href="https://mail.yahoo.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
-                        <img src="https://logo.svgcdn.com/logos/yahoo.png" class="h-8 w-8" alt="Yahoo">
+                    <a href="https://mail.yahoo.com" target="_blank" class="bg-white border p-4 rounded-xl flex flex-col items-center gap-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" class="h-8 w-8" alt="Yahoo">
                         <span class="text-xs font-bold text-gray-600">Yahoo</span>
                     </a>
-                    <a href="https://www.icloud.com/mail" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
-                        <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" class="h-8 w-8" alt="iCloud">
+                    <a href="https://www.icloud.com/mail" target="_blank" class="bg-white border p-4 rounded-xl flex flex-col items-center gap-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968733.png" class="h-8 w-8" alt="iCloud">
                         <span class="text-xs font-bold text-gray-600">iCloud</span>
                     </a>
                 </div>
 
-                <p class="text-teal-800 font-medium text-lg mb-8">
-        We've sent your roadmap. To log in on your phone, **copy the link below**:
-    </p>
-
-    <div class="max-w-md mx-auto mb-10">
-        <div class="flex items-center gap-2 bg-white border border-teal-200 p-2 rounded-2xl shadow-inner focus-within:ring-2 focus-within:ring-teal-500 transition">
-            <input type="text" id="portalLink" value="https://wealthcare-portal.com/login" readonly 
-                class="bg-transparent border-none text-teal-900 font-semibold text-sm px-3 w-full outline-none focus:ring-0">
-            <button id="copyBtn" class="bg-teal-900 text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-teal-700 active:scale-95 transition-all">
-                Copy Link
-            </button>
-        </div>
-        <p class="text-[10px] text-teal-600 mt-2 font-bold uppercase tracking-widest">Click copy to paste in your browser</p>
-    </div>
-
-    <div class="flex flex-wrap justify-center gap-4 mb-10">
-        <a href="javascript:void(0)" onclick="handleWhatsApp('Success Banner')" class="flex items-center gap-2 bg-white text-[#25D366] px-6 py-3 rounded-xl font-bold border border-[#25D366]/20 hover:shadow-md transition">
-            <i class="fab fa-whatsapp text-xl"></i> Chat with Annemarie
-        </a>
-    </div>
+                <a href="javascript:void(0)" onclick="handleWhatsApp('Success')" class="inline-flex items-center gap-2 bg-white text-[#25D366] px-6 py-3 rounded-xl font-bold border border-[#25D366]/20">
+                    <i class="fab fa-whatsapp text-xl"></i> Chat with Annemarie
+                </a>
             </div>
 
             <div id="form-content">
@@ -196,11 +180,11 @@
                 </div>
                 <form id="managedForm" class="space-y-4">
                     <div class="grid md:grid-cols-2 gap-4">
-                        <input type="text" name="first_name" placeholder="First Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
-                        <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
+                        <input type="text" name="first_name" placeholder="First Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none outline-none focus:ring-2 focus:ring-teal-800">
+                        <input type="text" name="last_name" placeholder="Last Name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none outline-none focus:ring-2 focus:ring-teal-800">
                     </div>
-                    <input type="email" name="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
-                    <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-teal-800 border-none transition">
+                    <input type="email" name="email" placeholder="Email Address" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none outline-none focus:ring-2 focus:ring-teal-800">
+                    <input type="tel" name="phone" placeholder="Phone Number" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none outline-none focus:ring-2 focus:ring-teal-800">
                     <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-extrabold py-5 rounded-xl hover:bg-teal-700 transition shadow-xl text-lg uppercase tracking-widest">Submit</button>
                 </form>
             </div>
@@ -208,115 +192,83 @@
     </section>
 
     <footer class="bg-white border-t border-gray-100 pt-16 pb-8 px-4 md:px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
             <div>
-                <img src="img/logo.jpg" alt="Logo" class="h-16 w-16 rounded-full mb-6 mx-auto md:mx-0">
-                <h3 class="font-bold text-teal-900 text-xl mb-2">Wealthcare With Annemarie</h3>
-                <p class="text-gray-500 text-sm">St. Louis, Missouri</p>
+                <img src="img/logo.jpg" alt="Logo" class="h-16 w-16 rounded-full mx-auto md:mx-0 mb-6">
+                <h3 class="font-bold text-teal-900 text-xl">Wealthcare With Annemarie</h3>
+                <p class="text-gray-500 text-sm italic">St. Louis, Missouri</p>
             </div>
             <div>
-                <h4 class="font-extrabold uppercase text-xs tracking-[0.2em] text-gray-400 mb-6 text-center md:text-left">Connect Safely</h4>
-                <div class="flex flex-col gap-4 items-center md:items-start">
-                    <a href="javascript:void(0)" onclick="revealNumber(this)" class="text-gray-600 font-medium italic text-sm hover:text-teal-900 transition">
-                        <i class="fas fa-lock text-teal-700/30"></i> Click to show phone number
-                    </a>
-                    <a href="javascript:void(0)" onclick="handleWhatsApp('Footer')" class="text-gray-600 font-medium text-sm hover:text-[#25D366] transition">
-                        <i class="fab fa-whatsapp"></i> Chat with Annemarie
-                    </a>
-                </div>
+                <h4 class="font-extrabold uppercase text-xs tracking-widest text-gray-400 mb-6">Connect</h4>
+                <a href="javascript:void(0)" onclick="revealNumber(this)" class="text-gray-600 block mb-4 italic text-sm"><i class="fas fa-lock opacity-30"></i> Click to show phone</a>
+                <a href="javascript:void(0)" onclick="handleWhatsApp('Footer')" class="text-gray-600 text-sm"><i class="fab fa-whatsapp"></i> Chat via WhatsApp</a>
             </div>
             <div class="flex flex-col items-center md:items-end gap-6">
                 <a href="https://calendly.com/amariem/one-on-one" target="_blank" class="bg-teal-900 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-teal-700 transition shadow-lg">Book a Call</a>
                 <div class="flex gap-4">
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="h-5 w-5 opacity-50 hover:opacity-100" alt="IG"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="h-5 w-5 opacity-50 hover:opacity-100" alt="LI"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="h-5 w-5 opacity-40 hover:opacity-100" alt="IG"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="h-5 w-5 opacity-40 hover:opacity-100" alt="LI"></a>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto border-t border-gray-50 pt-8 text-center text-gray-400 text-[10px] tracking-[0.3em] uppercase italic">
-            © 2026 Wealthcare WithAnnemarie • Licensed Financial Professional
-        </div>
+        <div class="mt-12 text-center text-gray-400 text-[10px] tracking-widest uppercase italic">© 2026 Wealthcare WithAnnemarie • LFP</div>
     </footer>
 
     <script>
-        // --- 1. OBFUSCATED DATA (314-123-4567) ---
         const P_DATA = { c: "1", a: "314", b: "397", d: "0158" };
         const getFullNum = () => P_DATA.c + P_DATA.a + P_DATA.b + P_DATA.d;
 
-        // --- 2. ACTIONS ---
-        function handleCall(loc) {
-            trackEvent('Call', loc);
-            window.location.href = `tel:+${getFullNum()}`;
-        }
+        // Copy Link
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const copyText = document.getElementById('portalLink');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                const old = this.innerText;
+                this.innerText = "COPIED!";
+                this.style.backgroundColor = "#059669";
+                setTimeout(() => { this.innerText = old; this.style.backgroundColor = ""; }, 2000);
+            });
+        });
 
+        // UI Logic
+        function handleCall(loc) { window.location.href = `tel:+${getFullNum()}`; }
         function handleWhatsApp(loc) {
-            trackEvent('WhatsApp', loc);
             const msg = encodeURIComponent("Hi Annemarie! I'm interested in the WealthCare Roadmap.");
             window.open(`https://wa.me/${getFullNum()}?text=${msg}`, '_blank');
         }
-
         function revealNumber(el) {
-            const formatted = `(${P_DATA.a}) ${P_DATA.b}-${P_DATA.d}`;
-            el.innerHTML = `<i class="fas fa-phone-alt text-teal-700"></i> ${formatted}`;
-            el.onclick = () => handleCall('Footer Revealed');
-            el.classList.remove('italic');
-            trackEvent('Number Revealed', 'Footer');
+            el.innerHTML = `<i class="fas fa-phone-alt text-teal-700"></i> (${P_DATA.a}) ${P_DATA.b}-${P_DATA.d}`;
+            el.onclick = () => handleCall('Footer');
         }
-
-        // --- 3. ANALYTICS ---
-        function trackEvent(type, label) {
-            if(typeof gtag === 'function') {
-                gtag('event', 'interaction', { 'event_category': type, 'event_label': label });
-            }
-        }
-
-        // --- 4. UI LOGIC ---
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('show-menu'));
-        document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('show-menu')));
-
-        // Cookie logic to prevent duplicate leads
-        const setSubCookie = () => {
-            const d = new Date();
-            d.setTime(d.getTime() + (365*24*60*60*1000));
-            document.cookie = `wealthcare_done=true;expires=${d.toUTCString()};path=/`;
-        };
-        const getSubCookie = () => document.cookie.split('; ').find(row => row.startsWith('wealthcare_done='))?.split('=')[1];
-
-        window.addEventListener('DOMContentLoaded', () => {
-            if (getSubCookie() === "true") {
-                document.getElementById('form-content').classList.add('hidden');
-                document.getElementById('success-banner').classList.add('show');
-            }
-        });
 
         // Form Submission
         document.getElementById('managedForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.innerText = "Processing...";
-
+            btn.disabled = true; btn.innerText = "Processing...";
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
 
             try {
-                await fetch('https://script.google.com/macros/s/AKfycbwaKzGLvcvGTVs4ApECgp99iozQxC6sTQQ1r8CN0qR-IavIfoHKLn4ge1K4_rDWcGPi/exec', { 
-                    method: 'POST', 
-                    mode: 'no-cors', 
-                    body: JSON.stringify(data) 
-                });
-                
-                setSubCookie();
+                await fetch('https://script.google.com/macros/s/AKfycbwaKzGLvcvGTVs4ApECgp99iozQxC6sTQQ1r8CN0qR-IavIfoHKLn4ge1K4_rDWcGPi/exec', { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+                const d = new Date(); d.setTime(d.getTime() + (365*24*60*60*1000));
+                document.cookie = `wealthcare_done=true;expires=${d.toUTCString()};path=/`;
                 document.getElementById('form-content').classList.add('hidden');
                 document.getElementById('success-banner').classList.add('show');
             } catch (err) {
-                btn.disabled = false;
-                btn.innerText = "Submit";
-                alert("Please check your connection.");
+                btn.disabled = false; btn.innerText = "Submit";
             }
         });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (document.cookie.includes("wealthcare_done=true")) {
+                document.getElementById('form-content').classList.add('hidden');
+                document.getElementById('success-banner').classList.add('show');
+            }
+        });
+
+        document.getElementById('menu-toggle').onclick = () => document.getElementById('mobile-menu').classList.toggle('show-menu');
     </script>
 </body>
 </html>
