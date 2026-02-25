@@ -18,8 +18,7 @@
         }
         
         .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
-        .prof-name { font-family: 'Playfair Display', serif; letter-spacing: -0.01em; }
-
+        
         #mobile-menu { transition: all 0.3s ease-in-out; transform: translateY(-110%); opacity: 0; pointer-events: none; }
         #mobile-menu.show-menu { transform: translateY(0); opacity: 1; pointer-events: all; }
 
@@ -81,7 +80,7 @@
             <div class="relative">
                 <img src="img/profile.jpeg" class="rounded-[2rem] md:rounded-[3rem] shadow-2xl w-full object-cover" alt="Annemarie">
                 <div class="mt-8 text-center md:text-left">
-                    <h2 class="prof-name text-4xl font-bold text-teal-900">Annemarie Machehu</h2>
+                    <h2 class="text-4xl font-bold text-teal-900">Annemarie Machehu</h2>
                     <p class="text-gray-400 font-bold tracking-[0.4em] text-lg mt-1 uppercase">LFP</p>
                 </div>
             </div>
@@ -130,40 +129,50 @@
         <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 relative min-h-[400px] flex flex-col justify-center">
             
             <div id="success-banner" class="bg-teal-50 border border-teal-200 rounded-2xl p-8 md:p-12 text-center">
-    <div class="flex items-center justify-center gap-3 text-teal-900 mb-6">
-        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-        </svg>
-        <span class="font-bold text-2xl md:text-3xl text-teal-900">Check Your Inbox!</span>
-    </div>
-    
-    <p class="text-teal-800 font-medium text-lg mb-8">
-        We've sent your <strong>Financial Roadmap</strong> and <strong>Portal Access</strong> link. Please open your email to continue.
-    </p>
+                <div class="flex items-center justify-center gap-3 text-teal-900 mb-6">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span class="font-bold text-2xl md:text-3xl text-teal-900">Check Your Inbox!</span>
+                </div>
+                
+                <p class="text-teal-800 font-medium text-lg mb-4">
+                    We've sent your <strong>Financial Roadmap</strong> to your email.
+                </p>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <a href="https://mail.google.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="h-8 w-8" alt="Gmail">
-            <span class="text-xs font-bold text-gray-600">Gmail</span>
-        </a>
-        <a href="https://outlook.live.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732225.png" class="h-8 w-8" alt="Outlook">
-            <span class="text-xs font-bold text-gray-600">Outlook</span>
-        </a>
-        <a href="https://mail.yahoo.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968971.png" class="h-8 w-8" alt="Yahoo">
-            <span class="text-xs font-bold text-gray-600">Yahoo</span>
-        </a>
-        <a href="https://www.icloud.com/mail" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" class="h-8 w-8" alt="iCloud">
-            <span class="text-xs font-bold text-gray-600">iCloud</span>
-        </a>
-    </div>
+                <div class="mb-8 p-4 bg-white rounded-xl border border-teal-100 inline-block w-full max-w-sm">
+                    <p class="text-xs text-gray-500 uppercase font-bold tracking-widest mb-2">Accessing from another device?</p>
+                    <p class="text-[11px] text-gray-400 mb-3 leading-tight text-center">Copy this link to open this page on another device to easily access your email app.</p>
+                    <div class="flex gap-2">
+                        <input type="text" id="siteLink" value="https://wachirarose.github.io/test/" readonly class="bg-gray-50 border border-gray-200 text-sm py-2 px-3 rounded-lg flex-1 outline-none text-gray-400">
+                        <button onclick="copySiteLink()" id="copyBtn" class="bg-teal-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-teal-700 transition">Copy</button>
+                    </div>
+                    <span id="copyMessage" class="text-teal-600 text-[10px] font-bold mt-1 hidden italic">Link copied!</span>
+                </div>
 
-    <p class="text-gray-400 text-xs italic">
-        Don't see it? Check your <strong>Spam or Junk</strong> folder.
-    </p>
-</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <a href="https://mail.google.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="h-8 w-8" alt="Gmail">
+                        <span class="text-xs font-bold text-gray-600">Gmail</span>
+                    </a>
+                    <a href="https://outlook.live.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/732/732225.png" class="h-8 w-8" alt="Outlook">
+                        <span class="text-xs font-bold text-gray-600">Outlook</span>
+                    </a>
+                    <a href="https://mail.yahoo.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968971.png" class="h-8 w-8" alt="Yahoo">
+                        <span class="text-xs font-bold text-gray-600">Yahoo</span>
+                    </a>
+                    <a href="https://www.icloud.com/mail" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" class="h-8 w-8" alt="iCloud">
+                        <span class="text-xs font-bold text-gray-600">iCloud</span>
+                    </a>
+                </div>
+
+                <p class="text-gray-400 text-xs italic leading-relaxed">
+                    <strong>Security Note:</strong> Access is sent via email for your protection.<br>Don't see it? Check <strong>Spam/Junk</strong>.
+                </p>
+            </div>
 
             <div id="form-content">
                 <div class="text-center mb-10">
@@ -184,7 +193,7 @@
         </div>
     </section>
 
-    <footer id="footer-contact" class="bg-white border-t border-gray-100 pt-16 pb-8 px-4 md:px-6">
+    <footer class="bg-white border-t border-gray-100 pt-16 pb-8 px-4 md:px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             <div>
                 <img src="img/logo.jpg" alt="Logo" class="h-18 w-18 rounded-full mb-6">
@@ -203,10 +212,9 @@
             <div>
                 <h4 class="font-extrabold uppercase text-xs tracking-[0.2em] text-gray-400 mb-6">Connect</h4>
                 <div class="flex flex-wrap gap-4 mb-8">
-                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="Instagram"></a>
-                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="LinkedIn"></a>
-                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="Facebook"></a>
-                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" class="h-5 w-5 grayscale opacity-70 hover:grayscale-0" alt="TikTok"></a>
+                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="h-5 w-5 grayscale opacity-70" alt="Instagram"></a>
+                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="h-5 w-5 grayscale opacity-70" alt="LinkedIn"></a>
+                    <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-teal-50 transition"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" class="h-5 w-5 grayscale opacity-70" alt="Facebook"></a>
                 </div>
                 <a href="https://calendly.com/amariem/one-on-one" target="_blank" class="inline-block bg-teal-900 text-white px-8 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-teal-700 transition shadow-lg">Book a Call</a>
             </div>
@@ -217,11 +225,39 @@
     </footer>
 
     <script>
+        // Menu Toggle Logic
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('show-menu'));
         document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('show-menu')));
 
+        // Check for previous submission on load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('wealthcare_submitted')) {
+                document.getElementById('form-content').classList.add('hidden');
+                document.getElementById('success-banner').classList.add('show');
+            }
+        });
+
+        // Copy Link Logic
+        function copySiteLink() {
+            const linkInput = document.getElementById('siteLink');
+            const copyBtn = document.getElementById('copyBtn');
+            const copyMsg = document.getElementById('copyMessage');
+
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(linkInput.value).then(() => {
+                copyBtn.innerText = "✓";
+                copyMsg.classList.remove('hidden');
+                setTimeout(() => {
+                    copyBtn.innerText = "Copy";
+                    copyMsg.classList.add('hidden');
+                }, 3000);
+            });
+        }
+
+        // Form Submission Logic
         document.getElementById('managedForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const form = e.target;
@@ -236,12 +272,14 @@
             const data = Object.fromEntries(formData.entries());
 
             try {
+                // Ensure this URL matches your current Google Apps Script deployment URL
                 await fetch('https://script.google.com/macros/s/AKfycbwaKzGLvcvGTVs4ApECgp99iozQxC6sTQQ1r8CN0qR-IavIfoHKLn4ge1K4_rDWcGPi/exec', { 
                     method: 'POST', 
                     mode: 'no-cors', 
                     body: JSON.stringify(data) 
                 });
 
+                localStorage.setItem('wealthcare_submitted', 'true');
                 form.reset(); 
                 content.classList.add('hidden');
                 banner.classList.add('show');
