@@ -130,20 +130,40 @@
         <div class="max-w-4xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 relative min-h-[400px] flex flex-col justify-center">
             
             <div id="success-banner" class="bg-teal-50 border border-teal-200 rounded-2xl p-8 md:p-12 text-center">
-                <div class="flex items-center justify-center gap-3 text-teal-900 mb-6">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <span class="font-bold text-2xl md:text-3xl text-teal-900">Check Your Inbox!</span>
-                </div>
-                <p class="text-teal-800 font-medium text-lg mb-8">We've sent your <strong>Financial Roadmap</strong> and <strong>Portal Access</strong> link to your email. Please verify your email to continue.</p>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-                    <a href="https://mail.google.com" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">Gmail</a>
-                    <a href="https://outlook.live.com" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">Outlook</a>
-                    <a href="https://mail.yahoo.com" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">Yahoo</a>
-                    <a href="https://www.icloud.com/mail" target="_blank" class="bg-white border border-gray-200 py-3 rounded-xl hover:shadow-md transition text-sm font-bold">iCloud</a>
-                </div>
-                <p class="text-gray-400 text-xs italic">Don't see it? Check your <strong>Spam or Junk</strong> folder.</p>
-            </div>
+    <div class="flex items-center justify-center gap-3 text-teal-900 mb-6">
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+        <span class="font-bold text-2xl md:text-3xl text-teal-900">Check Your Inbox!</span>
+    </div>
+    
+    <p class="text-teal-800 font-medium text-lg mb-8">
+        We've sent your <strong>Financial Roadmap</strong> and <strong>Portal Access</strong> link. Please open your email to continue.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <a href="https://mail.google.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="h-8 w-8" alt="Gmail">
+            <span class="text-xs font-bold text-gray-600">Gmail</span>
+        </a>
+        <a href="https://outlook.live.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732225.png" class="h-8 w-8" alt="Outlook">
+            <span class="text-xs font-bold text-gray-600">Outlook</span>
+        </a>
+        <a href="https://mail.yahoo.com" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968971.png" class="h-8 w-8" alt="Yahoo">
+            <span class="text-xs font-bold text-gray-600">Yahoo</span>
+        </a>
+        <a href="https://www.icloud.com/mail" target="_blank" class="bg-white border border-gray-200 p-4 rounded-xl hover:shadow-md transition flex flex-col items-center gap-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" class="h-8 w-8" alt="iCloud">
+            <span class="text-xs font-bold text-gray-600">iCloud</span>
+        </a>
+    </div>
+
+    <p class="text-gray-400 text-xs italic">
+        Don't see it? Check your <strong>Spam or Junk</strong> folder.
+    </p>
+</div>
 
             <div id="form-content">
                 <div class="text-center mb-10">
@@ -216,7 +236,7 @@
             const data = Object.fromEntries(formData.entries());
 
             try {
-                await fetch('https://script.google.com/macros/s/AKfycbxzyv2ZJpGSPZ6cjGzWJASrB16G0dwA07I_Fpdw9MzZG0n-GGlRbK4jrlEY1dOvJaxp/exec', { 
+                await fetch('https://script.google.com/macros/s/AKfycbxm6qc3C3CWtKZ7cIdcv82sIrAfQYVoHELzJLXMYQLUAXRGhTBINeKorc01592qTmWp/exec', { 
                     method: 'POST', 
                     mode: 'no-cors', 
                     body: JSON.stringify(data) 
