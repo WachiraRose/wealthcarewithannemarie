@@ -2,142 +2,205 @@
 <html lang="en">
 <head>
     <script>
-        // 1. PRIVATE ACCESS CHECK
-        if (localStorage.getItem('hub_access') !== 'granted_by_form') {
+        // AUTHENTICATION CHECK
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('access') === 'granted') { localStorage.setItem('hub_access', 'true'); }
+        if (localStorage.getItem('hub_access') !== 'true') {
             window.location.href = "index.html#contact";
         }
     </script>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Hub | WealthCare</title>
+    <title>Member Hub | WealthCare Resources</title>
     <link rel="icon" type="image/jpeg" href="img/logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
-        h1 { font-family: 'Playfair Display', serif; }
-        .hub-header { background: linear-gradient(135deg, #2d5a5a 0%, #1a3a3a 100%); }
-        .cat-btn.active { background-color: #2d5a5a; color: white; border-color: #2d5a5a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f9fafb; color: #111827; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .nav-blur { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        
+        /* Smooth Transition for Cards */
+        .resource-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .resource-card:hover { transform: translateY(-5px); }
+
+        /* Prevent "Clumsy" Layout: Fixed Image Aspect Ratio */
+        .card-image-container { aspect-ratio: 16 / 9; overflow: hidden; background: #134e4a; }
+        
+        /* Active Category Styling */
+        .cat-btn.active { background-color: #134e4a; color: white; border-color: #134e4a; box-shadow: 0 4px 12px rgba(19, 78, 74, 0.2); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #134e4a; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <nav class="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-50">
-        <div class="flex items-center gap-2 font-bold text-teal-900">
-            <img src="img/logo.jpg" class="h-8 w-8 rounded-full"> Member Hub
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-100 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="img/logo.jpg" class="h-10 w-10 rounded-full border border-gray-200">
+            <span class="font-bold text-teal-900 tracking-tight">Member Hub</span>
         </div>
-        <button onclick="localStorage.removeItem('hub_access'); window.location.href='index.html';" class="text-[10px] font-black tracking-widest text-gray-400 hover:text-red-500 transition">LOGOUT</button>
+        <div class="flex items-center gap-6">
+            <a href="https://calendly.com/your-link" target="_blank" class="hidden md:block text-xs font-bold text-teal-900 hover:text-teal-700 uppercase tracking-widest">Book Consultation</a>
+            <button onclick="logout()" class="text-[10px] font-black text-red-500 border border-red-200 px-3 py-1 rounded-md hover:bg-red-50 transition">LOGOUT</button>
+        </div>
     </nav>
 
-    <header class="hub-header py-16 text-white text-center px-6">
-        <h1 class="text-4xl md:text-5xl mb-4">Education Library</h1>
-        <p class="text-teal-100 opacity-80 max-w-2xl mx-auto mb-8">Select a category below to explore your resources.</p>
-        
-        <div id="category-menu" class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            <button onclick="filterContent('All')" class="cat-btn active border border-white/30 px-6 py-2 rounded-full text-sm font-bold transition">All Resources</button>
-            <button onclick="filterContent('Financial')" class="cat-btn border border-white/30 px-6 py-2 rounded-full text-sm font-bold transition">Financial & Assets</button>
-            <button onclick="filterContent('Legal')" class="cat-btn border border-white/30 px-6 py-2 rounded-full text-sm font-bold transition">Legal Protections</button>
-            <button onclick="filterContent('Health')" class="cat-btn border border-white/30 px-6 py-2 rounded-full text-sm font-bold transition">Health & Care</button>
-            <button onclick="filterContent('Intellectual')" class="cat-btn border border-white/30 px-6 py-2 rounded-full text-sm font-bold transition">Ethical Legacy</button>
+    <header class="pt-32 pb-16 px-6 bg-white border-b border-gray-50">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl serif text-teal-950 mb-6">Education Library</h1>
+            <p class="text-gray-500 max-w-2xl mx-auto mb-10 text-lg">Curated financial, legal, and health resources to help you build and protect your family legacy.</p>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="relative group">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-teal-600 transition"></i>
+                    <input type="text" id="searchInput" onkeyup="searchResources()" placeholder="Search by title or keyword..." 
+                           class="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 focus:border-teal-600 focus:ring-4 focus:ring-teal-50 outline-none transition shadow-sm">
+                </div>
+
+                <div id="category-menu" class="flex flex-wrap justify-center gap-2">
+                    <button onclick="filterContent('All')" class="cat-btn active border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">All <span id="count-All" class="ml-1 opacity-50"></span></button>
+                    <button onclick="filterContent('Financial')" class="cat-btn border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">Financial <span id="count-Financial" class="ml-1 opacity-50"></span></button>
+                    <button onclick="filterContent('Legal')" class="cat-btn border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">Legal <span id="count-Legal" class="ml-1 opacity-50"></span></button>
+                    <button onclick="filterContent('Health')" class="cat-btn border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">Health <span id="count-Health" class="ml-1 opacity-50"></span></button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
-        <div id="resource-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <div id="results-text" class="mb-8 text-sm font-semibold text-gray-400 uppercase tracking-widest">Showing All Resources</div>
+        
+        <div id="resource-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             </div>
+
+        <div id="empty-state" class="hidden py-20 text-center">
+            <i class="fas fa-folder-open text-5xl text-gray-200 mb-4"></i>
+            <p class="text-gray-500 font-medium">No resources found matching your search.</p>
+        </div>
     </main>
 
+    <footer class="bg-white border-t border-gray-100 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-gray-400 text-sm">© 2026 WealthCare with Annemarie</p>
+            <div class="flex gap-6 text-gray-400">
+                <a href="#" class="hover:text-teal-900"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-teal-900"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-teal-900"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxzcavlDbKLy9R3JzW9MQHvRdXYShfTlcKUBd9Q6oBJEMfSLf6VFApV20gabxSHV4b-2lnuJ5AGppe/pub?output=csv';
-        let allData = [];
+        // REPLACE WITH YOUR ACTUAL PUBLISHED CSV URL
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/YOUR_ID_HERE/pub?output=csv';
+        
+        let allResources = [];
+        let currentFilter = 'All';
 
         async function loadData() {
             try {
                 const response = await fetch(CSV_URL);
                 const data = await response.text();
+                // Simple CSV parser that handles quotes
                 const rows = data.split('\n').slice(1);
                 
-                allData = rows.map(row => {
-                    const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-                    if (!cols || cols.length < 4) return null;
+                allResources = rows.map(row => {
+                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    if (cols.length < 4) return null;
                     return {
-                        title: cols[0].replace(/"/g, ""),
-                        desc: cols[1].replace(/"/g, ""),
+                        title: cols[0].replace(/"/g, "").trim(),
+                        desc: cols[1].replace(/"/g, "").trim(),
                         category: cols[2].replace(/"/g, "").trim(),
                         link: cols[3].replace(/"/g, "").trim(),
-                        img: cols[4] ? cols[4].replace(/"/g, "").trim() : ""
+                        img: cols[4] ? cols[4].replace(/"/g, "").trim() : null
                     };
-                }).filter(item => item !== null);
+                }).filter(r => r !== null);
 
-                renderCards(allData);
+                updateCounters();
+                renderCards(allResources);
             } catch (e) {
-                console.error("Error loading CSV", e);
+                console.error("Error loading CSV:", e);
+                document.getElementById('resource-grid').innerHTML = "<p class='text-red-500'>Error loading resources. Please ensure your Google Sheet is published to web as CSV.</p>";
             }
         }
 
-        function filterContent(category) {
-            // 3. TRACKING: Send data to Google Analytics
-            if (typeof gtag === 'function') {
-                gtag('event', 'category_view', {
-                    'event_category': 'Engagement',
-                    'event_label': category
-                });
-            }
+        function updateCounters() {
+            document.getElementById('count-All').innerText = `(${allResources.length})`;
+            ['Financial', 'Legal', 'Health'].forEach(cat => {
+                const count = allResources.filter(r => r.category.includes(cat)).length;
+                document.getElementById(`count-${cat}`).innerText = `(${count})`;
+            });
+        }
 
-            // Update UI Buttons
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.includes(category) || (category === 'All' && btn.innerText.includes('All'))) {
-                    btn.classList.add('active');
-                }
+        function filterContent(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('results-text').innerText = `Showing ${cat} Resources`;
+            searchResources(); // Combine filter with search
+        }
+
+        function searchResources() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = allResources.filter(r => {
+                const matchesFilter = currentFilter === 'All' || r.category.includes(currentFilter);
+                const matchesSearch = r.title.toLowerCase().includes(term) || r.desc.toLowerCase().includes(term);
+                return matchesFilter && matchesSearch;
             });
 
-            const filtered = category === 'All' 
-                ? allData 
-                : allData.filter(item => item.category.toLowerCase().includes(category.toLowerCase()));
-            
             renderCards(filtered);
+            
+            const emptyState = document.getElementById('empty-state');
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
         }
 
         function renderCards(data) {
             const grid = document.getElementById('resource-grid');
-            grid.innerHTML = data.length ? '' : '<p class="col-span-full text-center py-10 text-gray-400">No resources found in this category.</p>';
-
-            data.forEach(item => {
-                const isVideo = item.link.includes('youtube') || item.link.includes('youtu.be');
-                grid.innerHTML += `
-                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden flex flex-col transition hover:shadow-xl">
-                        <div class="aspect-video bg-teal-900 flex items-center justify-center">
-                            ${item.img ? `<img src="${item.img}" class="w-full h-full object-cover">` : `<i class="fas fa-file-alt text-5xl text-white/20"></i>`}
+            grid.innerHTML = '';
+            
+            data.forEach(r => {
+                const card = `
+                    <div class="resource-card bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full">
+                        <div class="card-image-container relative">
+                            ${r.img ? `<img src="${r.img}" class="w-full h-full object-cover">` : 
+                                      `<div class="w-full h-full flex items-center justify-center opacity-20">
+                                         <i class="fas fa-file-invoice-dollar text-5xl text-white"></i>
+                                       </div>`}
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-teal-900/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">
+                                    ${r.category}
+                                </span>
+                            </div>
                         </div>
-                        <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[10px] font-black uppercase tracking-widest text-teal-700 mb-2">${item.category}</span>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight">${item.title}</h3>
-                            <p class="text-gray-500 text-sm mb-6 flex-grow">${item.desc}</p>
-                            
-                            <div class="space-y-3">
-                                <a href="${item.link}" target="_blank" class="block w-full text-center py-3 bg-teal-900 text-white rounded-xl font-bold text-sm">
-                                    ${isVideo ? 'Watch Video' : 'View Resource'}
-                                </a>
-                                <a href="https://calendly.com/your-link" target="_blank" class="block w-full text-center py-3 border border-teal-900 text-teal-900 rounded-xl font-bold text-sm hover:bg-teal-50">
-                                    Book Consultation
-                                </a>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">${r.title}</h3>
+                            <p class="text-gray-500 text-sm mb-8 line-clamp-3">${r.desc}</p>
+                            <div class="mt-auto pt-6 border-t border-gray-50 flex flex-col gap-3">
+                                <a href="${r.link}" target="_blank" class="block w-full text-center py-4 bg-teal-900 text-white rounded-xl font-bold hover:bg-teal-800 transition">View Resource</a>
+                                <a href="https://calendly.com/your-link" target="_blank" class="block w-full text-center py-2 text-teal-900 font-semibold text-xs hover:underline">Request Help with This</a>
                             </div>
                         </div>
                     </div>
                 `;
+                grid.innerHTML += card;
             });
+        }
+
+        function logout() {
+            localStorage.removeItem('hub_access');
+            window.location.href = 'index.html';
         }
 
         window.onload = loadData;
