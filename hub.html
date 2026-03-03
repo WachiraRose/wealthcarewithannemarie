@@ -12,8 +12,8 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .filter-btn.active { background-color: #134e4a; color: white; border-color: #134e4a; }
-        .resource-card { transition: all 0.4s ease; }
-        .hidden-resource { display: none !important; }
+        .resource-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hidden-resource { display: none !important; opacity: 0; transform: scale(0.95); }
         .loading-spinner { border-top-color: #134e4a; animation: spinner 0.6s linear infinite; }
         @keyframes spinner { to { transform: rotate(360deg); } }
     </style>
@@ -31,96 +31,158 @@
     <header class="py-16 px-6 bg-teal-950 text-white text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">Resource Library</h1>
-            <p class="text-teal-200/70 text-lg">Your automated library for family security.</p>
+            <p class="text-teal-200/70 text-lg italic">Curated education for your health, legal, and financial journey.</p>
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-6 mt-12 space-y-6">
+    <div class="max-w-7xl mx-auto px-6 mt-12 space-y-8">
+        
+        <div class="max-w-md mx-auto relative">
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <input type="text" id="searchInput" onkeyup="searchResources()" placeholder="Search keywords (e.g. Trust, Planning...)" 
+                   class="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-teal-900 outline-none shadow-sm text-sm">
+        </div>
+
         <div class="flex flex-col items-center">
+            <span class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Select a Category</span>
             <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="filterByTopic('all')" class="topic-btn active px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">All Topics</button>
-                <button onclick="filterByTopic('health')" class="topic-btn px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">Health</button>
-                <button onclick="filterByTopic('legal')" class="topic-btn px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">Legal</button>
-                <button onclick="filterByTopic('financial')" class="topic-btn px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">Financial</button>
+                <button onclick="filterByTopic('all')" class="filter-btn active px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">All</button>
+                <button onclick="filterByTopic('health')" class="filter-btn px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">Health</button>
+                <button onclick="filterByTopic('legal')" class="filter-btn px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">Legal</button>
+                <button onclick="filterByTopic('financial')" class="filter-btn px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">Financial</button>
             </div>
         </div>
     </div>
 
-    <section class="py-12 px-6 max-w-7xl mx-auto min-h-[400px]">
-        <div id="loading" class="flex justify-center py-20">
-            <div class="loading-spinner w-10 h-10 border-4 border-gray-200 rounded-full"></div>
+    <section class="py-12 px-6 max-w-7xl mx-auto min-h-[500px]">
+        <div id="loading" class="flex flex-col items-center justify-center py-20">
+            <div class="loading-spinner w-12 h-12 border-4 border-gray-200 rounded-full mb-4"></div>
+            <p class="text-gray-400 text-sm font-bold animate-pulse">Syncing with Library...</p>
         </div>
+
+        <div id="emptyState" class="hidden text-center py-20">
+            <i class="fas fa-folder-open text-4xl text-gray-200 mb-4"></i>
+            <p class="text-gray-500">No resources found matching your selection.</p>
+        </div>
+
         <div id="resourceGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             </div>
     </section>
 
-    <script>
-        // 1. REPLACE THIS WITH YOUR GOOGLE SCRIPT WEB APP URL
-        const SHEET_API_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+    <footer class="bg-white border-t border-gray-100 py-20 px-6 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-teal-950 mb-4">Need personalized guidance?</h2>
+            <p class="text-gray-500 mb-8">Reviewing these materials is the first step. Let's discuss how they apply to your specific family goals.</p>
+            <a href="https://calendly.com/your-link" target="_blank" class="inline-block bg-teal-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:scale-105 transition uppercase text-xs tracking-widest">Book Strategy Call</a>
+        </div>
+        <p class="mt-16 text-[10px] text-gray-300 uppercase tracking-widest">© 2026 Wealthcare With Annemarie • All Rights Reserved</p>
+    </footer>
 
-        let allResources = [];
-        let currentTopic = 'all';
+    <script>
+        // 1. CONFIGURATION: REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT URL
+        const SHEET_API_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL';
 
         // Gatekeeper
         if (localStorage.getItem('hub_access') !== 'true') {
             window.location.href = 'index.html';
         }
 
+        let currentTopic = 'all';
+
+        // 2. FETCH DATA
         async function fetchResources() {
             try {
                 const response = await fetch(SHEET_API_URL);
                 const data = await response.json();
-                allResources = data;
-                renderCards(allResources);
+                renderCards(data);
                 document.getElementById('loading').classList.add('hidden');
             } catch (error) {
-                console.error("Error loading resources:", error);
+                console.error("Fetch error:", error);
+                document.getElementById('loading').innerHTML = `<p class="text-red-500 font-bold">Failed to load data. Please check your Script URL.</p>`;
             }
         }
 
-        function renderCards(resources) {
+        // 3. RENDER CARDS
+        function renderCards(data) {
             const grid = document.getElementById('resourceGrid');
             grid.innerHTML = '';
 
-            resources.forEach(item => {
-                const icon = item.Format === 'video' ? 'fa-play' : (item.Format === 'pdf' ? 'fa-file-pdf' : 'fa-newspaper');
-                const btnColor = item.Format === 'video' ? 'bg-teal-900' : 'bg-gray-900';
+            data.forEach(item => {
+                // Formatting clean categories
+                const topic = item.Topic ? item.Topic.toLowerCase().trim() : 'other';
+                const format = item.Format ? item.Format.toLowerCase().trim() : 'article';
                 
-                const card = `
+                // Icon Logic
+                let icon = 'fa-newspaper';
+                if(format === 'video') icon = 'fa-play-circle';
+                if(format === 'pdf') icon = 'fa-file-pdf';
+
+                const cardHtml = `
                     <div class="resource-card bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex flex-col" 
-                         data-topic="${item.Topic.toLowerCase()}">
+                         data-topic="${topic}" data-title="${item.Title.toLowerCase()}">
                         <div class="flex justify-between items-start mb-6">
-                            <div class="w-10 h-10 bg-gray-50 text-teal-900 rounded-lg flex items-center justify-center">
-                                <i class="fas ${icon}"></i>
+                            <div class="w-10 h-10 bg-gray-50 text-teal-900 rounded-xl flex items-center justify-center">
+                                <i class="fas ${icon} text-lg"></i>
                             </div>
-                            <span class="text-[10px] font-bold uppercase py-1 px-3 bg-teal-50 text-teal-700 rounded-full">${item.Topic}</span>
+                            <span class="text-[10px] font-bold uppercase py-1 px-3 bg-teal-50 text-teal-700 rounded-full tracking-tighter">${topic}</span>
                         </div>
-                        <h3 class="text-xl font-bold text-teal-900 mb-3">${item.Title}</h3>
-                        <p class="text-gray-500 text-xs mb-8 flex-grow">${item.Description}</p>
-                        <a href="${item.Link}" target="_blank" class="w-full text-center py-3 ${btnColor} text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition">View ${item.Format}</a>
+                        <h3 class="text-xl font-bold text-teal-900 mb-2 leading-tight">${item.Title}</h3>
+                        <p class="text-gray-500 text-xs mb-8 flex-grow leading-relaxed">${item.Description}</p>
+                        <a href="${item.Link}" target="_blank" class="w-full text-center py-4 bg-teal-950 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-teal-800 transition shadow-md">
+                            Open ${format}
+                        </a>
                     </div>
                 `;
-                grid.innerHTML += card;
+                grid.innerHTML += cardHtml;
             });
         }
 
+        // 4. FILTER BY TOPIC
         function filterByTopic(topic) {
             currentTopic = topic;
-            document.querySelectorAll('.topic-btn').forEach(btn => {
+            
+            // Update buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.innerText.toLowerCase().includes(topic)) btn.classList.add('active');
+                if(btn.innerText.toLowerCase() === topic) btn.classList.add('active');
+                if(topic === 'all' && btn.innerText === 'All') btn.classList.add('active');
             });
 
+            applyAllFilters();
+        }
+
+        // 5. SEARCH BOX LOGIC
+        function searchResources() {
+            applyAllFilters();
+        }
+
+        // 6. MASTER FILTER FUNCTION
+        function applyAllFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.resource-card');
+            let visibleCount = 0;
+
             cards.forEach(card => {
-                if (topic === 'all' || card.dataset.topic === topic) {
+                const cardTopic = card.getAttribute('data-topic');
+                const cardTitle = card.getAttribute('data-title');
+
+                const matchesTopic = (currentTopic === 'all' || cardTopic === currentTopic);
+                const matchesSearch = cardTitle.includes(searchTerm);
+
+                if (matchesTopic && matchesSearch) {
                     card.classList.remove('hidden-resource');
+                    visibleCount++;
                 } else {
                     card.classList.add('hidden-resource');
                 }
             });
+
+            // Show empty state if nothing found
+            const empty = document.getElementById('emptyState');
+            visibleCount === 0 ? empty.classList.remove('hidden') : empty.classList.add('hidden');
         }
 
+        // Initialize
         fetchResources();
     </script>
 </body>
