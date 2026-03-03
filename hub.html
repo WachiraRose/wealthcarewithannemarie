@@ -83,107 +83,117 @@
         const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbyWJm4C8CuSM3HmR3-K9U6BSTmk8nCniRX1mBUUV3yF35wf-w-YJ1hi-1WbrcQXFJcq/exec';
 
         // Gatekeeper
-        if (localStorage.getItem('hub_access') !== 'true') {
-            window.location.href = 'index.html';
-        }
+if (localStorage.getItem('hub_access') !== 'true') {
+    window.location.href = 'index.html';
+}
 
-        let currentTopic = 'all';
+let currentTopic = 'all';
 
-        // 2. FETCH DATA
-        async function fetchResources() {
-            try {
-                const response = await fetch(SHEET_API_URL);
-                const data = await response.json();
-                renderCards(data);
-                document.getElementById('loading').classList.add('hidden');
-            } catch (error) {
-                console.error("Fetch error:", error);
-                document.getElementById('loading').innerHTML = `<p class="text-red-500 font-bold">Failed to load data. Please check your Script URL.</p>`;
-            }
-        }
+async function fetchResources() {
+    try {
+        const response = await fetch(SHEET_API_URL);
+        if (!response.ok) throw new Error('Network response was not ok');
+        
+        const data = await response.json();
+        
+        // Debugging: This will show you in the browser console what the code "sees"
+        console.log("Data Received:", data); 
 
-        // 3. RENDER CARDS
-        function renderCards(data) {
-            const grid = document.getElementById('resourceGrid');
-            grid.innerHTML = '';
+        renderCards(data);
+        document.getElementById('loading').classList.add('hidden');
+    } catch (error) {
+        console.error("Fetch error:", error);
+        document.getElementById('loading').innerHTML = `
+            <div class="text-center p-8 bg-red-50 rounded-2xl">
+                <p class="text-red-600 font-bold">Failed to load data.</p>
+                <p class="text-xs text-red-400 mt-2">Check if your Google Script is deployed to "Anyone".</p>
+            </div>`;
+    }
+}
 
-            data.forEach(item => {
-                // Formatting clean categories
-                const topic = item.Topic ? item.Topic.toLowerCase().trim() : 'other';
-                const format = item.Format ? item.Format.toLowerCase().trim() : 'article';
+function renderCards(data) {
+    const grid = document.getElementById('resourceGrid');
+    grid.innerHTML = '';
+
+    data.forEach(item => {
+        // Mapping your "Category" header to the filter logic
+        const category = item.Category ? item.Category.toLowerCase().trim() : 'other';
+        const format = item.Format ? item.Format.toLowerCase().trim() : 'article';
+        const imageUrl = item.Image || 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800'; // Fallback image
+        
+        let icon = 'fa-newspaper';
+        if(format === 'video') icon = 'fa-play-circle';
+        if(format === 'pdf') icon = 'fa-file-pdf';
+
+        const cardHtml = `
+            <div class="resource-card bg-white rounded-[2.5rem] shadow-sm border border-gray-100 flex flex-col overflow-hidden" 
+                 data-topic="${category}" data-title="${item.Title.toLowerCase()}">
                 
-                // Icon Logic
-                let icon = 'fa-newspaper';
-                if(format === 'video') icon = 'fa-play-circle';
-                if(format === 'pdf') icon = 'fa-file-pdf';
-
-                const cardHtml = `
-                    <div class="resource-card bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex flex-col" 
-                         data-topic="${topic}" data-title="${item.Title.toLowerCase()}">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-10 h-10 bg-gray-50 text-teal-900 rounded-xl flex items-center justify-center">
-                                <i class="fas ${icon} text-lg"></i>
-                            </div>
-                            <span class="text-[10px] font-bold uppercase py-1 px-3 bg-teal-50 text-teal-700 rounded-full tracking-tighter">${topic}</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-teal-900 mb-2 leading-tight">${item.Title}</h3>
-                        <p class="text-gray-500 text-xs mb-8 flex-grow leading-relaxed">${item.Description}</p>
-                        <a href="${item.Link}" target="_blank" class="w-full text-center py-4 bg-teal-950 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-teal-800 transition shadow-md">
-                            Open ${format}
-                        </a>
+                <div class="h-48 overflow-hidden relative">
+                    <img src="${imageUrl}" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
+                         <span class="text-[10px] font-bold uppercase text-teal-900 tracking-tighter">${category}</span>
                     </div>
-                `;
-                grid.innerHTML += cardHtml;
-            });
+                </div>
+
+                <div class="p-8 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 mb-4 text-teal-700">
+                        <i class="fas ${icon}"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">${format}</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-teal-900 mb-2 leading-tight">${item.Title}</h3>
+                    <p class="text-gray-500 text-xs mb-8 flex-grow leading-relaxed">${item.Description}</p>
+                    
+                    <a href="${item.Link}" target="_blank" class="w-full text-center py-4 bg-teal-950 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-teal-800 transition shadow-md">
+                        Open ${format}
+                    </a>
+                </div>
+            </div>
+        `;
+        grid.innerHTML += cardHtml;
+    });
+}
+
+function filterByTopic(topic) {
+    currentTopic = topic;
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if(btn.innerText.toLowerCase() === topic) btn.classList.add('active');
+        if(topic === 'all' && btn.innerText === 'All') btn.classList.add('active');
+    });
+    applyAllFilters();
+}
+
+function searchResources() {
+    applyAllFilters();
+}
+
+function applyAllFilters() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.resource-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const cardTopic = card.getAttribute('data-topic');
+        const cardTitle = card.getAttribute('data-title');
+
+        const matchesTopic = (currentTopic === 'all' || cardTopic === currentTopic);
+        const matchesSearch = cardTitle.includes(searchTerm);
+
+        if (matchesTopic && matchesSearch) {
+            card.classList.remove('hidden-resource');
+            visibleCount++;
+        } else {
+            card.classList.add('hidden-resource');
         }
+    });
 
-        // 4. FILTER BY TOPIC
-        function filterByTopic(topic) {
-            currentTopic = topic;
-            
-            // Update buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === topic) btn.classList.add('active');
-                if(topic === 'all' && btn.innerText === 'All') btn.classList.add('active');
-            });
+    const empty = document.getElementById('emptyState');
+    visibleCount === 0 ? empty.classList.remove('hidden') : empty.classList.add('hidden');
+}
 
-            applyAllFilters();
-        }
-
-        // 5. SEARCH BOX LOGIC
-        function searchResources() {
-            applyAllFilters();
-        }
-
-        // 6. MASTER FILTER FUNCTION
-        function applyAllFilters() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.resource-card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const cardTopic = card.getAttribute('data-topic');
-                const cardTitle = card.getAttribute('data-title');
-
-                const matchesTopic = (currentTopic === 'all' || cardTopic === currentTopic);
-                const matchesSearch = cardTitle.includes(searchTerm);
-
-                if (matchesTopic && matchesSearch) {
-                    card.classList.remove('hidden-resource');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden-resource');
-                }
-            });
-
-            // Show empty state if nothing found
-            const empty = document.getElementById('emptyState');
-            visibleCount === 0 ? empty.classList.remove('hidden') : empty.classList.add('hidden');
-        }
-
-        // Initialize
-        fetchResources();
+fetchResources();
     </script>
 </body>
 </html>
