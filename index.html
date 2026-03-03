@@ -1,159 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WealthCare with Annemarie | Family Financial Education</title>
-    
     <link rel="icon" type="image/jpeg" href="img/logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        :root { --teal: #2d5a5a; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .hero-bg {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
                         url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1920');
             background-size: cover; background-position: center; background-attachment: fixed;
         }
-        .glass-nav { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
-        #success-banner { display: none; }
         .hidden { display: none !important; }
+        .sticky-contact { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 10px; }
     </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="bg-white">
 
-    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100 px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3">
-                <img src="img/logo.jpg" alt="Logo" class="h-10 w-10 rounded-full object-cover border border-teal-100">
-                <span class="font-extrabold text-sm md:text-xl uppercase italic text-teal-900 leading-none">Wealthcare<br><span class="font-light not-italic text-gray-400 text-[10px] md:text-xs">WithAnnemarie</span></span>
-            </a>
-            <div class="hidden lg:flex items-center gap-8 text-[10px] uppercase tracking-widest text-gray-700 font-bold">
-                <a href="#about" class="hover:text-teal-900 transition">About</a>
-                <a href="#blog" class="hover:text-teal-900 transition">Insights</a>
-                <a href="#contact" class="hover:text-teal-900 transition text-teal-900 border-b-2 border-teal-900">Unlock Hub</a>
-                <a href="hub.html" class="bg-teal-900 text-white px-4 py-2 rounded-full text-xs normal-case tracking-normal hover:bg-teal-700 transition">Member Login</a>
-            </div>
+    <div class="sticky-contact">
+        <a href="https://wa.me/1234567890" target="_blank" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-2xl hover:scale-110 transition">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+1234567890" class="bg-teal-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-xl hover:scale-110 transition">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="img/logo.jpg" class="h-10 w-10 rounded-full">
+            <span class="font-extrabold text-teal-900 uppercase italic text-sm">Wealthcare</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="https://calendly.com/your-link" target="_blank" class="hidden md:block text-xs font-bold text-teal-900 border border-teal-900 px-4 py-2 rounded-full hover:bg-teal-50">Book Consultation</a>
+            <a href="#contact" class="text-xs font-bold text-white bg-teal-900 px-5 py-2 rounded-full">Unlock Hub</a>
         </div>
     </nav>
 
-    <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6 pt-20">
+    <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6">
         <div class="max-w-4xl text-white">
-            <span class="text-teal-300 font-extrabold tracking-[0.3em] uppercase text-xs mb-6 block">Legacy • Protection • Growth</span>
-            <h1 class="text-5xl md:text-8xl mb-8 leading-tight font-bold">Financial Literacy is the <br><span class="italic text-teal-200">New Currency</span></h1>
-            <p class="text-lg md:text-2xl mb-12 font-light max-w-3xl mx-auto leading-relaxed">Educating families to build generational bridges across all backgrounds.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center text-center">
-                <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:bg-gray-100 transition">Start Here</a>
-                <a href="hub.html" class="bg-teal-900/60 backdrop-blur-md border border-white/30 text-white px-12 py-5 rounded-2xl font-extrabold text-lg hover:bg-white/10 transition">Enter Hub</a>
+            <h1 class="text-5xl md:text-8xl mb-8 font-bold">Financial Literacy is the <span class="italic text-teal-300">New Currency</span></h1>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl">Start Your Journey</a>
+                <a href="https://calendly.com/your-link" target="_blank" class="bg-teal-900/50 border border-white/30 backdrop-blur-md text-white px-12 py-5 rounded-2xl font-extrabold text-lg">Book a Call</a>
             </div>
         </div>
     </header>
 
-    <section id="about" class="py-24 px-6 bg-white">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="relative">
-                <img src="img/profile.jpeg" class="rounded-[3rem] shadow-2xl w-full object-cover" alt="Annemarie">
-            </div>
-            <div>
-                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-6">The Heart Behind the Vision</span>
-                <h2 class="text-4xl md:text-5xl mb-8 leading-tight font-bold text-gray-900">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h2>
-                <p class="text-gray-600 text-xl leading-relaxed mb-8">I believe true wealth begins with understanding. Coming from a caregiving background, I bring a human-first heart to your finances, helping you navigate the complexities of legacy planning with clarity.</p>
-                <div class="p-8 bg-gray-50 rounded-2xl border-l-8 border-teal-900 italic text-teal-900 text-2xl font-serif">
-                    "Financial literacy is not just about numbers; it's about the freedom to choose your family's future."
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="blog" class="py-24 bg-gray-50 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-2">Education Hub</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-teal-900">Latest Insights</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <article class="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-xl transition">
-                    <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-3 py-1 rounded-full w-fit mb-4">Legacy</div>
-                    <h3 class="text-2xl font-bold mb-4">Legacy Planning: Building a Financial Bridge</h3>
-                    <p class="text-gray-500 mb-6">Ensure your hard work protects your family long after you're gone.</p>
-                    <a href="https://wealthcarewithannemarie.blogspot.com/" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2">Read Article <i class="fas fa-arrow-right"></i></a>
-                </article>
-                <article class="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-xl transition">
-                    <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-3 py-1 rounded-full w-fit mb-4">Fundamentals</div>
-                    <h3 class="text-2xl font-bold mb-4">Financial Literacy: The Foundation</h3>
-                    <p class="text-gray-500 mb-6">Understand the essential skills of money management and budgeting.</p>
-                    <a href="https://wealthcarewithannemarie.blogspot.com/" target="_blank" class="text-teal-900 font-extrabold flex items-center gap-2">Read Article <i class="fas fa-arrow-right"></i></a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-24 bg-[#f4f1ea] px-6 text-center">
-        <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-8 md:p-20 shadow-2xl relative overflow-hidden">
-            
-            <div id="success-banner">
-                <div class="w-20 h-20 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-check text-3xl"></i>
-                </div>
-                <h2 class="text-4xl font-bold text-teal-900 mb-4">You're In!</h2>
-                <p class="text-gray-600 text-lg mb-10 text-center">Welcome to the family. Your personal Education Hub is now ready for you.</p>
-                <a href="hub.html" class="bg-teal-900 text-white px-12 py-5 rounded-2xl font-extrabold text-lg shadow-xl hover:bg-teal-700 transition inline-block">Enter the Hub →</a>
-            </div>
-
+    <section id="contact" class="py-24 bg-[#f4f1ea] px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-12 shadow-xl">
             <div id="form-content">
-                <div class="mb-12">
-                    <h2 class="text-4xl font-bold text-teal-900 mb-4">Join the Community</h2>
-                    <p class="text-gray-500 text-lg">Enter your details to unlock the full Resource Library.</p>
-                </div>
-                <form id="leadForm" class="space-y-6 text-left">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-widest text-gray-400 ml-2">First Name</label>
-                            <input type="text" name="first_name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-teal-800 outline-none">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-widest text-gray-400 ml-2">Last Name</label>
-                            <input type="text" name="last_name" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-teal-800 outline-none">
-                        </div>
+                <h2 class="text-4xl font-bold text-teal-900 mb-4 text-center">Secure Your Access</h2>
+                <p class="text-gray-500 mb-10 text-center">Enter your details to register and unlock the member library.</p>
+                <form id="leadForm" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" id="first_name" placeholder="First Name" required class="w-full p-4 rounded-xl border border-gray-200">
+                        <input type="text" id="last_name" placeholder="Last Name" required class="w-full p-4 rounded-xl border border-gray-200">
                     </div>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-widest text-gray-400 ml-2">Email Address</label>
-                            <input type="email" name="email" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-teal-800 outline-none">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-widest text-gray-400 ml-2">Phone Number</label>
-                            <input type="tel" name="phone" placeholder="(555) 000-0000" required class="w-full px-6 py-4 rounded-xl bg-gray-50 border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-teal-800 outline-none">
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full bg-teal-900 text-white font-extrabold py-6 rounded-2xl hover:bg-teal-800 transition shadow-2xl text-lg uppercase tracking-widest">Access Hub Now</button>
+                    <input type="email" id="email" placeholder="Email Address" required class="w-full p-4 rounded-xl border border-gray-200">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="w-full p-4 rounded-xl border border-gray-200">
+                    <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-bold py-5 rounded-xl uppercase tracking-widest hover:bg-teal-800 transition">Unlock the Hub</button>
                 </form>
             </div>
+
+            <div id="success-banner" class="text-center py-10 hidden">
+                <i class="fas fa-unlock-alt text-6xl text-teal-600 mb-6"></i>
+                <h2 class="text-3xl font-bold text-teal-900 mb-4">Access Granted!</h2>
+                <p class="text-gray-600 mb-8">Your account is ready. You can now enter the private Education Hub.</p>
+                <a href="hub.html" class="bg-teal-900 text-white px-10 py-4 rounded-xl font-bold inline-block">Enter Member Hub →</a>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-white py-16 px-6 border-t border-gray-100 text-center">
-        <p class="text-gray-400 font-bold uppercase tracking-widest text-[10px]">© 2026 WealthCare WithAnnemarie</p>
+    <footer class="bg-teal-900 py-16 px-6 text-white text-center">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-xl font-bold mb-4 italic">Wealthcare With Annemarie</h3>
+            <div class="flex justify-center gap-8 mb-8 text-sm text-teal-200">
+                <a href="tel:+1234567890">Call</a>
+                <a href="https://wa.me/1234567890">WhatsApp</a>
+                <a href="https://calendly.com/your-link">Book a Consultation</a>
+            </div>
+            <p class="text-[10px] uppercase tracking-widest opacity-40">© 2026 All Rights Reserved</p>
+        </div>
     </footer>
 
     <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwaKzGLvcvGTVs4ApECgp99iozQxC6sTQQ1r8CN0qR-IavIfoHKLn4ge1K4_rDWcGPi/exec';
+
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            document.getElementById('form-content').classList.add('hidden');
-            document.getElementById('success-banner').style.display = 'block';
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "Verifying...";
+
+            const formData = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(formData)
+            }).then(() => {
+                // SECURITY: Set the access token in the user's browser
+                localStorage.setItem('hub_access', 'granted_by_form');
+                
+                document.getElementById('form-content').classList.add('hidden');
+                document.getElementById('success-banner').classList.remove('hidden');
+            });
         });
     </script>
 </body>
