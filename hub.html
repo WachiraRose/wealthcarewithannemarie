@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Hub | WealthCare</title>
+    <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        h1 { font-family: 'Playfair Display', serif; }
+        .hub-header { background: linear-gradient(135deg, #2d5a5a 0%, #132a2a 100%); }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+        <a href="index.html" class="flex items-center gap-2 font-bold text-teal-900">
+            <img src="img/logo.jpg" class="h-8 w-8 rounded-full"> Member Hub
+        </a>
+        <a href="index.html" class="text-xs font-bold text-gray-400 hover:text-teal-900">BACK TO HOME</a>
+    </nav>
+
+    <header class="hub-header py-20 px-6 text-white text-center">
+        <h1 class="text-4xl md:text-5xl mb-4">Resource Library</h1>
+        <p class="text-teal-100 opacity-80 max-w-2xl mx-auto">Your portal for generational wealth building, checklists, and expert videos.</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div id="resource-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full text-center py-20 text-gray-400">
+                <i class="fas fa-sync fa-spin text-3xl mb-4"></i>
+                <p>Connecting to Google Sheets...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Your specific CSV link
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxzcavlDbKLy9R3JzW9MQHvRdXYShfTlcKUBd9Q6oBJEMfSLf6VFApV20gabxSHV4b-2lnuJ5AGppe/pub?output=csv';
+
+        async function initHub() {
+            try {
+                const response = await fetch(CSV_URL);
+                const data = await response.text();
+                const rows = data.split('\n').slice(1);
+                
+                const grid = document.getElementById('resource-grid');
+                grid.innerHTML = ''; 
+
+                rows.forEach(row => {
+                    // Use a regex to handle commas inside quotes in descriptions
+                    const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                    if (!cols || cols.length < 4) return;
+
+                    const title = cols[0].replace(/"/g, "");
+                    const desc = cols[1].replace(/"/g, "");
+                    const category = cols[2].replace(/"/g, "");
+                    const link = cols[3].replace(/"/g, "").trim();
+
+                    const isVideo = link.includes('youtube') || link.includes('youtu.be');
+                    const icon = isVideo ? 'fa-play-circle text-red-500' : 'fa-file-pdf text-teal-600';
+                    const btnLabel = isVideo ? 'Watch Video' : 'Open Document';
+
+                    grid.innerHTML += `
+                        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+                            <div class="aspect-video bg-gray-50 flex items-center justify-center border-b border-gray-50">
+                                <i class="fas ${icon} text-6xl opacity-80"></i>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <span class="text-[10px] font-black uppercase tracking-widest text-teal-700 mb-2">${category}</span>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">${title}</h3>
+                                <p class="text-gray-500 text-sm mb-6 flex-grow">${desc}</p>
+                                <a href="${link}" target="_blank" class="block w-full text-center py-3 bg-teal-900 text-white rounded-xl font-bold hover:bg-teal-800 transition">
+                                    ${btnLabel}
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (e) {
+                document.getElementById('resource-grid').innerHTML = '<p class="col-span-full text-center">Make sure your Google Sheet is "Published to the Web" as a CSV.</p>';
+            }
+        }
+        window.onload = initHub;
+    </script>
+</body>
+</html>
