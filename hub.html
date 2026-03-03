@@ -1,161 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        // AUTHENTICATION CHECK
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('access') === 'granted') { localStorage.setItem('hub_access', 'true'); }
-        if (localStorage.getItem('hub_access') !== 'true') {
-            window.location.href = "index.html#contact";
-        }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Hub | WealthCare Resources</title>
-    <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+    <title>Member Education Hub | WealthCare with Annemarie</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f9fafb; color: #111827; }
-        .serif { font-family: 'Playfair Display', serif; }
-        .nav-blur { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        .resource-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .resource-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1); }
-        .card-image-container { aspect-ratio: 16 / 9; overflow: hidden; background: #0d2e2c; }
-        .cat-btn.active { background-color: #134e4a; color: white; border-color: #134e4a; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #134e4a; border-radius: 10px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .filter-btn.active { background-color: #134e4a; color: white; border-color: #134e4a; }
+        .resource-card { transition: all 0.4s ease; }
+        .hidden-resource { display: none !important; }
+        .loading-spinner { border-top-color: #134e4a; animation: spinner 0.6s linear infinite; }
+        @keyframes spinner { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="antialiased">
+<body class="bg-gray-50">
 
-    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-100 px-6 py-4 flex justify-between items-center">
+    <nav class="bg-white border-b border-gray-100 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
         <div class="flex items-center gap-3">
-            <img src="img/logo.jpg" class="h-10 w-10 rounded-full border border-gray-100">
-            <span class="font-bold text-teal-900 tracking-tight">Wealthcare Hub</span>
+            <img src="img/logo.jpg" class="h-8 w-8 rounded-full border">
+            <span class="font-extrabold text-teal-900 uppercase italic text-xs">Wealthcare Hub</span>
         </div>
-        <button onclick="logout()" class="text-[10px] font-black text-red-500 border border-red-200 px-3 py-1 rounded-md hover:bg-red-50 transition">LOGOUT</button>
+        <a href="index.html" class="text-xs font-bold text-gray-400 hover:text-teal-900 uppercase tracking-widest">Exit Hub</a>
     </nav>
 
-    <header class="pt-32 pb-12 px-6 bg-white border-b border-gray-50">
-        <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl serif text-teal-950 mb-4">Resource Library</h1>
-            <p class="text-gray-500 max-w-xl mx-auto mb-10 text-lg">Your private collection of legacy building tools.</p>
-            
-            <div class="max-w-3xl mx-auto space-y-6">
-                <div class="relative group">
-                    <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" id="searchInput" onkeyup="searchResources()" placeholder="Find a document..." 
-                           class="w-full pl-14 pr-6 py-5 rounded-2xl border border-gray-200 focus:border-teal-600 focus:ring-4 focus:ring-teal-50 outline-none transition shadow-sm">
-                </div>
-
-                <div id="category-menu" class="flex flex-wrap justify-center gap-2">
-                    <button onclick="filterContent('All')" class="cat-btn active border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">All Resources <span id="count-All" class="opacity-40"></span></button>
-                    <button onclick="filterContent('Wealth Management')" class="cat-btn border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">Wealth Management <span id="count-Wealth" class="opacity-40"></span></button>
-                    <button onclick="filterContent('Legal')" class="cat-btn border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">Legal <span id="count-Legal" class="opacity-40"></span></button>
-                    <button onclick="filterContent('Health')" class="cat-btn border border-gray-200 px-6 py-2 rounded-full text-xs font-bold transition">Health <span id="count-Health" class="opacity-40"></span></button>
-                </div>
-            </div>
+    <header class="py-16 px-6 bg-teal-950 text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Resource Library</h1>
+            <p class="text-teal-200/70 text-lg">Your automated library for family security.</p>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
-        <div id="results-text" class="mb-8 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Full Collection</div>
-        
-        <div id="resource-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <div class="max-w-7xl mx-auto px-6 mt-12 space-y-6">
+        <div class="flex flex-col items-center">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="filterByTopic('all')" class="topic-btn active px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">All Topics</button>
+                <button onclick="filterByTopic('health')" class="topic-btn px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">Health</button>
+                <button onclick="filterByTopic('legal')" class="topic-btn px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">Legal</button>
+                <button onclick="filterByTopic('financial')" class="topic-btn px-6 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs">Financial</button>
             </div>
-
-        <div id="empty-state" class="hidden py-24 text-center">
-            <p class="text-gray-400 italic">No resources found matching that name.</p>
         </div>
-    </main>
+    </div>
+
+    <section class="py-12 px-6 max-w-7xl mx-auto min-h-[400px]">
+        <div id="loading" class="flex justify-center py-20">
+            <div class="loading-spinner w-10 h-10 border-4 border-gray-200 rounded-full"></div>
+        </div>
+        <div id="resourceGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+    </section>
 
     <script>
-        // YOUR LIVE GOOGLE SHEET LINK
-        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQxzcavlDbKLy9R3JzW9MQHvRdXYShfTlcKUBd9Q6oBJEMfSLf6VFApV20gabxSHV4b-2lnuJ5AGppe/pub?output=csv';
-        
+        // 1. REPLACE THIS WITH YOUR GOOGLE SCRIPT WEB APP URL
+        const SHEET_API_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+
         let allResources = [];
-        let currentFilter = 'All';
+        let currentTopic = 'all';
 
-        async function loadData() {
+        // Gatekeeper
+        if (localStorage.getItem('hub_access') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        async function fetchResources() {
             try {
-                const response = await fetch(CSV_URL);
-                const data = await response.text();
-                const rows = data.split('\n').slice(1);
-                
-                allResources = rows.map(row => {
-                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    if (cols.length < 4) return null;
-                    return {
-                        title: cols[0].replace(/"/g, "").trim(),
-                        desc: cols[1].replace(/"/g, "").trim(),
-                        category: cols[2].replace(/"/g, "").trim(),
-                        link: cols[3].replace(/"/g, "").trim(),
-                        img: cols[4] ? cols[4].replace(/"/g, "").trim() : null
-                    };
-                }).filter(r => r !== null && r.title !== "");
-
-                updateCounters();
+                const response = await fetch(SHEET_API_URL);
+                const data = await response.json();
+                allResources = data;
                 renderCards(allResources);
-            } catch (e) {
-                console.error("CSV Load Failed", e);
+                document.getElementById('loading').classList.add('hidden');
+            } catch (error) {
+                console.error("Error loading resources:", error);
             }
         }
 
-        function updateCounters() {
-            document.getElementById('count-All').innerText = `(${allResources.length})`;
-            const cats = { 'Wealth': 'Wealth Management', 'Legal': 'Legal', 'Health': 'Health' };
-            for (let key in cats) {
-                const count = allResources.filter(r => r.category.includes(cats[key])).length;
-                document.getElementById(`count-${key}`).innerText = `(${count})`;
-            }
-        }
+        function renderCards(resources) {
+            const grid = document.getElementById('resourceGrid');
+            grid.innerHTML = '';
 
-        function filterContent(cat) {
-            currentFilter = cat;
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById('results-text').innerText = cat === 'All' ? 'Full Collection' : `${cat} Focus`;
-            searchResources();
-        }
-
-        function searchResources() {
-            const term = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allResources.filter(r => {
-                const matchesFilter = currentFilter === 'All' || r.category.includes(currentFilter);
-                const matchesSearch = r.title.toLowerCase().includes(term) || r.desc.toLowerCase().includes(term);
-                return matchesFilter && matchesSearch;
+            resources.forEach(item => {
+                const icon = item.Format === 'video' ? 'fa-play' : (item.Format === 'pdf' ? 'fa-file-pdf' : 'fa-newspaper');
+                const btnColor = item.Format === 'video' ? 'bg-teal-900' : 'bg-gray-900';
+                
+                const card = `
+                    <div class="resource-card bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex flex-col" 
+                         data-topic="${item.Topic.toLowerCase()}">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-10 h-10 bg-gray-50 text-teal-900 rounded-lg flex items-center justify-center">
+                                <i class="fas ${icon}"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase py-1 px-3 bg-teal-50 text-teal-700 rounded-full">${item.Topic}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-teal-900 mb-3">${item.Title}</h3>
+                        <p class="text-gray-500 text-xs mb-8 flex-grow">${item.Description}</p>
+                        <a href="${item.Link}" target="_blank" class="w-full text-center py-3 ${btnColor} text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition">View ${item.Format}</a>
+                    </div>
+                `;
+                grid.innerHTML += card;
             });
-            renderCards(filtered);
-            document.getElementById('empty-state').className = filtered.length === 0 ? 'py-24 text-center' : 'hidden';
         }
 
-        function renderCards(data) {
-            const grid = document.getElementById('resource-grid');
-            grid.innerHTML = data.map(r => `
-                <div class="resource-card bg-white rounded-[2.5rem] border border-gray-100 overflow-hidden flex flex-col h-full shadow-sm">
-                    <div class="card-image-container relative">
-                        ${r.img ? `<img src="${r.img}" class="w-full h-full object-cover">` : 
-                                  `<div class="w-full h-full flex items-center justify-center opacity-20"><i class="fas fa-file-pdf text-4xl text-white"></i></div>`}
-                        <div class="absolute top-5 left-5 bg-white/90 backdrop-blur text-teal-900 text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
-                            ${r.category}
-                        </div>
-                    </div>
-                    <div class="p-10 flex flex-col flex-grow">
-                        <h3 class="text-2xl font-bold text-teal-950 mb-4 leading-tight">${r.title}</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-8">${r.desc}</p>
-                        <div class="mt-auto pt-6 border-t border-gray-50">
-                            <a href="${r.link}" target="_blank" class="block w-full text-center py-4 bg-teal-900 text-white rounded-2xl font-bold hover:bg-teal-800 transition">Download / View</a>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+        function filterByTopic(topic) {
+            currentTopic = topic;
+            document.querySelectorAll('.topic-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase().includes(topic)) btn.classList.add('active');
+            });
+
+            const cards = document.querySelectorAll('.resource-card');
+            cards.forEach(card => {
+                if (topic === 'all' || card.dataset.topic === topic) {
+                    card.classList.remove('hidden-resource');
+                } else {
+                    card.classList.add('hidden-resource');
+                }
+            });
         }
 
-        function logout() { localStorage.removeItem('hub_access'); window.location.href = 'index.html'; }
-        window.onload = loadData;
+        fetchResources();
     </script>
 </body>
 </html>
