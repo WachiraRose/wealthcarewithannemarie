@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
@@ -17,17 +18,18 @@
             background-size: cover; background-position: center; background-attachment: fixed;
         }
         .hidden { display: none !important; }
-        .sticky-contact { position: fixed; bottom: 20px; right: 20px; z-index: 100; display: flex; flex-direction: column; gap: 10px; }
+        .contact-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; display: flex; flex-direction: column; gap: 12px; }
+        .input-error { border: 2px solid #ef4444 !important; }
     </style>
 </head>
 <body class="bg-white">
 
-    <div class="sticky-contact">
-        <a href="https://wa.me/1234567890" target="_blank" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-2xl hover:scale-110 transition">
-            <i class="fab fa-whatsapp"></i>
+    <div class="contact-float">
+        <a href="https://wa.me/1234567890" target="_blank" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300">
+            <i class="fab fa-whatsapp text-2xl"></i>
         </a>
-        <a href="tel:+1234567890" class="bg-teal-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg text-xl hover:scale-110 transition">
-            <i class="fas fa-phone"></i>
+        <a href="tel:+1234567890" class="bg-teal-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300 border border-white/20">
+            <i class="fas fa-phone text-xl"></i>
         </a>
     </div>
 
@@ -36,85 +38,219 @@
             <img src="img/logo.jpg" class="h-10 w-10 rounded-full">
             <span class="font-extrabold text-teal-900 uppercase italic text-sm">Wealthcare</span>
         </div>
-        <div class="flex items-center gap-4">
-            <a href="https://calendly.com/your-link" target="_blank" class="hidden md:block text-xs font-bold text-teal-900 border border-teal-900 px-4 py-2 rounded-full hover:bg-teal-50">Book Consultation</a>
-            <a href="#contact" class="text-xs font-bold text-white bg-teal-900 px-5 py-2 rounded-full">Unlock Hub</a>
+        <div class="flex items-center gap-4 text-xs font-bold">
+            <a href="#about" class="hidden lg:block text-gray-500 hover:text-teal-900 uppercase tracking-widest">About</a>
+            <a href="https://calendly.com/your-link" target="_blank" class="text-teal-900 border border-teal-900 px-4 py-2 rounded-full hover:bg-teal-50 transition">Book Call</a>
+            <a href="#contact" class="text-white bg-teal-900 px-5 py-2 rounded-full shadow-lg">Access Hub</a>
         </div>
     </nav>
 
     <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6">
         <div class="max-w-4xl text-white">
             <h1 class="text-5xl md:text-8xl mb-8 font-bold">Financial Literacy is the <span class="italic text-teal-300">New Currency</span></h1>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl">Start Your Journey</a>
-                <a href="https://calendly.com/your-link" target="_blank" class="bg-teal-900/50 border border-white/30 backdrop-blur-md text-white px-12 py-5 rounded-2xl font-extrabold text-lg">Book a Call</a>
-            </div>
+            <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl inline-block hover:bg-gray-100 transition">Get Started</a>
         </div>
     </header>
 
-    <section id="contact" class="py-24 bg-[#f4f1ea] px-6">
-        <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-12 shadow-xl">
-            <div id="form-content">
-                <h2 class="text-4xl font-bold text-teal-900 mb-4 text-center">Secure Your Access</h2>
-                <p class="text-gray-500 mb-10 text-center">Enter your details to register and unlock the member library.</p>
-                <form id="leadForm" class="space-y-4">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <input type="text" id="first_name" placeholder="First Name" required class="w-full p-4 rounded-xl border border-gray-200">
-                        <input type="text" id="last_name" placeholder="Last Name" required class="w-full p-4 rounded-xl border border-gray-200">
-                    </div>
-                    <input type="email" id="email" placeholder="Email Address" required class="w-full p-4 rounded-xl border border-gray-200">
-                    <input type="tel" id="phone" placeholder="Phone Number" required class="w-full p-4 rounded-xl border border-gray-200">
-                    <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-bold py-5 rounded-xl uppercase tracking-widest hover:bg-teal-800 transition">Unlock the Hub</button>
-                </form>
+    <section id="about" class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <img src="img/profile.jpeg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[500px]" alt="Annemarie">
+                <div class="absolute -bottom-6 -right-6 bg-teal-900 text-white p-8 rounded-2xl hidden md:block shadow-xl">
+                    <p class="text-2xl font-serif italic">Your Legacy Partner</p>
+                </div>
             </div>
-
-            <div id="success-banner" class="text-center py-10 hidden">
-                <i class="fas fa-unlock-alt text-6xl text-teal-600 mb-6"></i>
-                <h2 class="text-3xl font-bold text-teal-900 mb-4">Access Granted!</h2>
-                <p class="text-gray-600 mb-8">Your account is ready. You can now enter the private Education Hub.</p>
-                <a href="hub.html" class="bg-teal-900 text-white px-10 py-4 rounded-xl font-bold inline-block">Enter Member Hub →</a>
+            <div>
+                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-4">The Vision</span>
+                <h2 class="text-5xl font-bold text-teal-900 mb-6 leading-tight">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h2>
+                <p class="text-gray-600 text-xl leading-relaxed mb-8">Coming from a caregiving background, I bring a human-first heart to your finances, helping you navigate legacy planning with clarity and purpose.</p>
+                <div class="p-8 bg-gray-50 rounded-2xl border-l-8 border-teal-900 italic text-teal-900 text-2xl font-serif">
+                    "Knowledge is the bridge to generational wealth."
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-teal-900 py-16 px-6 text-white text-center">
-        <div class="max-w-7xl mx-auto">
-            <h3 class="text-xl font-bold mb-4 italic">Wealthcare With Annemarie</h3>
-            <div class="flex justify-center gap-8 mb-8 text-sm text-teal-200">
-                <a href="tel:+1234567890">Call</a>
-                <a href="https://wa.me/1234567890">WhatsApp</a>
-                <a href="https://calendly.com/your-link">Book a Consultation</a>
+    <section id="literacy" class="py-24 bg-teal-900 text-white px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-6xl font-bold mb-8 italic">The Power of Knowledge</h2>
+            <p class="text-xl text-teal-100 mb-12 leading-relaxed">
+                Financial literacy is not just about numbers—it's about protection. It is the shield that prevents generational poverty and the bridge that connects your hard work to your family's future success.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="p-6 bg-white/10 rounded-2xl border border-white/10 hover:bg-white/20 transition">
+                    <h4 class="font-bold text-2xl mb-2">Build</h4>
+                    <p class="text-sm opacity-70">Create a sustainable foundation for growth.</p>
+                </div>
+                <div class="p-6 bg-white/10 rounded-2xl border border-white/10 hover:bg-white/20 transition">
+                    <h4 class="font-bold text-2xl mb-2">Protect</h4>
+                    <p class="text-sm opacity-70">Secure assets from unforeseen risks.</p>
+                </div>
+                <div class="p-6 bg-white/10 rounded-2xl border border-white/10 hover:bg-white/20 transition">
+                    <h4 class="font-bold text-2xl mb-2">Transfer</h4>
+                    <p class="text-sm opacity-70">Pass on wisdom alongside wealth.</p>
+                </div>
             </div>
-            <p class="text-[10px] uppercase tracking-widest opacity-40">© 2026 All Rights Reserved</p>
+            <a href="https://calendly.com/your-link" target="_blank" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-xl inline-block hover:scale-105 transition">Book Your Consultation Now</a>
+        </div>
+    </section>
+
+    <section id="blog" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-2">Education</span>
+                    <h2 class="text-4xl font-bold text-teal-900">Latest Insights</h2>
+                </div>
+                <a href="https://wealthcarewithannemarie.blogspot.com/" target="_blank" class="text-teal-900 font-bold hidden md:block">Visit Full Blog →</a>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <article class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition group">
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-teal-700 transition">Legacy Planning Fundamentals</h3>
+                    <p class="text-gray-500 mb-6">Learn the vital steps needed to ensure your family is protected for generations.</p>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/" target="_blank" class="text-teal-900 font-black text-sm uppercase tracking-widest">Read Article</a>
+                </article>
+                <article class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition group">
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-teal-700 transition">The Foundation of Wealth</h3>
+                    <p class="text-gray-500 mb-6">Why financial literacy is the most important asset you can give your children today.</p>
+                    <a href="https://wealthcarewithannemarie.blogspot.com/" target="_blank" class="text-teal-900 font-black text-sm uppercase tracking-widest">Read Article</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-[#f4f1ea] px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-[3rem] p-12 shadow-xl border border-gray-100">
+            
+            <div id="form-content">
+                <h2 class="text-4xl font-bold text-teal-900 mb-4 text-center uppercase tracking-tight">Unlock Member Access</h2>
+                <p class="text-gray-500 mb-10 text-center max-w-md mx-auto">Enter your verified details to receive your private entry link.</p>
+                
+                <form id="leadForm" class="space-y-4" novalidate>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" id="first_name" placeholder="First Name" class="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-800 outline-none transition">
+                        <input type="text" id="last_name" placeholder="Last Name" class="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-800 outline-none transition">
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" class="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-800 outline-none transition">
+                    <input type="tel" id="phone" placeholder="Phone (10 digits, e.g. 5551234567)" class="w-full p-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-800 outline-none transition">
+                    
+                    <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-bold py-5 rounded-xl uppercase tracking-widest hover:bg-teal-800 transition shadow-lg">Request Access Link</button>
+                    <p id="error-msg" class="text-red-600 text-center text-sm hidden font-bold mt-4 p-3 bg-red-50 rounded-lg"></p>
+                </form>
+            </div>
+
+            <div id="success-banner" class="text-center py-10 hidden">
+                <div class="w-20 h-20 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check-circle text-3xl"></i>
+                </div>
+                <h2 id="banner-title" class="text-3xl font-bold text-teal-900 mb-4">Welcome Back!</h2>
+                <p id="banner-text" class="text-gray-600 text-lg mb-8">Your account is active. You can enter the hub directly below.</p>
+                <a href="hub.html" class="inline-block bg-teal-900 text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:bg-teal-800 transition">Enter Member Hub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-teal-950 py-20 px-6 text-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left">
+            <div>
+                <h3 class="text-2xl font-bold italic mb-4">Wealthcare</h3>
+                <p class="text-teal-200/50 text-sm">Building generational bridges through care and education.</p>
+            </div>
+            <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-widest">
+                <h4 class="text-teal-400 mb-2">Social Connections</h4>
+                <a href="https://facebook.com/yourprofile" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-facebook mr-2"></i> Facebook</a>
+                <a href="https://instagram.com/yourprofile" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-instagram mr-2"></i> Instagram</a>
+                <a href="https://linkedin.com/yourprofile" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-linkedin mr-2"></i> LinkedIn</a>
+            </div>
+            <div class="text-[10px] opacity-40 uppercase tracking-[0.2em] flex flex-col justify-end">
+                © 2026 Wealthcare With Annemarie • All Rights Reserved
+            </div>
         </div>
     </footer>
 
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwaKzGLvcvGTVs4ApECgp99iozQxC6sTQQ1r8CN0qR-IavIfoHKLn4ge1K4_rDWcGPi/exec';
 
+        // --- RETURNING USER CHECK ---
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('hub_access') === 'true') {
+                document.getElementById('form-content').classList.add('hidden');
+                document.getElementById('success-banner').classList.remove('hidden');
+            }
+        });
+
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            const fname = document.getElementById('first_name');
+            const lname = document.getElementById('last_name');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const errorMsg = document.getElementById('error-msg');
             const btn = document.getElementById('submitBtn');
+
+            errorMsg.classList.add('hidden');
+            [fname, lname, email, phone].forEach(el => el.classList.remove('input-error'));
+
+            let errors = [];
+
+            // 1. Name Validation
+            const nameRegex = /^[a-zA-Z\s]{2,30}$/;
+            if (!nameRegex.test(fname.value)) { errors.push("Valid First Name required."); fname.classList.add('input-error'); }
+            if (!nameRegex.test(lname.value)) { errors.push("Valid Last Name required."); lname.classList.add('input-error'); }
+
+            // 2. Email Validation
+            const emailVal = email.value.toLowerCase().trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const badDomains = ['test.com', 'example.com', 'fake.com', 'mailinator.com', 'tempmail.com', '123.com', 'abc.com'];
+            
+            if (!emailRegex.test(emailVal) || badDomains.some(d => emailVal.endsWith(d))) {
+                errors.push("A valid, permanent email is required.");
+                email.classList.add('input-error');
+            }
+
+            // 3. Strict Phone Validation
+            const phoneVal = phone.value.replace(/\D/g, ''); 
+            const repeatRegex = /^(.)\1+$/; 
+            if (phoneVal.length !== 10 || repeatRegex.test(phoneVal)) {
+                errors.push("A valid 10-digit phone number is required.");
+                phone.classList.add('input-error');
+            }
+
+            if (errors.length > 0) {
+                errorMsg.innerText = errors[0]; 
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            // Process Submission
             btn.disabled = true;
             btn.innerText = "Verifying...";
 
-            const formData = {
-                first_name: document.getElementById('first_name').value,
-                last_name: document.getElementById('last_name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value
+            const payload = {
+                first_name: fname.value.trim(),
+                last_name: lname.value.trim(),
+                email: emailVal,
+                phone: phoneVal
             };
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payload)
             }).then(() => {
-                // SECURITY: Set the access token in the user's browser
-                localStorage.setItem('hub_access', 'granted_by_form');
-                
+                // Grant Immediate Access and switch UI
+                localStorage.setItem('hub_access', 'true');
+                document.getElementById('banner-title').innerText = "Access Granted!";
+                document.getElementById('banner-text').innerText = "Thank you for registering. You can now explore the full resource library below.";
                 document.getElementById('form-content').classList.add('hidden');
                 document.getElementById('success-banner').classList.remove('hidden');
+                window.scrollTo({ top: document.getElementById('contact').offsetTop - 100, behavior: 'smooth' });
+            }).catch(() => {
+                btn.disabled = false;
+                btn.innerText = "Request Access Link";
+                errorMsg.innerText = "Connection error. Please try again.";
+                errorMsg.classList.remove('hidden');
             });
         });
     </script>
