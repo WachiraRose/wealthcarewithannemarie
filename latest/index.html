@@ -49,7 +49,7 @@
         <div class="flex items-center gap-6">
             <a href="#about" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">About</a>
             <a href="#blog" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">Insights</a>
-            <!--a href="#contact" id="nav-btn-desktop" class="hidden lg:block text-white bg-teal-900 px-6 py-2 rounded-full text-xs font-bold shadow-lg transition hover:bg-teal-800">Learn More</a-->
+            <a href="#contact" id="nav-btn-desktop" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">Contact</a>
             
             <button onclick="toggleMenu()" class="lg:hidden text-teal-900 text-2xl focus:outline-none">
                 <i class="fas fa-bars-staggered"></i>
@@ -61,7 +61,7 @@
         <button onclick="toggleMenu()" class="absolute top-6 right-6 text-4xl text-teal-100">&times;</button>
         <a href="#about" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest">About</a>
         <a href="#blog" onclick="toggleMenu()" class="text-2xl font-bold uppercase tracking-widest">Insights</a>
-        <a href="#contact" id="nav-btn-mobile" onclick="toggleMenu()" class="bg-white text-teal-900 px-10 py-4 rounded-2xl font-black uppercase tracking-widest shadow-xl">Learn More</a>
+        <a href="#contact" id="nav-btn-mobile" onclick="toggleMenu()" class="bg-white text-teal-900 px-10 py-4 rounded-2xl font-black uppercase tracking-widest shadow-xl">Contact</a>
     </div>
 
     <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6">
@@ -200,12 +200,12 @@
             if (localStorage.getItem('hub_access') === 'true') {
                 document.getElementById('form-content').classList.add('hidden');
                 document.getElementById('success-banner').classList.remove('hidden');
-                // Updated to handle both desktop and mobile buttons
                 const buttons = ['nav-btn-desktop', 'nav-btn-mobile'];
                 buttons.forEach(id => {
                     const btn = document.getElementById(id);
                     if(btn) {
                         btn.innerText = "Financial Resources";
+                        btn.classList.add("text-teal-900", "font-bold"); // Ensures it looks right after state change
                         btn.onclick = (e) => {
                             e.preventDefault();
                             window.location.href = 'hub.html';
@@ -222,12 +222,21 @@
             const phoneVal = document.getElementById('phone').value.replace(/\D/g, '');
             const emailVal = document.getElementById('email').value.toLowerCase().trim();
 
+            // FIX 2: Email Format Validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailVal)) {
+                errorMsg.innerText = "Please provide a valid email address.";
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
             if (phoneVal.length !== 10) {
                 errorMsg.innerText = "Please provide a valid 10-digit phone number.";
                 errorMsg.classList.remove('hidden');
                 return;
             }
 
+            errorMsg.classList.add('hidden');
             btn.disabled = true;
             btn.innerText = "Processing...";
 
