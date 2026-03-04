@@ -22,26 +22,32 @@
         .contact-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; display: flex; flex-direction: column; gap: 12px; }
         .nav-scrolled { background-color: rgba(255, 255, 255, 0.98); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
         
-        /* Mobile Menu Transition */
-        #mobile-menu { transition: all 0.3s ease-in-out; transform: translateY(-100%); opacity: 0; pointer-events: none; }
-        #mobile-menu.active { transform: translateY(0); opacity: 1; pointer-events: all; }
+        /* Fixed Mobile Menu */
+        #mobile-menu { 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            transform: translateX(100%); 
+            opacity: 0; 
+            pointer-events: none;
+            z-index: 9999;
+        }
+        #mobile-menu.active { 
+            transform: translateX(0); 
+            opacity: 1; 
+            pointer-events: all; 
+        }
     </style>
 </head>
 <body class="bg-white">
 
     <div class="contact-float">
-    <a href="javascript:void(0)" 
-       id="w-link" 
-       class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-    
-    <a href="javascript:void(0)" 
-       id="p-link" 
-       class="bg-teal-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300 border border-white/20">
-        <i class="fas fa-phone text-xl"></i>
-    </a>
-</div>
+        <a href="javascript:void(0)" id="w-link" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+        <a href="javascript:void(0)" id="p-link" class="bg-teal-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300 border border-white/20">
+            <i class="fas fa-phone text-xl"></i>
+        </a>
+    </div>
+
     <nav id="main-nav" class="fixed top-0 w-full z-[60] transition-all duration-300 px-6 py-4 flex justify-between items-center bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="flex items-center gap-3">
             <img src="img/logo.jpg" class="h-10 w-10 rounded-full border" alt="Logo">
@@ -53,17 +59,21 @@
             <a href="#blog" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">Insights</a>
             <a href="#contact" id="nav-btn" class="text-white bg-teal-900 px-6 py-2 rounded-full text-xs font-bold shadow-lg transition hover:bg-teal-800">Learn More</a>
             
-            <button id="menu-toggle" class="lg:hidden text-teal-900 text-2xl">
+            <button id="menu-toggle" class="lg:hidden text-teal-900 text-2xl p-2 focus:outline-none">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-teal-950 z-[55] flex flex-col items-center justify-center gap-8 text-white">
-        <a href="#about" class="mobile-link text-2xl font-bold">About</a>
-        <a href="#blog" class="mobile-link text-2xl font-bold">Insights</a>
-        <a href="#contact" class="mobile-link text-2xl font-bold">Contact</a>
-        <button id="menu-close" class="mt-8 text-teal-300 uppercase tracking-widest text-sm font-bold">Close Menu</button>
+    <div id="mobile-menu" class="fixed inset-0 bg-teal-950 flex flex-col items-center justify-center gap-8 text-white">
+        <button id="menu-close" class="absolute top-6 right-6 text-teal-300 text-3xl">&times;</button>
+        <a href="#about" class="mobile-link text-3xl font-bold hover:text-teal-300 transition">About</a>
+        <a href="#blog" class="mobile-link text-3xl font-bold hover:text-teal-300 transition">Insights</a>
+        <a href="#contact" class="mobile-link text-3xl font-bold hover:text-teal-300 transition">Contact</a>
+        <div class="mt-8 flex gap-6">
+            <a href="javascript:void(0)" class="footer-w text-2xl text-teal-300"><i class="fab fa-whatsapp"></i></a>
+            <a href="javascript:void(0)" class="footer-p text-2xl text-teal-300"><i class="fas fa-phone"></i></a>
+        </div>
     </div>
 
     <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6">
@@ -110,7 +120,6 @@
                     <h3 class="text-xl font-bold text-teal-950 mb-4 tracking-tight">Confidence in Decisions</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">Eliminate the "paralysis of analysis." Education provides the clarity needed to make swift, informed choices for your family's future.</p>
                 </div>
-
                 <div class="p-10 rounded-[3rem] border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-500 group" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-14 h-14 bg-teal-600 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                         <i class="fas fa-bridge text-xl"></i>
@@ -133,7 +142,7 @@
     <section id="blog" class="py-24 bg-[#f9f8f4] px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-down">
-                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-2">Education Hub</span>
+                <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-2">Education Resources</span>
                 <h2 class="text-5xl font-bold text-teal-900 serif">Latest Insights</h2>
             </div>
 
@@ -198,9 +207,7 @@
                     <h2 class="text-2xl font-bold text-teal-900 mb-6">Welcome</h2>
                     <div class="flex flex-col gap-4">
                         <a href="hub.html" class="bg-teal-900 text-white px-8 py-4 rounded-xl font-bold shadow-md">Open Resources</a>
-                        <a href="https://calendly.com/amariem/one-on-one" class="bg-teal-900 text-white px-8 py-4 rounded-xl font-bold shadow-md">Schedule another Call</a>
-                        <a href="https://calendly.com/amariem/one-on-one" target="_blank" rel="noopener noreferrer" class="text-teal-900 font-bold text-sm">Open Calendar</a>
-                        <a href="hub.html" target="_blank" rel="noopener noreferrer" class="text-teal-900 font-bold text-sm">Open Resources</a>
+                        <a href="https://calendly.com/amariem/one-on-one" target="_blank" rel="noopener noreferrer" class="text-teal-900 font-bold text-sm underline">Schedule Strategy Call</a>
                     </div>
                 </div>
             </div>
@@ -210,15 +217,21 @@
     <footer class="bg-teal-950 py-20 px-6 text-white">
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left">
             <div>
-                <h3 class="text-2xl font-bold italic mb-4">Wealthcare</h3>
-                <p class="text-teal-200/50 text-sm leading-relaxed max-w-xs">Building generational bridges through care, clarity, and education.</p>
+                <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
+                    <img src="img/logo.jpg" class="h-12 w-12 rounded-full border border-teal-800" alt="Wealthcare Logo">
+                    <h3 class="text-2xl font-bold italic">Wealthcare</h3>
+                </div>
+                <p class="text-teal-200/50 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">Building generational bridges through care, clarity, and education.</p>
             </div>
+            
             <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-[0.2em]">
                 <h4 class="text-teal-400 mb-2">Connect With Me</h4>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-teal-300 transition"><i class="fab fa-facebook mr-3"></i> Facebook</a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-teal-300 transition"><i class="fab fa-instagram mr-3"></i> Instagram</a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-teal-300 transition"><i class="fab fa-linkedin mr-3"></i> LinkedIn</a>
+                <a href="javascript:void(0)" id="footer-email" class="hover:text-teal-300 transition lowercase font-normal italic tracking-normal"><i class="far fa-envelope mr-3 text-teal-400"></i> Loading email...</a>
+                <a href="#" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-facebook mr-3"></i> Facebook</a>
+                <a href="#" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-instagram mr-3"></i> Instagram</a>
+                <a href="#" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-linkedin mr-3"></i> LinkedIn</a>
             </div>
+            
             <div class="flex flex-col justify-end">
                 <p class="text-[10px] opacity-40 uppercase tracking-[0.2em]">© 2026 Wealthcare With Annemarie • All Rights Reserved</p>
             </div>
@@ -232,7 +245,7 @@
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwaKzGLvcvGTVs4ApECgp99iozQxC6sTQQ1r8CN0qR-IavIfoHKLn4ge1K4_rDWcGPi/exec';
         const CALENDLY_URL = 'https://calendly.com/amariem/one-on-one'; 
 
-        // Nav Scroll Effect
+        // Nav Scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('main-nav');
             if (window.scrollY > 50) nav.classList.add('nav-scrolled');
@@ -245,60 +258,59 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        const toggleMenu = () => mobileMenu.classList.toggle('active');
+        const openMenu = () => { mobileMenu.classList.add('active'); document.body.style.overflow = 'hidden'; };
+        const closeMenu = () => { mobileMenu.classList.remove('active'); document.body.style.overflow = 'auto'; };
         
-        menuToggle.addEventListener('click', toggleMenu);
-        menuClose.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
+        // SECURITY: Link Protection Logic
         (function() {
-    // Encoded strings to hide from bots
-    
-    const w_sec = "MzE0Mzk3MDE1OA==";
-    const p_sec = "MzE0Mzk3MDE1OA==";
+            // Updated Base64 strings for phone number
+            const w_sec = "aHR0cHM6Ly93YS5tZS8xMzE0Mzk3MDE1OA==";
+            const p_sec = "dGVsOisxMzE0Mzk3MDE1OA==";
+            const e_sec = "YW5uZW1hcmllQHdlYWx0aGNhcmV3aXRoYW5uZW1hcmllLmNvbQ==";
 
-    // Decrypt links when a human moves the mouse or touches the screen
-    const unlock = () => {
-        const wBtn = document.getElementById('w-link');
-        const pBtn = document.getElementById('p-link');
+            const unlock = () => {
+                const wLinks = [document.getElementById('w-link'), ...document.querySelectorAll('.footer-w')];
+                const pLinks = [document.getElementById('p-link'), ...document.querySelectorAll('.footer-p')];
+                const eLink = document.getElementById('footer-email');
 
-        if (wBtn) {
-            wBtn.href = atob(w_sec);
-            wBtn.setAttribute('target', '_blank');
-            wBtn.setAttribute('rel', 'noopener noreferrer');
-        }
-        
-        if (pBtn) {
-            pBtn.href = atob(p_sec);
-        }
-    };
+                wLinks.forEach(l => { if(l) { l.href = atob(w_sec); l.target="_blank"; l.rel="noopener"; }});
+                pLinks.forEach(l => { if(l) l.href = atob(p_sec); });
+                
+                if (eLink) {
+                    const mail = atob(e_sec);
+                    eLink.href = "mailto:" + mail;
+                    eLink.innerHTML = `<i class="far fa-envelope mr-3 text-teal-400"></i> ${mail}`;
+                }
+            };
 
-    // Listen for human interaction
-    window.addEventListener('mousemove', unlock, { once: true });
-    window.addEventListener('touchstart', unlock, { once: true });
-    window.addEventListener('scroll', unlock, { once: true });
-})();
+            window.addEventListener('mousemove', unlock, { once: true });
+            window.addEventListener('touchstart', unlock, { once: true });
+            window.addEventListener('scroll', unlock, { once: true });
+        })();
 
-        // Member Hub Access Persistence
+        // Member Hub Access
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('hub_access') === 'true') {
                 document.getElementById('form-content').classList.add('hidden');
                 document.getElementById('success-banner').classList.remove('hidden');
                 const navBtn = document.getElementById('nav-btn');
-                navBtn.innerText = "Member Hub";
+                navBtn.innerText = "Financial Resources";
                 navBtn.href = 'hub.html';
                 navBtn.onclick = null;
             }
         });
 
-        // Form Submission logic
+        // Form Logic
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const errorMsg = document.getElementById('error-msg');
             const phoneVal = document.getElementById('phone').value.replace(/\D/g, '');
-            const emailVal = document.getElementById('email').value.toLowerCase().trim();
-
+            
             if (phoneVal.length !== 10) {
                 errorMsg.innerText = "Please provide a valid 10-digit phone number.";
                 errorMsg.classList.remove('hidden');
@@ -311,7 +323,7 @@
             const payload = {
                 first_name: document.getElementById('first_name').value,
                 last_name: document.getElementById('last_name').value,
-                email: emailVal,
+                email: document.getElementById('email').value.toLowerCase().trim(),
                 phone: phoneVal
             };
 
@@ -322,9 +334,7 @@
             }).then(() => {
                 localStorage.setItem('hub_access', 'true');
                 btn.innerText = "Redirecting...";
-                setTimeout(() => {
-                    window.location.href = CALENDLY_URL;
-                }, 800);
+                setTimeout(() => { window.location.href = CALENDLY_URL; }, 800);
             }).catch(() => {
                 btn.disabled = false;
                 btn.innerText = "Try Again";
