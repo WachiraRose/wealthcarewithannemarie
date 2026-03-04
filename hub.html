@@ -44,7 +44,7 @@
                 <i class="fas fa-mobile-screen-button text-teal-400 text-xl"></i>
             </div>
             <div>
-                <p class="text-[10px] font-black uppercase tracking-widest text-teal-400">Financial Education Reources</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-teal-400">Financial Education Resources</p>
                 <p class="text-xs font-semibold">Add to Home Screen?</p>
             </div>
         </div>
@@ -123,8 +123,8 @@
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 border-t border-gray-100 pt-16">
             <div class="space-y-6">
                 <div class="flex items-center gap-3">
-                    <img src="img/logo.jpg" class="h-8 w-8 rounded-full border shadow-sm">
-                    <span class="font-extrabold text-teal-900 uppercase italic text-xs tracking-tighter">Financial Resources</span>
+                    <img src="img/logo.jpg" class="h-10 w-10 rounded-full border shadow-sm">
+                    <span class="font-extrabold text-teal-900 uppercase italic text-sm tracking-tighter">Wealthcare Resources</span>
                 </div>
                 <p class="text-gray-400 text-xs leading-relaxed max-w-xs">Helping families navigate the intersection of wellness and wealth with purpose.</p>
             </div>
@@ -138,7 +138,7 @@
 
             <div class="flex flex-col gap-4">
                 <h4 class="text-teal-900 font-black text-[10px] uppercase tracking-[0.2em] mb-2">Direct Access</h4>
-                <div id="footer-contact-links" class="flex flex-col gap-4"></div>
+                <div id="footer-contact-links" class="flex flex-col gap-4 italic text-gray-300 text-xs">Loading contact information...</div>
             </div>
         </div>
         <p class="text-center mt-24 text-[10px] text-gray-300 font-bold uppercase tracking-[0.5em]">© 2026 Wealthcare With Annemarie</p>
@@ -150,40 +150,44 @@
         // --- CONFIGURATION ---
         const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbyWJm4C8CuSM3HmR3-K9U6BSTmk8nCniRX1mBUUV3yF35wf-w-YJ1hi-1WbrcQXFJcq/exec';
         
+        // SECURITY: Encoded Data for 314-397-0158
         const SECURE_DATA = {
-    // These are now encoded strings
-    p: "MzE0Mzk3MDE1OA==", 
-    e: "Y2hyaXN0Y292Y2hpbGRyZW5taW5pc3RyeUBnbWFpbC5jb20="
-};
+            w: "aHR0cHM6Ly93YS5tZS8xMzE0Mzk3MDE1OD90ZXh0PUhpJTIwQW5uZW1hcmllJTJDJTIwSSdtJTIwcmVhY2hpbmclMjBvdXQlMjBmcm9tJTIwdGhlJTIwUmVzb3VyY2UlMjBIdWIlLi4u", // WhatsApp link
+            p: "dGVsOisxMzE0Mzk3MDE1OA==", // tel:+13143970158
+            e: "Y2hyaXN0Y292Y2hpbGRyZW5taW5pc3RyeUBnbWFpbC5jb20=" // Encoded email
+        };
 
-function setupContacts() {
-    // atob() decodes the string only when the script runs
-    const decodedPhone = atob(SECURE_DATA.p);
-    const decodedEmail = atob(SECURE_DATA.e);
-    
-    // ... rest of your injection logic using the decoded variables
-}
         // --- AUTH GATE ---
         if (localStorage.getItem('hub_access') !== 'true') { window.location.href = 'index.html'; }
 
         let deferredPrompt;
         let currentTopic = 'all';
 
-        // Contact Generator
-        function setupContacts() {
+        // Secure Contact Unlocker
+        function unlockContacts() {
             const float = document.getElementById('floating-buttons');
             const footer = document.getElementById('footer-contact-links');
-            const wa = `https://wa.me/${SECURE_DATA.p}?text=${encodeURIComponent(SECURE_DATA.msg)}`;
             
+            const decodedEmail = atob(SECURE_DATA.e);
+            const decodedWA = atob(SECURE_DATA.w);
+            const decodedPhone = atob(SECURE_DATA.p);
+
             float.innerHTML = `
-                <a href="${wa}" target="_blank" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"><i class="fab fa-whatsapp text-2xl"></i></a>
-                <a href="tel:+${SECURE_DATA.p}" class="w-14 h-14 bg-teal-900 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform border border-white/10"><i class="fas fa-phone text-xl"></i></a>
+                <a href="${decodedWA}" target="_blank" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"><i class="fab fa-whatsapp text-2xl"></i></a>
+                <a href="${decodedPhone}" class="w-14 h-14 bg-teal-900 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform border border-white/10"><i class="fas fa-phone text-xl"></i></a>
             `;
+            
             footer.innerHTML = `
-                <a href="${wa}" target="_blank" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center"><i class="fab fa-whatsapp text-green-600"></i></span> Secure WhatsApp</a>
-                <a href="mailto:${SECURE_DATA.e}" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center"><i class="far fa-envelope text-teal-600"></i></span> Private Email</a>
+                <a href="${decodedWA}" target="_blank" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3 transition-colors"><span class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center"><i class="fab fa-whatsapp text-green-600"></i></span> Secure WhatsApp</a>
+                <a href="${decodedPhone}" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3 transition-colors"><span class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center"><i class="fas fa-phone text-teal-600"></i></span> 314.397.0158</a>
+                <a href="mailto:${decodedEmail}" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3 transition-colors lowercase"><span class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center"><i class="far fa-envelope text-teal-600"></i></span> ${decodedEmail}</a>
             `;
         }
+
+        // Listen for human interaction to unlock data
+        window.addEventListener('mousemove', unlockContacts, { once: true });
+        window.addEventListener('touchstart', unlockContacts, { once: true });
+        window.addEventListener('scroll', unlockContacts, { once: true });
 
         // --- LIBRARY ENGINE ---
         async function loadLibrary() {
@@ -238,7 +242,6 @@ function setupContacts() {
             });
         }
 
-        // --- FILTER LOGIC ---
         function filterByTopic(topic) {
             currentTopic = topic;
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -246,7 +249,6 @@ function setupContacts() {
                 btn.classList.toggle('active', btnText.includes(topic) || (topic === 'all' && btnText.includes('all')));
             });
             applyFilters();
-            // Smooth scroll to top of results on mobile
             if(window.innerWidth < 768) window.scrollTo({ top: 400, behavior: 'smooth' });
         }
 
@@ -285,7 +287,6 @@ function setupContacts() {
         }
 
         // Start
-        setupContacts();
         loadLibrary();
     </script>
 </body>
