@@ -30,14 +30,18 @@
 <body class="bg-white">
 
     <div class="contact-float">
-        <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300">
-            <i class="fab fa-whatsapp text-2xl"></i>
-        </a>
-        <a href="tel:+1234567890" class="bg-teal-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300 border border-white/20">
-            <i class="fas fa-phone text-xl"></i>
-        </a>
-    </div>
-
+    <a href="javascript:void(0)" 
+       id="w-link" 
+       class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+    
+    <a href="javascript:void(0)" 
+       id="p-link" 
+       class="bg-teal-900 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300 border border-white/20">
+        <i class="fas fa-phone text-xl"></i>
+    </a>
+</div>
     <nav id="main-nav" class="fixed top-0 w-full z-[60] transition-all duration-300 px-6 py-4 flex justify-between items-center bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="flex items-center gap-3">
             <img src="img/logo.jpg" class="h-10 w-10 rounded-full border" alt="Logo">
@@ -65,7 +69,7 @@
     <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6">
         <div class="max-w-4xl text-white" data-aos="zoom-in">
             <h1 class="text-5xl md:text-8xl mb-8 font-bold leading-tight">Financial Literacy is the <br><span class="italic text-teal-300">New Currency</span></h1>
-            <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:scale-105 transition inline-block">Book Now</a>
+            <a href="#contact" class="bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:scale-105 transition inline-block">Book a Consultation</a>
         </div>
     </header>
 
@@ -165,7 +169,7 @@
                 <h2 class="text-5xl font-bold mb-6 serif leading-tight">Join our <br>Community</h2>
                 <p class="text-teal-100/60 text-lg mb-10">Sign up for free educational resources and book your 1-on-1 strategy session today.</p>
                 <div class="space-y-4 opacity-80">
-                    <div class="flex items-center gap-4"><i class="fas fa-check-circle text-teal-400"></i><span>Free Monthly Education</span></div>
+                    <div class="flex items-center gap-4"><i class="fas fa-check-circle text-teal-400"></i><span>Free Education Resources</span></div>
                     <div class="flex items-center gap-4"><i class="fas fa-check-circle text-teal-400"></i><span>Direct Support</span></div>
                 </div>
             </div>
@@ -181,7 +185,7 @@
                         <input type="tel" id="phone" placeholder="Phone (10 Digits)" required class="w-full p-4 rounded-xl border border-gray-100 bg-gray-50 focus:ring-2 focus:ring-teal-800 outline-none">
                         
                         <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-bold py-5 rounded-xl uppercase tracking-widest hover:bg-teal-800 transition shadow-lg mt-4">
-                            Submit & Book Now
+                            Submit 
                         </button>
                         <p id="error-msg" class="text-red-600 text-center text-xs hidden font-bold mt-4 p-3 bg-red-50 rounded-lg"></p>
                     </form>
@@ -191,10 +195,12 @@
                     <div class="w-16 h-16 bg-teal-50 text-teal-700 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-unlock-alt text-2xl"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-teal-900 mb-6">Access Granted</h2>
+                    <h2 class="text-2xl font-bold text-teal-900 mb-6">Welcome</h2>
                     <div class="flex flex-col gap-4">
-                        <a href="hub.html" class="bg-teal-900 text-white px-8 py-4 rounded-xl font-bold shadow-md">Enter Member Hub</a>
+                        <a href="hub.html" class="bg-teal-900 text-white px-8 py-4 rounded-xl font-bold shadow-md">Open Resources</a>
+                        <a href="https://calendly.com/amariem/one-on-one" class="bg-teal-900 text-white px-8 py-4 rounded-xl font-bold shadow-md">Schedule another Call</a>
                         <a href="https://calendly.com/amariem/one-on-one" target="_blank" rel="noopener noreferrer" class="text-teal-900 font-bold text-sm">Open Calendar</a>
+                        <a href="hub.html" target="_blank" rel="noopener noreferrer" class="text-teal-900 font-bold text-sm">Open Resources</a>
                     </div>
                 </div>
             </div>
@@ -244,6 +250,34 @@
         menuToggle.addEventListener('click', toggleMenu);
         menuClose.addEventListener('click', toggleMenu);
         mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        (function() {
+    // Encoded strings to hide from bots
+    
+    const w_sec = "MzE0Mzk3MDE1OA==";
+    const p_sec = "MzE0Mzk3MDE1OA==";
+
+    // Decrypt links when a human moves the mouse or touches the screen
+    const unlock = () => {
+        const wBtn = document.getElementById('w-link');
+        const pBtn = document.getElementById('p-link');
+
+        if (wBtn) {
+            wBtn.href = atob(w_sec);
+            wBtn.setAttribute('target', '_blank');
+            wBtn.setAttribute('rel', 'noopener noreferrer');
+        }
+        
+        if (pBtn) {
+            pBtn.href = atob(p_sec);
+        }
+    };
+
+    // Listen for human interaction
+    window.addEventListener('mousemove', unlock, { once: true });
+    window.addEventListener('touchstart', unlock, { once: true });
+    window.addEventListener('scroll', unlock, { once: true });
+})();
 
         // Member Hub Access Persistence
         window.addEventListener('DOMContentLoaded', () => {
