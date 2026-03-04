@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Education Hub | WealthCare with Annemarie</title>
+    <title>Education Resource | WealthCare with Annemarie</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -44,7 +44,7 @@
                 <i class="fas fa-mobile-screen-button text-teal-400 text-xl"></i>
             </div>
             <div>
-                <p class="text-[10px] font-black uppercase tracking-widest text-teal-400">Library App</p>
+                <p class="text-[10px] font-black uppercase tracking-widest text-teal-400">Financial Education Reources</p>
                 <p class="text-xs font-semibold">Add to Home Screen?</p>
             </div>
         </div>
@@ -57,7 +57,7 @@
     <nav class="bg-white/80 backdrop-blur-md border-b border-gray-100 px-8 py-5 flex justify-between items-center sticky top-0 z-50">
         <div class="flex items-center gap-3">
             <img src="img/logo.jpg" class="h-10 w-10 rounded-full border shadow-sm" alt="Wealthcare Logo">
-            <span class="font-extrabold text-teal-900 uppercase italic text-sm tracking-tighter">Wealthcare Hub</span>
+            <span class="font-extrabold text-teal-900 uppercase italic text-sm tracking-tighter">Wealthcare Resources</span>
         </div>
         <a href="index.html" class="text-xs font-black text-gray-400 hover:text-teal-900 transition-colors uppercase tracking-[0.2em]">Exit Library</a>
     </nav>
@@ -68,7 +68,7 @@
             <div class="absolute bottom-[-10%] right-[-5%] w-96 h-96 bg-teal-600 rounded-full blur-3xl"></div>
         </div>
         <div class="max-w-4xl mx-auto relative z-10">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">Member Library</h1>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Resource Library</h1>
             <p class="text-teal-200/70 text-xl italic font-light max-w-2xl mx-auto leading-relaxed">
                 Strategic resources designed for your family's health, legal, and financial security.
             </p>
@@ -114,7 +114,7 @@
             <span class="text-teal-600 font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Take the next step</span>
             <h2 class="text-4xl md:text-5xl font-bold text-teal-950 mb-6">Ready for your roadmap?</h2>
             <p class="text-gray-500 mb-10 text-lg leading-relaxed">Resources are tools; strategy is the plan. Let's customize yours.</p>
-            <a href="https://calendly.com/your-link" target="_blank" rel="noopener" 
+            <a href="https://calendly.com/amariem/one-on-one" target="_blank" rel="noopener" 
                class="inline-block bg-teal-900 text-white px-12 py-5 rounded-2xl font-black shadow-2xl hover:bg-teal-800 transition-all uppercase text-xs tracking-[0.2em] hover:scale-105">
                Schedule Strategy Session
             </a>
@@ -124,7 +124,7 @@
             <div class="space-y-6">
                 <div class="flex items-center gap-3">
                     <img src="img/logo.jpg" class="h-8 w-8 rounded-full border shadow-sm">
-                    <span class="font-extrabold text-teal-900 uppercase italic text-xs tracking-tighter">Wealthcare Hub</span>
+                    <span class="font-extrabold text-teal-900 uppercase italic text-xs tracking-tighter">Financial Resources</span>
                 </div>
                 <p class="text-gray-400 text-xs leading-relaxed max-w-xs">Helping families navigate the intersection of wellness and wealth with purpose.</p>
             </div>
@@ -151,11 +151,18 @@
         const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbyWJm4C8CuSM3HmR3-K9U6BSTmk8nCniRX1mBUUV3yF35wf-w-YJ1hi-1WbrcQXFJcq/exec';
         
         const SECURE_DATA = {
-            p: "1234567890", 
-            e: "annemarie@example.com",
-            msg: "Hi Annemarie, I'm reaching out from the Member Hub..."
-        };
+    // These are now encoded strings
+    p: "MzE0Njg4NjAyNA==", 
+    e: "Y2hyaXN0Y292Y2hpbGRyZW5taW5pc3RyeUBnbWFpbC5jb20="
+};
 
+function setupContacts() {
+    // atob() decodes the string only when the script runs
+    const decodedPhone = atob(SECURE_DATA.p);
+    const decodedEmail = atob(SECURE_DATA.e);
+    
+    // ... rest of your injection logic using the decoded variables
+}
         // --- AUTH GATE ---
         if (localStorage.getItem('hub_access') !== 'true') { window.location.href = 'index.html'; }
 
