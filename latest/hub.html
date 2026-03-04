@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Education Hub | WealthCare with Annemarie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .filter-btn.active { background-color: #134e4a; color: white; border-color: #134e4a; }
+        .resource-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hidden-resource { display: none !important; opacity: 0; transform: scale(0.95); }
+        .loading-spinner { border-top-color: #134e4a; animation: spinner 0.6s linear infinite; }
+        @keyframes spinner { to { transform: rotate(360deg); } }
+        
+        /* App Prompt Styling */
+        #pwa-toast { transition: transform 0.5s ease-in-out; transform: translateY(200%); }
+        #pwa-toast.show { transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div id="pwa-toast" class="fixed bottom-24 left-6 right-6 z-[110] bg-teal-950 text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between border border-teal-800 md:max-w-sm md:left-auto">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <i class="fas fa-mobile-alt text-teal-400"></i>
+            </div>
+            <div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-teal-400">Save for later</p>
+                <p class="text-xs font-semibold">Add Library to Home Screen?</p>
+            </div>
+        </div>
+        <button onclick="installApp()" class="bg-teal-500 text-teal-950 px-4 py-2 rounded-xl text-xs font-black uppercase">Add</button>
+    </div>
+
+    <nav class="bg-white border-b border-gray-100 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <img src="img/logo.jpg" class="h-8 w-8 rounded-full border">
+            <span class="font-extrabold text-teal-900 uppercase italic text-xs">Wealthcare Hub</span>
+        </div>
+        <a href="index.html" class="text-xs font-bold text-gray-400 hover:text-teal-900 uppercase tracking-widest">Exit Hub</a>
+    </nav>
+
+    <header class="py-16 px-6 bg-teal-950 text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Resource Library</h1>
+            <p class="text-teal-200/70 text-lg italic leading-relaxed">Exclusive education for your family's health, legal, and financial security.</p>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 mt-12 space-y-8">
+        <div class="max-w-md mx-auto relative">
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <input type="text" id="searchInput" onkeyup="searchResources()" placeholder="Search topics..." 
+                   class="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-teal-900 outline-none shadow-sm text-sm">
+        </div>
+
+        <div class="flex flex-col items-center">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="filterByTopic('all')" class="filter-btn active px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">All Topics</button>
+                <button onclick="filterByTopic('health')" class="filter-btn px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">Health</button>
+                <button onclick="filterByTopic('legal')" class="filter-btn px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">Legal</button>
+                <button onclick="filterByTopic('financial')" class="filter-btn px-8 py-2 rounded-xl border-2 border-gray-200 font-bold text-xs transition">Financial</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-12 px-6 max-w-7xl mx-auto min-h-[500px]">
+        <div id="loading" class="flex flex-col items-center justify-center py-20">
+            <div class="loading-spinner w-12 h-12 border-4 border-gray-200 rounded-full mb-4"></div>
+            <p class="text-gray-400 text-sm font-bold animate-pulse">Updating Library...</p>
+        </div>
+
+        <div id="emptyState" class="hidden text-center py-20">
+            <i class="fas fa-search text-4xl text-gray-200 mb-4"></i>
+            <p class="text-gray-500">No results found.</p>
+        </div>
+
+        <div id="resourceGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+
+    <footer class="bg-white border-t border-gray-100 pt-20 pb-10 px-6 text-center">
+        <div class="max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-teal-950 mb-4">Personalized Support</h2>
+            <p class="text-gray-500 mb-8 leading-relaxed">Education is the foundation. Let's build your specific family bridge together.</p>
+            <a href="https://calendly.com/your-link" target="_blank" class="inline-block bg-teal-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:scale-105 transition uppercase text-[10px] tracking-widest">Book My Strategy Call</a>
+        </div>
+
+        <hr class="max-w-7xl mx-auto border-gray-100 mb-12">
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-left px-4">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="img/logo.jpg" class="h-6 w-6 rounded-full border">
+                    <span class="font-extrabold text-teal-900 uppercase italic text-[10px]">Wealthcare</span>
+                </div>
+                <p class="text-gray-400 text-[11px] leading-relaxed max-w-xs">Empowering families with the tools to secure their future.</p>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+                <h4 class="text-teal-900 font-bold text-[10px] uppercase tracking-widest mb-2">Sections</h4>
+                <button onclick="filterByTopic('health')" class="text-left text-gray-500 text-xs hover:text-teal-700">Health Hub</button>
+                <button onclick="filterByTopic('legal')" class="text-left text-gray-500 text-xs hover:text-teal-700">Legal Hub</button>
+                <button onclick="filterByTopic('financial')" class="text-left text-gray-500 text-xs hover:text-teal-700">Financial Hub</button>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <h4 class="text-teal-900 font-bold text-[10px] uppercase tracking-widest mb-2">Secure Contact</h4>
+                <div id="footer-contact-links" class="flex flex-col gap-3"></div>
+            </div>
+        </div>
+        <p class="mt-20 text-[9px] text-gray-300 uppercase tracking-[0.4em]">© 2026 Wealthcare With Annemarie</p>
+    </footer>
+
+    <div id="floating-buttons" class="fixed bottom-6 left-6 z-[100] flex flex-col gap-3"></div>
+
+    <script>
+        const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbyWJm4C8CuSM3HmR3-K9U6BSTmk8nCniRX1mBUUV3yF35wf-w-YJ1hi-1WbrcQXFJcq/exec';
+        
+        // --- 1. CONTACT PROTECTION (UPDATE THESE) ---
+        const SECURE_DATA = {
+            p: "1234567890", // Phone number
+            e: "annemarie@example.com", // Email
+            msg: "I have a question about the resources..."
+        };
+
+        // --- 2. GATEKEEPER & INITIALIZATION ---
+        if (localStorage.getItem('hub_access') !== 'true') { window.location.href = 'index.html'; }
+
+        let deferredPrompt;
+        let currentTopic = 'all';
+
+        // Contact Injection
+        function setupContacts() {
+            const float = document.getElementById('floating-buttons');
+            const footer = document.getElementById('footer-contact-links');
+            const wa = `https://wa.me/${SECURE_DATA.p}?text=${encodeURIComponent(SECURE_DATA.msg)}`;
+            
+            float.innerHTML = `
+                <a href="${wa}" target="_blank" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition"><i class="fab fa-whatsapp text-2xl"></i></a>
+                <a href="tel:+${SECURE_DATA.p}" class="w-14 h-14 bg-teal-900 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition border border-white/10"><i class="fas fa-phone text-xl"></i></a>
+            `;
+            footer.innerHTML = `
+                <a href="${wa}" target="_blank" class="text-gray-500 text-xs hover:text-teal-700"><i class="fab fa-whatsapp mr-2 text-green-500"></i> WhatsApp</a>
+                <a href="mailto:${SECURE_DATA.e}" class="text-gray-500 text-xs hover:text-teal-700"><i class="far fa-envelope mr-2 text-teal-600"></i> Email Me</a>
+            `;
+        }
+
+        // --- 3. RESOURCE LIBRARY ENGINE ---
+        async function loadLibrary() {
+            try {
+                const res = await fetch(SHEET_API_URL);
+                const data = await res.json();
+                renderCards(data);
+                document.getElementById('loading').classList.add('hidden');
+            } catch (err) {
+                document.getElementById('loading').innerHTML = `<p class="text-red-500 text-xs font-bold uppercase">Sync Failed</p>`;
+            }
+        }
+
+        function renderCards(data) {
+            const grid = document.getElementById('resourceGrid');
+            grid.innerHTML = '';
+            data.forEach(item => {
+                const cat = (item.Category || 'Other').toLowerCase().trim();
+                const fmt = (item.Format || 'Article').toLowerCase().trim();
+                const img = item.Image || 'https://images.unsplash.com/photo-1454165833767-027eeef1626b?q=80&w=800';
+                let icon = fmt === 'video' ? 'fa-play-circle' : (fmt === 'pdf' ? 'fa-file-pdf' : 'fa-newspaper');
+
+                grid.innerHTML += `
+                    <div class="resource-card bg-white rounded-[2.5rem] shadow-sm border border-gray-100 flex flex-col overflow-hidden" data-topic="${cat}" data-title="${item.Title.toLowerCase()}">
+                        <div class="h-44 overflow-hidden relative">
+                            <img src="${img}" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[9px] font-black uppercase text-teal-900 shadow-sm">${cat}</div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 mb-3 text-teal-600">
+                                <i class="fas ${icon} text-sm"></i>
+                                <span class="text-[9px] font-black uppercase tracking-widest">${fmt}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-teal-950 mb-2 leading-snug">${item.Title}</h3>
+                            <p class="text-gray-400 text-xs mb-8 flex-grow leading-relaxed line-clamp-3">${item.Description}</p>
+                            <a href="${item.Link}" target="_blank" class="w-full text-center py-4 bg-teal-950 text-white rounded-2xl font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-teal-800 transition">View Resource</a>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // --- 4. FILTERS & SEARCH ---
+        function filterByTopic(topic) {
+            currentTopic = topic;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText.toLowerCase().includes(topic) || (topic === 'all' && btn.innerText.includes('All')));
+            });
+            applyFilters();
+        }
+
+        function searchResources() { applyFilters(); }
+
+        function applyFilters() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.resource-card');
+            let count = 0;
+            cards.forEach(card => {
+                const matchesTopic = (currentTopic === 'all' || card.dataset.topic === currentTopic);
+                const matchesSearch = card.dataset.title.includes(term);
+                const visible = matchesTopic && matchesSearch;
+                card.classList.toggle('hidden-resource', !visible);
+                if (visible) count++;
+            });
+            document.getElementById('emptyState').classList.toggle('hidden', count > 0);
+        }
+
+        // --- 5. APP INSTALL LOGIC ---
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            setTimeout(() => { document.getElementById('pwa-toast').classList.add('show'); }, 3000);
+        });
+
+        function installApp() {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(() => {
+                document.getElementById('pwa-toast').classList.remove('show');
+                deferredPrompt = null;
+            });
+        }
+
+        // Boot
+        setupContacts();
+        loadLibrary();
+    </script>
+</body>
+</html>
