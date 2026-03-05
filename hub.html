@@ -153,8 +153,8 @@
         // SECURITY: Encoded Data for 314-397-0158
         const SECURE_DATA = {
             w: "aHR0cHM6Ly93YS5tZS8xMzE0Mzk3MDE1OD90ZXh0PUhpJTIwQW5uZW1hcmllJTJDJTIwSSdtJTIwcmVhY2hpbmclMjBvdXQlMjBmcm9tJTIwdGhlJTIwUmVzb3VyY2UlMjBIdWIlLi4u", // WhatsApp link
-            p: "dGVsOisxMzE0Mzk3MDE1OA==", // tel:+13143970158
-            e: "Y2hyaXN0Y292Y2hpbGRyZW5taW5pc3RyeUBnbWFpbC5jb20=" // Encoded email
+            p: "dGVsOisxMzE0Mzk3MDE1OA==", 
+            e: "YW5uZW1hcmllQHdlYWx0aGNhcmV3aXRoYW5uZW1hcmllLmNvbQ==" 
         };
 
         // --- AUTH GATE ---
@@ -178,7 +178,7 @@
             `;
             
             footer.innerHTML = `
-                <a href="${decodedWA}" target="_blank" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3 transition-colors"><span class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center"><i class="fab fa-whatsapp text-green-600"></i></span> Secure WhatsApp</a>
+                <a href="${decodedWA}" target="_blank" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3 transition-colors"><span class="w-6 h-6 rounded-full bg-green-50 flex items-center justify-center"><i class="fab fa-whatsapp text-green-600"></i></span> WhatsApp</a>
                 <a href="${decodedPhone}" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3 transition-colors"><span class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center"><i class="fas fa-phone text-teal-600"></i></span> 314.397.0158</a>
                 <a href="mailto:${decodedEmail}" class="text-gray-500 text-xs hover:text-teal-900 font-bold flex items-center gap-3 transition-colors lowercase"><span class="w-6 h-6 rounded-full bg-teal-50 flex items-center justify-center"><i class="far fa-envelope text-teal-600"></i></span> ${decodedEmail}</a>
             `;
@@ -215,7 +215,7 @@
                 const cat = (item.Category || 'Other').toLowerCase().trim();
                 const fmt = (item.Format || 'Article').toLowerCase().trim();
                 const img = item.Image || 'https://images.unsplash.com/photo-1454165833767-027eeef1626b?q=80&w=800';
-                let icon = fmt === 'video' ? 'fa-circle-play' : (fmt === 'pdf' ? 'fa-file-pdf' : 'fa-newspaper');
+                let icon = fmt === 'video' ? 'fa-circle-play' : (fmt === 'article' ? 'fa-newspaper' : 'fa-file-pdf');
 
                 grid.innerHTML += `
                     <div class="resource-card bg-white rounded-[3rem] shadow-sm border border-gray-100 flex flex-col overflow-hidden" 
