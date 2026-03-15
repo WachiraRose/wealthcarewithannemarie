@@ -1,60 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Defines character encoding so text displays correctly -->
     <meta charset="UTF-8">
+
+    <!-- Makes the website responsive on phones, tablets, and desktops -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- The page title shown in Google search results and browser tabs -->
     <title>Financial Education, Income Protection & Legacy Planning | WealthCare with Annemarie</title>
 
+    <!-- Short description that appears under title in Google search -->
     <meta name="description" content="WealthCare with Annemarie helps families learn financial education, protect their income, build wealth, and create a lasting legacy through smart financial strategies.">
 
+    <!-- Keywords related to website topic-->
     <meta name="keywords" content="financial education, income protection, legacy planning, financial literacy, wealth building, retirement planning, family financial education">
 
+    <!-- Identifies owner of the website -->
     <meta name="author" content="Annemarie">
 
+    <!-- Tells search engines they are allowed to index my site and follow its links -->
     <meta name="robots" content="index, follow">
 
+    <!-- Prevents duplicate content issues by telling Google the official page URL -->
     <link rel="canonical" href="https://wealthcarewithannemarie.com/">
 
+    <!-- These Open Graph tags control how your website appears when shared on Facebook, LinkedIn, or WhatsApp -->
+
+    <!-- Title shown when page is shared -->
     <meta property="og:title" content="WealthCare with Annemarie | Family Financial Education">
+
+    <!-- Description shown when page is shared -->
     <meta property="og:description" content="Helping families build wealth, protect income, and create a lasting legacy through financial education.">
+
+    <!-- Image preview shown when page is shared -->
     <meta property="og:image" content="https://wealthcarewithannemarie.com/img/logo.jpg">
+
+    <!-- URL of webpage -->
     <meta property="og:url" content="https://wealthcarewithannemarie.com/">
+
+    <!-- Tells social platforms this page is a website -->
     <meta property="og:type" content="website">
 
+    <!-- Website favicon -->
     <link rel="icon" type="image/jpeg" href="img/logo.jpg">
-    
+
+
+    <!-- Tailwind CSS framework (for styling website layout quickly) -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts used for typography -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome icons library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- AOS animation library for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
+
+    <!-- Custom CSS styling for site -->
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Main font used for body text */
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth; 
+            overflow-x: hidden; 
+        }
+
+        /* Headings use a different font */
+        h1, h2, h3 { 
+            font-family: 'Playfair Display', serif; 
+        }
+
+        /* Hero background image with dark overlay */
         .hero-bg {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
-                        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover; background-position: center; background-attachment: fixed;
+            url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
-        .contact-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; display: flex; flex-direction: column; gap: 12px; }
-        .nav-scrolled { background-color: rgba(255, 255, 255, 0.98); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        
-        #mobile-menu { 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-            transform: translateX(100%); 
-            opacity: 0; 
+
+        /* Floating contact button positioning */
+        .contact-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Navigation style when scrolling */
+        .nav-scrolled {
+            background-color: rgba(255,255,255,0.98);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        /* Mobile menu animation */
+        #mobile-menu {
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            transform: translateX(100%);
+            opacity: 0;
             pointer-events: none;
             z-index: 9999;
         }
-        #mobile-menu.active { 
-            transform: translateX(0); 
-            opacity: 1; 
-            pointer-events: all; 
+
+        #mobile-menu.active {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: all;
         }
+
     </style>
+
+
+    <!-- Organization Schema (Helps Google show your logo in search results instead of the globe icon) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WealthCare with Annemarie",
+      "url": "https://wealthcarewithannemarie.com",
+      "logo": "https://wealthcarewithannemarie.com/img/logo.jpg"
+    }
+    </script>
+
+
+    <!-- Website Schema (Helps Google understand your website structure and brand name) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "WealthCare with Annemarie",
+      "url": "https://wealthcarewithannemarie.com/"
+    }
+    </script>
+
 </head>
 <body class="bg-white">
-
+    <!-- FLOATING CONTACT BUTTONS (WhatsApp + Phone) -->
     <div class="contact-float">
         <a href="javascript:void(0)" id="w-link" class="bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300">
             <i class="fab fa-whatsapp text-2xl"></i>
@@ -64,47 +153,68 @@
         </a>
     </div>
 
+    <!-- MAIN NAVIGATION BAR -->
+    <!-- Fixed at the top and slightly transparent -->
     <nav id="main-nav" class="fixed top-0 w-full z-[100] transition-all duration-300 px-6 py-4 flex justify-between items-center bg-white/90 backdrop-blur-md border-b border-gray-100">
+        
+        <!-- WEBSITE LOGO + NAME -->
         <div class="flex items-center gap-3">
             <img src="img/logo.jpg" class="h-10 w-10 rounded-full border" alt="Logo">
             <span class="font-extrabold text-teal-900 uppercase italic text-sm tracking-tighter">Wealthcare</span>
         </div>
-        
+
+        <!-- DESKTOP NAVIGATION LINKS -->
         <div class="flex items-center gap-6">
             <a href="#about" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">About</a>
             <a href="hub.html" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">Resources</a>
             <a href="#blog" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">Insights</a>
             <a href="#contact" class="hidden lg:block text-xs font-bold text-gray-500 hover:text-teal-900 uppercase tracking-widest">Contact</a>
-            
+
+            <!-- MOBILE MENU BUTTON -->
             <button id="menu-toggle" class="lg:hidden text-teal-900 text-2xl p-2 focus:outline-none relative z-[110]">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
+    <!-- MOBILE FULLSCREEN MENU -->
+    <!-- Appears when hamburger menu is clicked -->
     <div id="mobile-menu" class="fixed inset-0 bg-teal-950 flex flex-col items-center justify-center gap-8 text-white z-[200]">
+        
+        <!-- CLOSE BUTTON -->
         <button id="menu-close" class="absolute top-6 right-6 text-teal-300 text-5xl p-4">&times;</button>
+
+        <!-- MOBILE NAVIGATION LINKS -->
         <a href="#about" class="mobile-link text-3xl font-bold hover:text-teal-300 transition">About</a>
         <a href="hub.html" class="mobile-link text-3xl font-bold hover:text-teal-300 transition">Resources</a>
         <a href="#blog" class="mobile-link text-3xl font-bold hover:text-teal-300 transition">Insights</a>
         <a href="#contact" class="mobile-link text-3xl font-bold hover:text-teal-300 transition">Contact</a>
+
+        <!-- CONTACT ICONS IN MOBILE MENU -->
         <div class="mt-8 flex gap-6">
             <a href="javascript:void(0)" class="footer-w text-2xl text-teal-300"><i class="fab fa-whatsapp"></i></a>
             <a href="javascript:void(0)" class="footer-p text-2xl text-teal-300"><i class="fas fa-phone"></i></a>
         </div>
     </div>
 
+    <!-- HERO SECTION -->
+    <!-- First thing users see when they open website -->
     <header class="hero-bg min-h-screen flex items-center justify-center text-center px-6">
+
+        <!-- MAIN HEADLINE -->
         <div class="max-w-4xl text-white relative z-10" data-aos="zoom-in">
             <h1 class="text-5xl md:text-8xl mb-8 font-bold leading-tight">
                 Financial Literacy is the <br>
                 <span class="italic text-teal-300">New Currency</span>
             </h1>
             
+            <!-- CALL TO ACTION BUTTONS -->
             <div class="flex flex-col md:flex-row items-center justify-center gap-5 relative z-20">
+                <!-- Consultation button -->
                 <a href="#contact" class="w-full md:w-auto bg-white text-teal-900 px-12 py-5 rounded-2xl font-extrabold text-lg shadow-2xl hover:scale-105 transition duration-300 inline-block">
                     Book a Consultation
                 </a>
+                <!-- Resource page -->
                 <a href="hub.html" class="w-full md:w-auto bg-transparent border-2 border-white/40 backdrop-blur-md text-white px-12 py-5 rounded-2xl font-extrabold text-lg hover:bg-white/10 hover:border-white transition duration-300 inline-block">
                     Learn More
                 </a>
@@ -112,18 +222,23 @@
         </div>
     </header>
 
+    <!-- ABOUT SECTION -->
     <section id="about" class="py-24 px-6 bg-white overflow-hidden">
         <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <!-- PROFILE IMAGE -->
             <div class="relative" data-aos="fade-right">
                 <img src="img/profile.jpeg" class="rounded-[3rem] shadow-2xl w-full object-cover h-[550px]" alt="Annemarie">
+                <!-- NAME OVERLAY CARD -->
                 <div class="absolute -bottom-6 -right-6 bg-teal-900 text-white p-8 rounded-2xl hidden md:block shadow-xl">
                     <p class="text-2xl font-serif italic">Annemarie</p>
                 </div>
             </div>
+            <!-- TEXT CONTENT -->
             <div data-aos="fade-left">
                 <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-4">The Vision</span>
                 <h2 class="text-5xl font-bold text-teal-900 mb-6 leading-tight">Educator First, <br><span class="italic text-teal-800">Guide Always</span></h2>
                 <p class="text-gray-600 text-xl leading-relaxed mb-8">Coming from a caregiving background, I bring a human-first heart to your finances, helping you navigate legacy planning with clarity and purpose.</p>
+                <!-- QUOTE BOX -->
                 <div class="p-8 bg-gray-50 rounded-2xl border-l-8 border-teal-900 italic text-teal-900 text-2xl font-serif">
                     "Knowledge is the bridge to generational wealth."
                 </div>
@@ -131,68 +246,109 @@
         </div>
     </section>
 
+    <!-- WHY FINANCIAL EDUCATION MATTERS SECTION -->
     <section class="py-24 bg-white">
+        <!-- Main content container with max width and horizontal padding -->
         <div class="max-w-7xl mx-auto px-6">
+            <!-- Section heading area -->
+            <!-- Centered intro text with AOS fade-up animation -->
             <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <!-- Small section label above the main heading -->
                 <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-teal-600 mb-4 block">Knowledge is Protection</span>
+                <!-- Main heading for benefits section -->
                 <h2 class="text-4xl md:text-5xl font-bold text-teal-950 mb-6 italic">Why Financial Education Matters</h2>
+                <!-- Supporting paragraph-->
                 <p class="text-gray-500 text-lg leading-relaxed">
                     Understanding the intersection of health, law, and finance isn't just about numbers—it's about the peace of mind that comes from being prepared for life's transitions.
                 </p>
             </div>
 
+            <!-- 3-column benefits grid -->
+            <!-- On medium screens and above, cards display in 3 columns -->
             <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- CARD 1: CONFIDENCE IN DECISIONS -->
                 <div class="p-10 rounded-[3rem] border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-500 group" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Icon container -->
                     <div class="w-14 h-14 bg-teal-900 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                         <i class="fas fa-shield-alt text-xl"></i>
                     </div>
+                     <!-- Card title -->
                     <h3 class="text-xl font-bold text-teal-950 mb-4 tracking-tight">Confidence in Decisions</h3>
+                     <!-- Card description -->
                     <p class="text-gray-500 text-sm leading-relaxed">Eliminate the "paralysis of analysis." Education provides the clarity needed to make swift, informed choices for your family's future.</p>
                 </div>
+
+                <!-- CARD 2: GENERATIONAL SECURITY -->
                 <div class="p-10 rounded-[3rem] border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-500 group" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Icon container -->
                     <div class="w-14 h-14 bg-teal-600 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                         <i class="fas fa-bridge text-xl"></i>
                     </div>
+                    <!-- Card title -->
                     <h3 class="text-xl font-bold text-teal-950 mb-4 tracking-tight">Generational Security</h3>
+                    <!-- Card description -->
                     <p class="text-gray-500 text-sm leading-relaxed">Financial literacy is the bridge between your hard work and your heirs' success. It ensures your legacy is preserved, not taxed away.</p>
                 </div>
-
+                
+                <!-- CARD 3: REDUCED STRESS -->
                 <div class="p-10 rounded-[3rem] border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-500 group" data-aos="fade-up" data-aos-delay="300">
+                    <!-- Icon container -->
                     <div class="w-14 h-14 bg-teal-950 text-white rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                         <i class="fas fa-heartbeat text-xl"></i>
                     </div>
+                    <!-- Card title -->
                     <h3 class="text-xl font-bold text-teal-950 mb-4 tracking-tight">Reduced Stress</h3>
+                     <!-- Card description -->
                     <p class="text-gray-500 text-sm leading-relaxed">By understanding your options before a crisis hits, you remove the emotional burden and anxiety of the unknown.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- BLOG / INSIGHTS SECTION -->
     <section id="blog" class="py-24 bg-[#f9f8f4] px-6">
+        <!-- Main blog section container -->
         <div class="max-w-7xl mx-auto">
+            <!-- Blog heading area -->
             <div class="text-center mb-16" data-aos="fade-down">
+                <!-- Small section label -->
                 <span class="text-teal-700 font-extrabold tracking-widest text-sm uppercase block mb-2">Education Resources</span>
+                <!-- Main heading -->
                 <h2 class="text-5xl font-bold text-teal-900 serif">Latest Insights</h2>
             </div>
 
+            <!-- Blog article cards grid -->
+            <!-- 2-column layout on medium screens and above -->
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                
+                <!-- ARTICLE CARD 1 -->
                 <article class="bg-white p-10 rounded-[3rem] shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between" data-aos="fade-right">
                     <div>
+                        <!-- Article category tag -->
                         <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-4 py-1.5 rounded-full w-fit mb-6 tracking-widest">Legacy</div>
+                        <!-- Article title -->
                         <h3 class="text-2xl md:text-3xl font-bold mb-4 text-teal-900">Legacy Planning: Building a Financial Bridge</h3>
+                        <!-- Article summary -->
                         <p class="text-gray-600 mb-8 leading-relaxed">Ensure your hard work protects your family long after you're gone.</p>
                     </div>
+                    <!-- Link to external blog article -->
                     <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/legacy-planning-building-financial.html" target="_blank" rel="noopener noreferrer" class="text-teal-900 font-black flex items-center gap-2 uppercase text-xs tracking-widest border-b-2 border-teal-900 w-fit pb-1">
                         Read Article <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </article>
-
+                
+                <!-- ARTICLE CARD 2 -->
                 <article class="bg-white p-10 rounded-[3rem] shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between" data-aos="fade-left">
                     <div>
+                        <!-- Article category tag -->
                         <div class="bg-teal-50 text-teal-800 text-[10px] font-bold uppercase px-4 py-1.5 rounded-full w-fit mb-6 tracking-widest">Fundamentals</div>
+                        <!-- Article title -->
                         <h3 class="text-2xl md:text-3xl font-bold mb-4 text-teal-900">Financial Literacy: The Foundation</h3>
+                        <!-- Article summary -->
                         <p class="text-gray-600 mb-8 leading-relaxed">Understand the essential skills of money management and budgeting.</p>
                     </div>
+                    <!-- Link to external blog article -->
                     <a href="https://wealthcarewithannemarie.blogspot.com/2026/02/financial-literacy-foundation-of-true.html" target="_blank" rel="noopener noreferrer" class="text-teal-900 font-black flex items-center gap-2 uppercase text-xs tracking-widest border-b-2 border-teal-900 w-fit pb-1">
                         Read Article <i class="fas fa-arrow-right ml-1"></i>
                     </a>
@@ -200,69 +356,102 @@
             </div>
         </div>
     </section>
+    
 
+    <!-- CONTACT / LEAD CAPTURE SECTION -->
     <section id="contact" class="py-24 bg-white px-6">
+        <!-- Main contact box -->
+        <!-- Dark left side for message, white right side for form -->
         <div class="max-w-5xl mx-auto bg-teal-950 rounded-[4rem] overflow-hidden flex flex-col lg:grid lg:grid-cols-2 shadow-2xl" data-aos="zoom-in-up">
+            <!-- LEFT SIDE: PROMOTIONAL MESSAGE -->
             <div class="p-12 lg:p-20 text-white">
+                <!-- Main contact heading -->
                 <h2 class="text-5xl font-bold mb-6 serif leading-tight">Join our <br>Community</h2>
+                <!-- Supporting text -->
                 <p class="text-teal-100/60 text-lg mb-10">Sign up for free educational resources and book your 1-on-1 strategy session today.</p>
+                <!-- Simple benefits list -->
                 <div class="space-y-4 opacity-80">
                     <div class="flex items-center gap-4"><i class="fas fa-check-circle text-teal-400"></i><span>Free Education Resources</span></div>
                     <div class="flex items-center gap-4"><i class="fas fa-check-circle text-teal-400"></i><span>Direct Support</span></div>
                 </div>
             </div>
 
+            <!-- RIGHT SIDE: FORM / SUCCESS STATE -->
             <div class="bg-white p-12 lg:p-16">
+                <!-- FORM CONTAINER -->
+                <!-- This shows before a user submits the form -->
                 <div id="form-content">
                     <form id="leadForm" class="space-y-4" novalidate>
+                        <!-- First and last name fields -->
                         <div class="grid md:grid-cols-2 gap-4">
                             <input type="text" id="first_name" placeholder="First Name" required class="w-full p-4 rounded-xl border border-gray-100 bg-gray-50 focus:ring-2 focus:ring-teal-800 outline-none">
                             <input type="text" id="last_name" placeholder="Last Name" required class="w-full p-4 rounded-xl border border-gray-100 bg-gray-50 focus:ring-2 focus:ring-teal-800 outline-none">
                         </div>
+                        <!-- Email Input -->
                         <input type="email" id="email" placeholder="Email Address" required class="w-full p-4 rounded-xl border border-gray-100 bg-gray-50 focus:ring-2 focus:ring-teal-800 outline-none">
+                        <!-- Phone Input -->
                         <input type="tel" id="phone" placeholder="Phone (10 Digits)" required class="w-full p-4 rounded-xl border border-gray-100 bg-gray-50 focus:ring-2 focus:ring-teal-800 outline-none">
-                        
+                        <!-- Submit Button -->
                         <button type="submit" id="submitBtn" class="w-full bg-teal-900 text-white font-bold py-5 rounded-xl uppercase tracking-widest hover:bg-teal-800 transition shadow-lg mt-4">
                             Submit 
                         </button>
+                        <!-- Error message area -->
+                        <!-- Hidden by default, shown when validation fails -->
                         <p id="error-msg" class="text-red-600 text-center text-xs hidden font-bold mt-4 p-3 bg-red-50 rounded-lg"></p>
                     </form>
                 </div>
 
+                <!-- SUCCESS BANNER -->
+                <!-- This replaces the form after the user successfully submits -->
                 <div id="success-banner" class="text-center py-10 hidden">
+                    <!-- Success icon -->
                     <div class="w-16 h-16 bg-teal-50 text-teal-700 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fas fa-unlock-alt text-2xl"></i>
                     </div>
+                    <!-- Welcome heading -->
                     <h2 class="text-3xl font-bold text-teal-900 mb-6">Welcome!</h2>
+                    <!-- Action buttons shown after signup -->
                     <div class="flex flex-col gap-4">
+                        <!-- Link to resource hub -->
                         <a href="hub.html" class="bg-teal-900 text-white px-8 py-4 rounded-xl font-bold shadow-md hover:bg-teal-800 transition">Financial Resources</a>
+                        <!-- Calendly booking link -->
                         <a href="https://calendly.com/amariem/one-on-one" target="_blank" rel="noopener noreferrer" class="bg-teal-600 text-white px-8 py-4 rounded-xl font-bold shadow-md hover:bg-teal-500 transition">Schedule a Strategy Call</a>
-                        
+                        <!-- Sign out / reset option -->
                         <button id="sign-out" class="mt-4 text-gray-400 text-xs hover:text-red-600 transition underline">Not you? Click here to switch accounts.</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
+    <!-- FOOTER SECTION -->
     <footer class="bg-teal-950 py-20 px-6 text-white">
+        <!-- Footer container -->
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left">
+            <!-- FOOTER COLUMN 1: BRANDING -->
             <div>
+                <!-- Footer logo and brand name -->
                 <div class="flex items-center gap-3 mb-6 justify-center md:justify-start">
                     <img src="img/logo.jpg" class="h-12 w-12 rounded-full border border-teal-800" alt="Wealthcare Logo">
                     <h3 class="text-2xl font-bold italic">Wealthcare</h3>
                 </div>
+                <!-- Brand description -->
                 <p class="text-teal-200/50 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">Building generational bridges through care, clarity, and education.</p>
             </div>
             
+            <!-- FOOTER COLUMN 2: CONTACT / SOCIAL LINKS -->
             <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-[0.2em]">
+                <!-- Footer heading -->
                 <h4 class="text-teal-400 mb-2">Connect With Me</h4>
+                <!-- Email link populated later by JavaScript -->
                 <a href="javascript:void(0)" id="footer-email" class="hover:text-teal-300 transition lowercase font-normal italic tracking-normal"><i class="far fa-envelope mr-3 text-teal-400"></i> Loading email...</a>
+                <!-- Social media links -->
                 <a href="#" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-facebook mr-3"></i> Facebook</a>
                 <a href="#" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-instagram mr-3"></i> Instagram</a>
                 <a href="#" target="_blank" class="hover:text-teal-300 transition"><i class="fab fa-linkedin mr-3"></i> LinkedIn</a>
             </div>
             
+            <!-- FOOTER COLUMN 3: COPYRIGHT -->
             <div class="flex flex-col justify-end">
                 <p class="text-[10px] opacity-40 uppercase tracking-[0.2em]">© 2026 Wealthcare With Annemarie • All Rights Reserved</p>
             </div>
@@ -271,12 +460,15 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // INITIALIZE SCROLL ANIMATION LIBRARY (AOS)
         AOS.init({ duration: 1000, once: true });
 
+        // GOOGLE APPS SCRIPT URL
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwaKzGLvcvGTVs4ApECgp99iozQxC6sTQQ1r8CN0qR-IavIfoHKLn4ge1K4_rDWcGPi/exec';
         const CALENDLY_URL = 'https://calendly.com/amariem/one-on-one'; 
 
         // --- SESSION MANAGEMENT ---
+        // Shows the success banner and hides the form
         function applyMemberHubUI() {
             const formContent = document.getElementById('form-content');
             const successBanner = document.getElementById('success-banner');
@@ -284,11 +476,14 @@
             if (successBanner) successBanner.classList.remove('hidden');
         }
 
+         // Resets page back to form
         function resetToFormUI() {
+            // Remove access token
             localStorage.removeItem('hub_access');
             document.getElementById('form-content').classList.remove('hidden');
             document.getElementById('success-banner').classList.add('hidden');
             document.getElementById('leadForm').reset();
+            // Scroll back to contact section
             window.scrollTo({ top: document.getElementById('contact').offsetTop, behavior: 'smooth' });
         }
 
@@ -298,16 +493,24 @@
                 applyMemberHubUI();
             }
         });
+        
 
+        // Sign out button
         document.getElementById('sign-out').addEventListener('click', resetToFormUI);
 
-        // --- NAVIGATION ---
+        /// ==============================
+        // NAVIGATION SCROLLING EFFECT
+        // ==============================
+        // Change nav style after scrolling
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('main-nav');
             if (window.scrollY > 50) nav.classList.add('nav-scrolled');
             else nav.classList.remove('nav-scrolled');
         });
 
+        // ==============================
+        // MOBILE MENU TOGGLE
+        // ==============================
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -319,8 +522,10 @@
         menuToggle.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-
+        
+        // ==============================
         // --- SECURITY OBFUSCATION ---
+        // ==============================
         (function() {
             const w_sec = "aHR0cHM6Ly93YS5tZS8xMzE0Mzk3MDE1OA==";
             const p_sec = "dGVsOisxMzE0Mzk3MDE1OA==";
@@ -344,7 +549,9 @@
             ['mousemove', 'touchstart', 'scroll'].forEach(evt => window.addEventListener(evt, unlock, { once: true }));
         })();
 
-        // --- FORM SUBMISSION ---
+        // ==============================
+        // FORM SUBMISSION
+        // ==============================
         document.getElementById('leadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -356,12 +563,14 @@
             
             errorMsg.classList.add('hidden');
 
+            // Validate input
             if (!emailPattern.test(emailVal) || phoneVal.length !== 10) {
                 errorMsg.innerText = "Please provide a valid email and 10-digit phone number.";
                 errorMsg.classList.remove('hidden');
                 return;
             }
-
+            
+            // Disable button and show loading spinner
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Registering...';
 
@@ -372,7 +581,7 @@
                 phone: phoneVal
             };
 
-            // Set localStorage immediately so they don't see the form if they click 'Back' from Calendly
+            // Sets localStorage immediately so they don't see the form if they click 'Back' from Calendly
             localStorage.setItem('hub_access', 'true');
 
             fetch(SCRIPT_URL, {
