@@ -54,12 +54,15 @@
         </div>
     </div>
 
-    <nav class="bg-white/80 backdrop-blur-md border-b border-gray-100 px-8 py-5 flex justify-between items-center sticky top-0 z-50">
-        <div class="flex items-center gap-3">
-            <img src="img/logo.jpg" class="h-10 w-10 rounded-full border shadow-sm" alt="Wealthcare Logo">
-            <span class="font-extrabold text-teal-900 uppercase italic text-sm tracking-tighter">Wealthcare Resources</span>
+    <nav class="bg-white/98 shadow-sm border-b border-gray-100 px-6 py-4 flex justify-between items-center sticky top-0 z-50 backdrop-blur-md">
+        <div class="flex items-center gap-3 rounded-full px-1 py-1">
+            <img src="img/logo.jpg" class="h-12 w-12 rounded-full object-cover shadow-sm" alt="Wealthcare Logo">
+            <div class="leading-tight">
+                <span class="font-black text-teal-700 italic text-[1.05rem] md:text-[1.25rem] tracking-[0.08em] leading-none" style="font-family: 'Playfair Display', serif;">WealthCare</span>
+                <span class="block text-[0.62rem] md:text-[0.68rem] tracking-[0.18em] text-teal-600/90">with Annemarie</span>
+            </div>
         </div>
-        <a href="index.html" class="text-xs font-black text-gray-400 hover:text-teal-900 transition-colors uppercase tracking-[0.2em]">Exit Library</a>
+        <a href="index.html" class="text-xs font-semibold text-gray-500 hover:text-teal-900 transition-colors tracking-[0.18em]">Exit Library</a>
     </nav>
 
     <header class="py-20 px-6 bg-teal-950 text-white text-center relative overflow-hidden">
@@ -109,39 +112,42 @@
         </section>
     </main>
 
-    <footer class="bg-white border-t border-gray-100 pt-24 pb-12 px-6">
-        <div class="max-w-4xl mx-auto text-center mb-24">
-            <span class="text-teal-600 font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Take the next step</span>
-            <h2 class="text-4xl md:text-5xl font-bold text-teal-950 mb-6">Ready for your roadmap?</h2>
-            <p class="text-gray-500 mb-10 text-lg leading-relaxed">Resources are tools; strategy is the plan. Let's customize yours.</p>
+    <footer class="bg-[#e4f0ee] border-t border-gray-100 pt-24 pb-14 px-6">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <span class="text-teal-700 font-semibold uppercase tracking-[0.35em] text-[10px] mb-4 block">Take the next step</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-teal-950 mb-5" style="font-family: 'Playfair Display', serif;">Ready for your roadmap?</h2>
+            <p class="text-gray-500 mb-8 text-lg leading-relaxed">Resources are tools; strategy is the plan. Let’s customize yours with clarity and confidence.</p>
             <a href="https://calendly.com/amariem/one-on-one" target="_blank" rel="noopener" 
-               class="inline-block bg-teal-900 text-white px-12 py-5 rounded-2xl font-black shadow-2xl hover:bg-teal-800 transition-all uppercase text-xs tracking-[0.2em] hover:scale-105">
+               class="inline-block bg-[#c2410c] text-white px-14 py-5 rounded-3xl font-black shadow-2xl hover:bg-[#9a3009] transition-all text-xs tracking-[0.25em] hover:scale-105 border border-[#fb923c]">
                Schedule Strategy Session
             </a>
         </div>
 
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16 border-t border-gray-100 pt-16">
-            <div class="space-y-6">
-                <div class="flex items-center gap-3">
-                    <img src="img/logo.jpg" class="h-10 w-10 rounded-full border shadow-sm">
-                    <span class="font-extrabold text-teal-900 uppercase italic text-sm tracking-tighter">Wealthcare Resources</span>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 border-t border-gray-100 pt-14">
+            <div class="space-y-5 text-center md:text-left">
+                <div class="flex items-center gap-3 justify-center md:justify-start">
+                    <img src="img/logo.jpg" class="h-12 w-12 rounded-full object-cover shadow-sm">
+                    <div class="leading-tight">
+                        <span class="font-black text-teal-900 italic text-[1.05rem] md:text-[1.15rem] tracking-[0.08em]" style="font-family: 'Playfair Display', serif;">WealthCare</span>
+                        <span class="block text-[0.62rem] md:text-[0.68rem] tracking-[0.18em] text-teal-600/90">with Annemarie</span>
+                    </div>
                 </div>
-                <p class="text-gray-400 text-xs leading-relaxed max-w-xs">Helping families navigate the intersection of wellness and wealth with purpose.</p>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">Helping families navigate the intersection of wellness and wealth with purpose.</p>
             </div>
             
-            <div class="flex flex-col gap-4">
-                <h4 class="text-teal-900 font-black text-[10px] uppercase tracking-[0.2em] mb-2">Resource Paths</h4>
-                <button onclick="filterByTopic('health')" class="text-left text-gray-500 text-xs hover:text-teal-900 font-bold transition-colors">Care Management</button>
-                <button onclick="filterByTopic('legal')" class="text-left text-gray-500 text-xs hover:text-teal-900 font-bold transition-colors">Legacy Planning</button>
-                <button onclick="filterByTopic('financial')" class="text-left text-gray-500 text-xs hover:text-teal-900 font-bold transition-colors">Asset Protection</button>
+            <div class="flex flex-col gap-4 text-center md:text-left">
+                <h4 class="text-teal-800 text-[10px] uppercase tracking-[0.35em] mb-1">Resource Paths</h4>
+                <button onclick="filterByTopic('health')" class="text-left text-gray-500 text-xs hover:text-teal-900 font-semibold transition-colors">Care Management</button>
+                <button onclick="filterByTopic('legal')" class="text-left text-gray-500 text-xs hover:text-teal-900 font-semibold transition-colors">Legacy Planning</button>
+                <button onclick="filterByTopic('financial')" class="text-left text-gray-500 text-xs hover:text-teal-900 font-semibold transition-colors">Asset Protection</button>
             </div>
 
-            <div class="flex flex-col gap-4">
-                <h4 class="text-teal-900 font-black text-[10px] uppercase tracking-[0.2em] mb-2">Direct Access</h4>
-                <div id="footer-contact-links" class="flex flex-col gap-4 italic text-gray-300 text-xs">Loading contact information...</div>
+            <div class="flex flex-col gap-4 text-center md:text-left">
+                <h4 class="text-teal-800 text-[10px] uppercase tracking-[0.35em] mb-1">Direct Access</h4>
+                <div id="footer-contact-links" class="flex flex-col gap-4 text-gray-500 text-xs">Loading contact information...</div>
             </div>
         </div>
-        <p class="text-center mt-24 text-[10px] text-gray-300 font-bold uppercase tracking-[0.5em]">© 2026 Wealthcare With Annemarie</p>
+        <p class="text-center mt-14 text-[10px] text-gray-400 tracking-[0.18em]">© 2026 Wealthcare With Annemarie</p>
     </footer>
 
     <div id="floating-buttons" class="fixed bottom-8 left-8 z-[100] flex flex-col gap-4"></div>
@@ -156,9 +162,6 @@
             p: "dGVsOisxMzE0Mzk3MDE1OA==", 
             e: "YW5uZW1hcmllQHdlYWx0aGNhcmV3aXRoYW5uZW1hcmllLmNvbQ==" 
         };
-
-        // --- AUTH GATE ---
-        if (localStorage.getItem('hub_access') !== 'true') { window.location.href = 'index.html'; }
 
         let deferredPrompt;
         let currentTopic = 'all';
